@@ -8,21 +8,34 @@
     "start": "next start",
     "lint:check": "biome check",
     "lint:fix": "biome format --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "i18n": "pnpm i18n:extract && pnpm i18n:compile",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.2.6",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.544.0",
     "next": "15.5.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
+    "@lingui/cli": "^5.5.0",
+    "@lingui/core": "^5.5.0",
+    "@lingui/react": "^5.5.0",
+    "@lingui/swc-plugin": "^5.6.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "husky": "^9.1.7",
     "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.8",
     "typescript": "^5"
   }
 }
