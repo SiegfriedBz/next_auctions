@@ -1,3 +1,5 @@
+import { useLingui } from "@lingui/react/macro";
+import Link from "next/link";
 import type { FC } from "react";
 import type { User } from "@/domain/user";
 import { AuthButton } from "./auth/auth-button";
@@ -14,14 +16,15 @@ const MOCK_USER: User = {
 };
 
 export const Header: FC = () => {
+  const { i18n } = useLingui();
+  const { locale: lang } = i18n;
+
   return (
     <header className="flex justify-between items-center p-4">
-      <span>LOGO</span>
+      <Link href={`/${lang}/`}>LOGO</Link>
       <div className="flex justify-between items-center space-x-8">
         <nav>
-          <ul className="flex space-x-4">
-            <NavLinks />
-          </ul>
+          <NavLinks />
         </nav>
         <ThemeToggleButton />
         {MOCK_USER ? <UserMenu user={MOCK_USER} /> : <AuthButton />}
