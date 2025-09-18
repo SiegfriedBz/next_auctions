@@ -11,6 +11,7 @@ import {
   type LangParam,
   withI18n,
 } from "@/i18n";
+import { ThemeProvider } from "../_context/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,7 +49,14 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <I18nProvider lang={lang} messages={allMessages[lang]}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </I18nProvider>
       </body>
     </html>
