@@ -13,13 +13,34 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "Already have an account?"
+msgstr ""
+
+msgid "Auctions"
+msgstr ""
+
 msgid "Choose a language"
 msgstr "Selectionner une langue"
+
+msgid "Create Auction"
+msgstr ""
+
+msgid "Create your account."
+msgstr ""
 
 msgid "Deutsch"
 msgstr ""
 
+msgid "Don't have an account? "
+msgstr ""
+
 msgid "English"
+msgstr ""
+
+msgid "Enter your email and password to access."
+msgstr ""
+
+msgid "Fill in your details to create a new account."
 msgstr ""
 
 msgid "Français"
@@ -28,5 +49,29 @@ msgstr ""
 msgid "Language"
 msgstr "Langue"
 
+msgid "Log out"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "My Account"
+msgstr ""
+
+msgid "My Auctions"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
 #~ msgid "Séléctionner une langue"
 #~ msgstr ""
+
+msgid "Sign Up"
+msgstr ""
+
+msgid "Switch login/signup forms"
+msgstr ""
+
+msgid "Welcome back!"
+msgstr ""
