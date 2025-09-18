@@ -11,6 +11,8 @@ import {
   type LangParam,
   withI18n,
 } from "@/i18n";
+import { Footer } from "../_components/footer";
+import { Header } from "../_components/header";
 import { ThemeProvider } from "../_context/theme-provider";
 
 const geistSans = Geist({
@@ -44,7 +46,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
   setI18n(i18n); // make it available server-side for the current request
 
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -55,7 +57,9 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
             enableSystem
             disableTransitionOnChange
           >
+            <Header />
             {children}
+            <Footer />
           </ThemeProvider>
         </I18nProvider>
       </body>
