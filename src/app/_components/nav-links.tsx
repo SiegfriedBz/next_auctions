@@ -4,7 +4,6 @@ import { useLingui } from "@lingui/react/macro";
 import { HammerIcon, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { FC } from "react";
-import { cn } from "@/lib/utils";
 import { UnderNavLink } from "./under-nav-link";
 
 type NavLink = { href: string; label: MessageDescriptor; icon: LucideIcon };
