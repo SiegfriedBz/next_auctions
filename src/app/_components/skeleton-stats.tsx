@@ -1,0 +1,44 @@
+import type { MessageDescriptor } from "@lingui/core";
+import { useLingui } from "@lingui/react/macro";
+import type { LucideIcon } from "lucide-react";
+import type { FC } from "react";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+
+type Item = {
+  title: MessageDescriptor;
+  icon: LucideIcon;
+};
+
+type Props = {
+  items: Item[];
+};
+
+export const SkeletonStats: FC<Props> = (props) => {
+  const { items } = props;
+
+  const { i18n } = useLingui();
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {items.map((item) => {
+        const { title, icon } = item;
+        const Icon = icon;
+
+        return (
+          <Card key={i18n._(title)}>
+            <CardContent className="flex-1 flex items-center justify-between gap-4">
+              <div>
+                <CardTitle>
+                  <Skeleton className="w-12 h-5 rounded-md" />
+                </CardTitle>
+                {i18n._(title)}
+              </div>
+              <Icon size={42} />
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
+  );
+};

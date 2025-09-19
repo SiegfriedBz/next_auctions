@@ -48,7 +48,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
   return (
     <html lang={lang} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <I18nProvider lang={lang} messages={allMessages[lang]}>
           <ThemeProvider
@@ -58,7 +58,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
             disableTransitionOnChange
           >
             <Header />
-            {children}
+            <main className="flex-1">{children}</main>
             <Footer />
           </ThemeProvider>
         </I18nProvider>
