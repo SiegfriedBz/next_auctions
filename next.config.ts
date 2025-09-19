@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   experimental: {
     swcPlugins: [["@lingui/swc-plugin", {}]],
   },
+  images: {
+    remotePatterns: [new URL("https://github.com/shadcn.png")],
+  },
 };
 
 export default nextConfig;
