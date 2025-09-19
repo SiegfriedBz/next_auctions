@@ -13,14 +13,44 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
+msgstr ""
+
+msgid "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+msgstr ""
+
+msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
+msgstr ""
+
 msgid "Already have an account?"
+msgstr ""
+
+msgid "Art"
+msgstr ""
+
+msgid "auction"
 msgstr ""
 
 msgid "Auctions"
 msgstr ""
 
+msgid "Automotive"
+msgstr ""
+
+msgid "bid"
+msgstr ""
+
+msgid "Browse Auctions"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
 msgid "Choose a language"
 msgstr "Selectionner une langue"
+
+msgid "Collectibles"
+msgstr ""
 
 msgid "Create Auction"
 msgstr ""
@@ -28,10 +58,19 @@ msgstr ""
 msgid "Create your account."
 msgstr ""
 
+msgid "Current Bid"
+msgstr ""
+
 msgid "Deutsch"
 msgstr ""
 
+msgid "Discover, Bid & Win Unique Auctions"
+msgstr ""
+
 msgid "Don't have an account? "
+msgstr ""
+
+msgid "Electronics"
 msgstr ""
 
 msgid "English"
@@ -40,10 +79,22 @@ msgstr ""
 msgid "Enter your email and password to access."
 msgstr ""
 
+msgid "Fashion"
+msgstr ""
+
 msgid "Fill in your details to create a new account."
 msgstr ""
 
 msgid "Français"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Images"
+msgstr ""
+
+msgid "Join our community-driven platform to find exclusive deals and one-of-a-kind items."
 msgstr ""
 
 msgid "Language"
@@ -55,10 +106,16 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+msgid "Music"
+msgstr ""
+
 msgid "My Account"
 msgstr ""
 
 msgid "My Auctions"
+msgstr ""
+
+msgid "Product image"
 msgstr ""
 
 msgid "Profile"
@@ -70,7 +127,22 @@ msgstr ""
 msgid "Sign Up"
 msgstr ""
 
+msgid "Sports"
+msgstr ""
+
+msgid "Starting Price"
+msgstr ""
+
 msgid "Switch login/signup forms"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Toys"
+msgstr ""
+
+msgid "user"
 msgstr ""
 
 msgid "Welcome back!"
