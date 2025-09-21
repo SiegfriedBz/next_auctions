@@ -2,7 +2,7 @@
 
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import type { FC } from "react";
-import type { Auction } from "@/domain/auction";
+import type { Auction } from "@/core/domains/auction";
 import { DataTable } from "../../../../../components/ui/data-table";
 import { useColumns } from "./use-columns";
 

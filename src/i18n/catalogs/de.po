@@ -22,8 +22,11 @@ msgstr ""
 msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
 msgstr ""
 
-msgid "Already have an account?"
+msgid "Already have an account ?"
 msgstr ""
+
+#~ msgid "Already have an account?"
+#~ msgstr ""
 
 msgid "Art"
 msgstr ""
@@ -52,10 +55,19 @@ msgstr ""
 msgid "Collectibles"
 msgstr ""
 
+msgid "Create account"
+msgstr ""
+
+#~ msgid "Create Account"
+#~ msgstr ""
+
 msgid "Create Auction"
 msgstr ""
 
 msgid "Create your account."
+msgstr ""
+
+msgid "Creating account..."
 msgstr ""
 
 msgid "Current Bid"
@@ -67,10 +79,16 @@ msgstr ""
 msgid "Discover, Bid & Win Unique Auctions"
 msgstr ""
 
-msgid "Don't have an account? "
+msgid "Don't have an account ? "
 msgstr ""
 
+#~ msgid "Don't have an account? "
+#~ msgstr ""
+
 msgid "Electronics"
+msgstr ""
+
+msgid "Email"
 msgstr ""
 
 msgid "English"
@@ -83,6 +101,9 @@ msgid "Fashion"
 msgstr ""
 
 msgid "Fill in your details to create a new account."
+msgstr ""
+
+msgid "First name"
 msgstr ""
 
 msgid "Français"
@@ -100,6 +121,9 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+msgid "Last name"
+msgstr ""
+
 msgid "Log out"
 msgstr ""
 
@@ -115,6 +139,9 @@ msgstr ""
 msgid "My Auctions"
 msgstr ""
 
+msgid "Password"
+msgstr ""
+
 msgid "Product image"
 msgstr ""
 
@@ -124,7 +151,16 @@ msgstr ""
 #~ msgid "Séléctionner une langue"
 #~ msgstr ""
 
+msgid "Sign in"
+msgstr ""
+
 msgid "Sign Up"
+msgstr ""
+
+msgid "Signing in..."
+msgstr ""
+
+msgid "Something went wrong, please try again later."
 msgstr ""
 
 msgid "Sports"
@@ -134,6 +170,18 @@ msgid "Starting Price"
 msgstr ""
 
 msgid "Switch login/signup forms"
+msgstr ""
+
+msgid "This is your private password."
+msgstr ""
+
+msgid "This is your public display email."
+msgstr ""
+
+msgid "This is your public display first name."
+msgstr ""
+
+msgid "This is your public display last name."
 msgstr ""
 
 msgid "Title"
@@ -146,4 +194,13 @@ msgid "user"
 msgstr ""
 
 msgid "Welcome back!"
+msgstr ""
+
+msgid "You logged out successfully"
+msgstr ""
+
+msgid "You successfully signed in!"
+msgstr ""
+
+msgid "You successfully signed up!"
 msgstr ""

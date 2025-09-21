@@ -1,6 +1,6 @@
 import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
-import { Category } from "@/domain/auction";
+import { Category } from "@/core/domains/auction";
 
 export const CategoryToMessage = new Map<Category, MessageDescriptor>([
   [Category.ART, msg`Art`],

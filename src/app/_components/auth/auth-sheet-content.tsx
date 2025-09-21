@@ -13,7 +13,13 @@ import {
 } from "@/components/ui/sheet";
 import { AuthForm } from "./auth-form";
 
-export const AuthSheetContent: FC = () => {
+type Props = {
+  onCloseSideSheet: () => void;
+};
+
+export const AuthSheetContent: FC<Props> = (props) => {
+  const { onCloseSideSheet } = props;
+
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const { t } = useLingui();
@@ -46,16 +52,16 @@ export const AuthSheetContent: FC = () => {
         className="flex flex-col gap-1.5 p-4 animate-fade-in"
         key={isLogin.toString()}
       >
-        <AuthForm isLogin={isLogin} />
+        <AuthForm isLogin={isLogin} onCloseSideSheet={onCloseSideSheet} />
 
-        <Separator />
+        <Separator className="my-4" />
 
         <div className="flex items-center justify-start gap-x-2">
           <div className="flex items-center gap-x-2">
             {isLogin ? (
-              <Trans>Don't have an account? </Trans>
+              <Trans>Don't have an account ? </Trans>
             ) : (
-              <Trans>Already have an account?</Trans>
+              <Trans>Already have an account ?</Trans>
             )}
             <MoveRightIcon size={16} />
           </div>

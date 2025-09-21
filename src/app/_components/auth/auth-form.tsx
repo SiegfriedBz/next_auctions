@@ -1,13 +1,18 @@
 import type { FC } from "react";
+import { LoginForm } from "./log-in-form";
+import { SignUpForm } from "./sign-up-form";
 
 type Props = {
   isLogin: boolean;
+  onCloseSideSheet: () => void;
 };
 
 export const AuthForm: FC<Props> = (props) => {
-  const { isLogin } = props;
+  const { isLogin, onCloseSideSheet } = props;
 
-  if (isLogin) return <span>email password LoginForm - Log in</span>;
-
-  return <span>name email password SignupForm - Create Account</span>;
+  return isLogin ? (
+    <LoginForm onCloseSideSheet={onCloseSideSheet} />
+  ) : (
+    <SignUpForm onCloseSideSheet={onCloseSideSheet} />
+  );
 };
