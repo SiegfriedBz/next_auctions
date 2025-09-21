@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { User } from "@/domain/user";
+import type { User } from "@/core/domains/user";
 import { LogOutButton } from "./auth/log-out-button";
 import { UserAvatar } from "./user-avatar";
 

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import type { User } from "@/domain/user";
+import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
 
 type Props = {
