@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { setI18n } from "@lingui/react/server";
 import type { FC, PropsWithChildren } from "react";
+import { Toaster } from "@/components/ui/sonner";
 import {
   allMessages,
   getI18nInstance,
@@ -60,6 +61,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <Toaster />
           </ThemeProvider>
         </I18nProvider>
       </body>

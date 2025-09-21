@@ -4,7 +4,7 @@ import { Trans } from "@lingui/react/macro";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { CategoryBadge } from "@/app/_components/category-badge";
-import type { Auction } from "@/domain/auction";
+import type { Auction } from "@/core/domains/auction";
 import { AuctionTableCurrency } from "./auction-table-currency";
 import { AuctionTableImage } from "./auction-table-image";
 

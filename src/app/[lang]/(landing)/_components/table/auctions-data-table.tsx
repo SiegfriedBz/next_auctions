@@ -1,4 +1,4 @@
-import { type Auction, Category } from "@/domain/auction";
+import { type Auction, Category } from "@/core/domains/auction";
 import { AuctionsTable } from "./auctions-table";
 
 async function getMockData(): Promise<Auction[]> {
