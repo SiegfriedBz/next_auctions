@@ -22,8 +22,11 @@ msgstr "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
 msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
 msgstr "{totalUsers, plural, =0 {user} one {user} other {users}}"
 
-msgid "Already have an account?"
-msgstr "Already have an account?"
+msgid "Already have an account ?"
+msgstr "Already have an account ?"
+
+#~ msgid "Already have an account?"
+#~ msgstr "Already have an account?"
 
 msgid "Art"
 msgstr "Art"
@@ -52,11 +55,20 @@ msgstr "Choose a language"
 msgid "Collectibles"
 msgstr "Collectibles"
 
+msgid "Create account"
+msgstr "Create account"
+
+#~ msgid "Create Account"
+#~ msgstr "Create Account"
+
 msgid "Create Auction"
 msgstr "Create Auction"
 
 msgid "Create your account."
 msgstr "Create your account."
+
+msgid "Creating account..."
+msgstr "Creating account..."
 
 msgid "Current Bid"
 msgstr "Current Bid"
@@ -67,11 +79,17 @@ msgstr "Deutsch"
 msgid "Discover, Bid & Win Unique Auctions"
 msgstr "Discover, Bid & Win Unique Auctions"
 
-msgid "Don't have an account? "
-msgstr "Don't have an account? "
+msgid "Don't have an account ? "
+msgstr "Don't have an account ? "
+
+#~ msgid "Don't have an account? "
+#~ msgstr "Don't have an account? "
 
 msgid "Electronics"
 msgstr "Electronics"
+
+msgid "Email"
+msgstr "Email"
 
 msgid "English"
 msgstr "English"
@@ -84,6 +102,9 @@ msgstr "Fashion"
 
 msgid "Fill in your details to create a new account."
 msgstr "Fill in your details to create a new account."
+
+msgid "First name"
+msgstr "First name"
 
 msgid "Français"
 msgstr "Français"
@@ -100,6 +121,9 @@ msgstr "Join our community-driven platform to find exclusive deals and one-of-a-
 msgid "Language"
 msgstr "Language"
 
+msgid "Last name"
+msgstr "Last name"
+
 msgid "Log out"
 msgstr "Log out"
 
@@ -115,6 +139,9 @@ msgstr "My Account"
 msgid "My Auctions"
 msgstr "My Auctions"
 
+msgid "Password"
+msgstr "Password"
+
 msgid "Product image"
 msgstr "Product image"
 
@@ -124,8 +151,17 @@ msgstr "Profile"
 #~ msgid "Séléctionner une langue"
 #~ msgstr "Séléctionner une langue"
 
+msgid "Sign in"
+msgstr "Sign in"
+
 msgid "Sign Up"
 msgstr "Sign Up"
+
+msgid "Signing in..."
+msgstr "Signing in..."
+
+msgid "Something went wrong, please try again later."
+msgstr "Something went wrong, please try again later."
 
 msgid "Sports"
 msgstr "Sports"
@@ -135,6 +171,18 @@ msgstr "Starting Price"
 
 msgid "Switch login/signup forms"
 msgstr "Switch login/signup forms"
+
+msgid "This is your private password."
+msgstr "This is your private password."
+
+msgid "This is your public display email."
+msgstr "This is your public display email."
+
+msgid "This is your public display first name."
+msgstr "This is your public display first name."
+
+msgid "This is your public display last name."
+msgstr "This is your public display last name."
 
 msgid "Title"
 msgstr "Title"
@@ -147,3 +195,12 @@ msgstr "user"
 
 msgid "Welcome back!"
 msgstr "Welcome back!"
+
+msgid "You logged out successfully"
+msgstr "You logged out successfully"
+
+msgid "You successfully signed in!"
+msgstr "You successfully signed in!"
+
+msgid "You successfully signed up!"
+msgstr "You successfully signed up!"

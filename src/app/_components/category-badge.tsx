@@ -2,7 +2,7 @@ import type { MessageDescriptor } from "@lingui/core";
 import { useLingui } from "@lingui/react/macro";
 import type { FC } from "react";
 import { Badge } from "@/components/ui/badge";
-import type { Category } from "@/domain/auction";
+import type { Category } from "@/core/domains/auction";
 import { CategoryToMessage } from "./category-to-message";
 
 type Props = {
