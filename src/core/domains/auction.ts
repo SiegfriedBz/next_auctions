@@ -1,5 +1,12 @@
 import type { User } from "./user";
 
+export enum AuctionStatus {
+  DRAFT = "DRAFT", // Not visible to bidders yet
+  OPEN = "OPEN",
+  CLOSED = "CLOSED",
+  CANCELLED = "CANCELLED",
+}
+
 export enum Category {
   ELECTRONICS = "Electronics",
   FASHION = "Fashion",
@@ -27,7 +34,9 @@ export type Auction = {
   category: Category;
   startingPrice: number;
   currentBid?: number;
-  endDate: Date;
-  startedAt?: Date;
-  updatedAt?: Date;
+  status: AuctionStatus;
+  startedAt?: Date | string;
+  endAt?: Date | string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 };

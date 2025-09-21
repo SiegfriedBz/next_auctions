@@ -1,4 +1,4 @@
-import { type Auction, Category } from "@/core/domains/auction";
+import { type Auction, AuctionStatus, Category } from "@/core/domains/auction";
 import { AuctionsTable } from "./auctions-table";
 
 async function getMockData(): Promise<Auction[]> {
@@ -8,32 +8,35 @@ async function getMockData(): Promise<Auction[]> {
       ownerId: "user-01",
       title: "title 01",
       description: "description 01",
+      status: AuctionStatus.OPEN,
       images: [],
       category: Category.ART,
       startingPrice: 100,
       currentBid: 200,
-      endDate: new Date("2025-10-12"),
+      endAt: new Date("2025-10-12"),
     },
     {
       id: "1234567",
       ownerId: "user-02",
       title: "title 02",
       description: "description 02",
+      status: AuctionStatus.OPEN,
       images: [{ url: "https://github.com/shadcn.png" }],
       category: Category.ELECTRONICS,
       startingPrice: 1000,
       currentBid: 2000,
-      endDate: new Date("2025-11-12"),
+      endAt: new Date("2025-11-12"),
     },
     {
       id: "12345678",
       ownerId: "user-02",
       title: "title 02",
       description: "description 02",
+      status: AuctionStatus.OPEN,
       images: [{ url: "https://github.com/shadcn.png" }],
       category: Category.ELECTRONICS,
       startingPrice: 1000,
-      endDate: new Date("2025-11-12"),
+      endAt: new Date("2025-11-12"),
     },
   ];
 }
