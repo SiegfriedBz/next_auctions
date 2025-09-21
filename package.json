@@ -19,6 +19,7 @@
     "i18n:extract": "lingui extract",
     "i18n:compile": "lingui compile",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "dependencies": {
