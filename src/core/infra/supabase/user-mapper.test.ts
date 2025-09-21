@@ -15,6 +15,8 @@ describe("userMapper", () => {
       email: "jane@example.com",
       avatar_url: "https://example.com/avatar.png",
       role: UserRole.USER,
+      created_at: "2025-08-12",
+      updated_at: "2025-08-12",
     };
 
     const expected: User = {
@@ -24,6 +26,8 @@ describe("userMapper", () => {
       email: "jane@example.com",
       avatarUrl: "https://example.com/avatar.png",
       role: UserRole.USER,
+      createdAt: new Date("2025-08-12"),
+      updatedAt: new Date("2025-08-12"),
     };
 
     expect(userMapper(supabaseUser)).toEqual(expected);
@@ -36,6 +40,8 @@ describe("userMapper", () => {
       last_name: "Smith",
       email: "john@example.com",
       role: UserRole.ADMIN,
+      created_at: "2025-08-12",
+      updated_at: "2025-08-12",
     };
 
     const expected: User = {
@@ -45,6 +51,8 @@ describe("userMapper", () => {
       email: "john@example.com",
       avatarUrl: undefined,
       role: UserRole.ADMIN,
+      createdAt: new Date("2025-08-12"),
+      updatedAt: new Date("2025-08-12"),
     };
 
     expect(userMapper(supabaseUser)).toEqual(expected);

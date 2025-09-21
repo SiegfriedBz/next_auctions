@@ -6,8 +6,23 @@ create table users (
   last_name text not null,
   email text not null unique,
   avatar_url text,
-  role user_role not null default 'USER'
+  role user_role not null default 'USER',
+  created_at timestamp not null default now(),
+  updated_at timestamp not null default now()
 );
+
+create function update_updated_at()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger trigger_update_users_updated_at
+before update on users
+for each row
+execute function update_updated_at();
 
 alter table users enable row level security;
 

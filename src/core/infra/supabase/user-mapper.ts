@@ -7,6 +7,8 @@ type SupabaseUser = {
   email: string;
   avatar_url?: string;
   role: UserRole;
+  created_at: string;
+  updated_at: string;
 };
 
 export const userMapper = (user: SupabaseUser | null): User | null => {
@@ -19,5 +21,7 @@ export const userMapper = (user: SupabaseUser | null): User | null => {
     email: user.email,
     avatarUrl: user.avatar_url,
     role: user.role,
+    createdAt: new Date(user.created_at),
+    updatedAt: new Date(user.updated_at),
   };
 };

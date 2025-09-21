@@ -10,6 +10,8 @@ export type User = {
   email: string;
   avatarUrl?: string;
   role: UserRole;
+  createdAt: Date | string;
+  updatedAt: Date | string;
 };
 
 export type LoginUserParams = Pick<User, "email"> & { password: string };
