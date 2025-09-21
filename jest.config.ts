@@ -151,6 +151,7 @@ const config: Config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
+  testEnvironment: "node",
   // testEnvironment: "jest-environment-node",
 
   // Options that will be passed to the testEnvironment
@@ -160,15 +161,17 @@ const config: Config = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.?([mc])[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).?([mc])[jt]s?(x)"
-  // ],
+  testMatch: [
+    "**/__tests__/**/*.?([mc])[jt]s?(x)",
+    "**/?(*.)+(spec|test).?([mc])[jt]s?(x)",
+    "<rootDir>/src/core/**/*.test.ts",
+    "<rootDir>/src/core/**/*.test.tsx",
+    "<rootDir>/src/core/**/*.spec.ts",
+    "<rootDir>/src/core/**/*.spec.tsx",
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  testPathIgnorePatterns: ["/node_modules/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
