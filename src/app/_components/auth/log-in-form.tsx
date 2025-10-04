@@ -5,7 +5,8 @@ import { Trans, useLingui } from "@lingui/react/macro";
 import { type FC, startTransition, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
+import type { z } from "zod";
+import { login } from "@/actions/auth/log-in";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,16 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { login } from "./actions/log-in";
+import { LoginParamsSchema } from "@/core/domains/user";
 
-const formSchema = z.object({
-  email: z.string().email({ message: `Please enter a valid email address` }),
-  password: z
-    .string()
-    .min(6, { message: `Password must be at least 6 characters` })
-    .max(50),
-});
-
+const formSchema = LoginParamsSchema;
 type FormSchema = z.infer<typeof formSchema>;
 
 type Props = {
@@ -52,13 +46,17 @@ export const LoginForm: FC<Props> = (props) => {
     async (values: FormSchema) => {
       try {
         await new Promise((res) => setTimeout(res, 5_000));
-        await login(values);
+        const result = await login(values);
 
         startTransition(() => {
           onCloseSideSheet();
         });
 
-        toast.success(t`You successfully signed in!`);
+        if (result.success) {
+          toast.success(t`You successfully signed in!`);
+        } else {
+          throw new Error(result.message);
+        }
       } catch (err) {
         console.error(err);
         toast.error(t`Something went wrong, please try again later.`);
