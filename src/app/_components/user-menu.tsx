@@ -26,7 +26,7 @@ export const UserMenu: FC<Props> = (props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar user={user} />
+        <UserAvatar user={user} variant="hover" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>

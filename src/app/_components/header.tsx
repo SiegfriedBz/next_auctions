@@ -7,29 +7,25 @@ import { NavLinks } from "./nav-links";
 import { ThemeToggleButton } from "./theme-toggle-button";
 import { UserMenu } from "./user-menu";
 
-// const MOCK_USER: User = {
-//   id: "user-01",
-//   firstName: "Jane",
-//   lastName: "Doe",
-//   email: "jane.doe@gmail.com",
-//   avatarUrl: "https://github.com/shadcn.png",
-// };
-
 export const Header: FC = async () => {
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 
-  const user = await users().current();
+  const user = await users().me();
 
   return (
     <header className="flex justify-between items-center p-4">
-      <Link href={`/${lang}/`}>LOGO</Link>
-      <div className="flex justify-between items-center space-x-8">
-        <nav>
-          <NavLinks />
-        </nav>
+      <Link href={`/${lang}/`}>LOGOLOGO</Link>
+
+      <nav>
+        <NavLinks />
+      </nav>
+
+      <div className="flex items-center gap-4">
         <ThemeToggleButton />
-        {user ? <UserMenu user={user} /> : <AuthButton />}
+        <div className="flex justify-between items-center space-x-8">
+          {user ? <UserMenu user={user} /> : <AuthButton />}
+        </div>
       </div>
     </header>
   );
