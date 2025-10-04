@@ -22,26 +22,37 @@ const userAvatarVariants = cva(
 type Props = {
   user: Pick<User, "email" | "firstName" | "lastName" | "avatarUrl">;
   className?: string;
+  avatarClassName?: string;
   variant?: "default" | "hover";
+  onlyAvatar?: boolean;
 };
 
 export const UserAvatar: FC<Props> = ({
   user,
   className,
+  avatarClassName,
   variant = "default",
+  onlyAvatar = false,
 }) => {
   return (
     <div className={cn(userAvatarVariants({ variant }), className)}>
-      <Avatar className="size-10 sm:size-12 md:size-14 rounded-md">
+      <Avatar
+        className={cn(
+          "size-10 sm:size-12 md:size-14 rounded-md",
+          avatarClassName,
+        )}
+      >
         <AvatarImage src={user?.avatarUrl} />
         <AvatarFallback>{getInitials(user)}</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col max-md:hidden">
-        <span className="font-medium capitalize">{getFullName(user)}</span>
-        <span className="text-sm text-gray-500 dark:text-gray-400 max-lg:hidden">
-          {user.email}
-        </span>
-      </div>
+      {!onlyAvatar && (
+        <div className="flex flex-col max-md:hidden">
+          <span className="font-medium capitalize">{getFullName(user)}</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400 max-lg:hidden">
+            {user.email}
+          </span>
+        </div>
+      )}
     </div>
   );
 };
