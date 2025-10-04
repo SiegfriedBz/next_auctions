@@ -1,0 +1,80 @@
+import {
+  type Auction,
+  AuctionCategorySchema,
+  AuctionStatusSchema,
+} from "@/core/domains/auction";
+import { auctionMapper } from "./auction-mapper";
+
+const VALID_UUID = "00000000-0000-0000-0000-000000000000";
+
+describe("auctionMapper", () => {
+  it("returns null when input is null", () => {
+    expect(auctionMapper(null)).toBeNull();
+  });
+
+  it("maps SupabaseAuction fields to Auction correctly", () => {
+    const supabaseAuction = {
+      id: VALID_UUID,
+      owner_id: VALID_UUID,
+      title: "Vintage Guitar",
+      description: "Classic 70s guitar",
+      category: AuctionCategorySchema.enum.MUSIC,
+      status: AuctionStatusSchema.enum.OPEN,
+      starting_price: 100,
+      current_bid: 150,
+      images: [{ url: "https://github.com/shadcn.png" }],
+      started_at: "2025-08-12T12:00:00.000Z",
+      end_at: "2025-08-20T12:00:00.000Z",
+      created_at: "2025-08-01T12:00:00.000Z",
+      updated_at: "2025-08-05T12:00:00.000Z",
+    };
+
+    const expected: Auction = {
+      id: VALID_UUID,
+      ownerId: VALID_UUID,
+      title: "Vintage Guitar",
+      description: "Classic 70s guitar",
+      category: AuctionCategorySchema.enum.MUSIC,
+      status: AuctionStatusSchema.enum.OPEN,
+      startingPrice: 100,
+      currentBid: 150,
+      images: [{ url: "https://github.com/shadcn.png" }],
+      startedAt: new Date("2025-08-12T12:00:00.000Z"),
+      endAt: new Date("2025-08-20T12:00:00.000Z"),
+      createdAt: new Date("2025-08-01T12:00:00.000Z"),
+      updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+    };
+
+    expect(auctionMapper(supabaseAuction)).toEqual(expected);
+  });
+
+  it("handles optional fields correctly", () => {
+    const supabaseAuction = {
+      id: VALID_UUID,
+      owner_id: VALID_UUID,
+      title: "Vintage Guitar",
+      description: "Classic 70s guitar",
+      category: AuctionCategorySchema.enum.MUSIC,
+      status: AuctionStatusSchema.enum.DRAFT,
+      starting_price: 100,
+      images: [{ url: "https://github.com/shadcn.png" }],
+      created_at: "2025-08-01T12:00:00.000Z",
+      updated_at: "2025-08-05T12:00:00.000Z",
+    };
+
+    const expected: Auction = {
+      id: VALID_UUID,
+      ownerId: VALID_UUID,
+      title: "Vintage Guitar",
+      description: "Classic 70s guitar",
+      category: AuctionCategorySchema.enum.MUSIC,
+      status: AuctionStatusSchema.enum.DRAFT,
+      startingPrice: 100,
+      images: [{ url: "https://github.com/shadcn.png" }],
+      createdAt: new Date("2025-08-01T12:00:00.000Z"),
+      updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+    };
+
+    expect(auctionMapper(supabaseAuction)).toEqual(expected);
+  });
+});
