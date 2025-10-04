@@ -1,12 +1,18 @@
 "use client";
 
 import { Trans, useLingui } from "@lingui/react/macro";
-import { type FC, useCallback } from "react";
+import { ArrowRightIcon } from "lucide-react";
+import { type ComponentProps, type FC, useCallback } from "react";
 import { toast } from "sonner";
 import { logout } from "@/actions/auth/log-out";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export const LogOutButton: FC = () => {
+type Props = ComponentProps<typeof Button>;
+
+export const LogOutButton: FC<Props> = (props) => {
+  const { className, ...rest } = props;
+
   const { t } = useLingui();
 
   const handleLogOut = useCallback(async () => {
@@ -26,10 +32,15 @@ export const LogOutButton: FC = () => {
 
   return (
     <Button
+      {...rest}
       variant="ghost"
       onClick={handleLogOut}
-      className="rounded-xl w-full"
+      className={cn(
+        "rounded-xl w-full flex items-center gap-x-2 cursor-pointer",
+        className,
+      )}
     >
+      <ArrowRightIcon size={16} />
       <Trans>Log out</Trans>
     </Button>
   );

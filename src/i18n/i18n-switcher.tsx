@@ -3,7 +3,7 @@
 import { msg } from "@lingui/core/macro";
 import { Trans, useLingui } from "@lingui/react/macro";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { type FC, useCallback, useMemo } from "react";
 import {
   Select,
   SelectContent,
@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 const LANGUAGES = {
   en: msg`English`,
@@ -20,7 +21,13 @@ const LANGUAGES = {
   fr: msg`Français`,
 } as const;
 
-export function I18nSwitcher() {
+type Props = {
+  className?: string;
+};
+
+export const I18nSwitcher: FC<Props> = (props) => {
+  const { className } = props;
+
   const router = useRouter();
   const { i18n, t } = useLingui();
   const pathname = usePathname();
@@ -43,7 +50,7 @@ export function I18nSwitcher() {
 
   return (
     <Select defaultValue={locale} onValueChange={onChange}>
-      <SelectTrigger>
+      <SelectTrigger className={cn("w-full", className)}>
         <SelectValue placeholder={t`Choose a language`} />
       </SelectTrigger>
       <SelectContent>
@@ -60,4 +67,4 @@ export function I18nSwitcher() {
       </SelectContent>
     </Select>
   );
-}
+};
