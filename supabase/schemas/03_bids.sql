@@ -1,0 +1,28 @@
+-- BIDS TABLE
+CREATE TABLE bids (
+  id UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+  auction_id UUID NOT NULL REFERENCES auctions(id) ON DELETE CASCADE,
+  bidder_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
+  amount NUMERIC NOT NULL CHECK (amount > 0),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- UNIQUE CONSTRAINT TO PREVENT DUPLICATE BID AMOUNTS PER AUCTION
+CREATE UNIQUE INDEX idx_unique_bid_amount_per_auction 
+ON bids(auction_id, amount);
+
+-- TRIGGER FUNCTION TO UPDATE updated_at ON UPDATE
+CREATE FUNCTION update_bids_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at := NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- TRIGGER BEFORE UPDATE
+CREATE TRIGGER trigger_update_bids_updated_at
+BEFORE UPDATE ON bids
+FOR EACH ROW
+EXECUTE FUNCTION update_bids_updated_at();

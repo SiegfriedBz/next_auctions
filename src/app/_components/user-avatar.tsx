@@ -1,28 +1,44 @@
+import { cva } from "class-variance-authority";
 import type { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
 
+const userAvatarVariants = cva(
+  "flex items-center gap-x-2 px-3 py-2 rounded-md",
+  {
+    variants: {
+      variant: {
+        default: "",
+        hover: "hover:bg-gray-100 dark:hover:bg-gray-800",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
 type Props = {
-  user: User;
+  user: Pick<User, "email" | "firstName" | "lastName" | "avatarUrl">;
   className?: string;
+  variant?: "default" | "hover";
 };
 
-export const UserAvatar: FC<Props> = ({ user, className }) => {
+export const UserAvatar: FC<Props> = ({
+  user,
+  className,
+  variant = "default",
+}) => {
   return (
-    <div
-      className={cn(
-        `flex items-center gap-x-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer`,
-        className,
-      )}
-    >
-      <Avatar className="w-10 h-10 rounded-md">
+    <div className={cn(userAvatarVariants({ variant }), className)}>
+      <Avatar className="size-10 sm:size-12 md:size-14 rounded-md">
         <AvatarImage src={user?.avatarUrl} />
         <AvatarFallback>{getInitials(user)}</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col">
+      <div className="flex flex-col max-md:hidden">
         <span className="font-medium capitalize">{getFullName(user)}</span>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="text-sm text-gray-500 dark:text-gray-400 max-lg:hidden">
           {user.email}
         </span>
       </div>
@@ -30,12 +46,12 @@ export const UserAvatar: FC<Props> = ({ user, className }) => {
   );
 };
 
-const getFullName = (user: User) => {
+const getFullName = (user: Pick<User, "firstName" | "lastName">) => {
   const { firstName, lastName } = user;
   return `${firstName ?? ""} ${lastName ?? ""}`;
 };
 
-const getInitials = (params: User) => {
+const getInitials = (params: Pick<User, "firstName" | "lastName">) => {
   const { firstName, lastName } = params;
 
   return `${firstName?.[0] ?? ""}${lastName?.[0] ?? ""}`.toUpperCase();

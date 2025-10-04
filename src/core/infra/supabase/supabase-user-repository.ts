@@ -1,68 +1,60 @@
 import type {
   CreateUserParams,
-  LoginUserParams,
+  LoginParams,
   User,
+  UsersCountParams,
 } from "@/core/domains/user";
 import type { UserRepository } from "@/core/ports/user-repository";
 import { createClient } from "@/utils/supabase/server";
 import { userMapper } from "./user-mapper";
 
 export class SupabaseUserRepository implements UserRepository {
-  async current(): Promise<User | null> {
+  async me(): Promise<User | null> {
     const client = await createClient();
 
     const { data: authData, error: authError } = await client.auth.getUser();
-
-    if (authError) {
-      console.log("user not found", authError);
-      return null;
-    }
+    if (authError || !authData.user?.id) return null;
 
     const { data, error } = await client
       .from("users")
-      .select()
+      .select("*")
       .eq("id", authData.user.id)
       .single();
 
-    if (error) {
-      console.log("user not found", error);
-      return null;
-    }
+    if (error) return null;
 
     return userMapper(data);
   }
 
   async findById(id: string): Promise<User | null> {
     const client = await createClient();
+
     const { data, error } = await client
       .from("users")
-      .select()
+      .select("*")
       .eq("id", id)
       .single();
 
-    if (error) {
-      console.log("findById error", error);
-      return null;
-    }
+    if (error) return null;
 
     return userMapper(data);
   }
 
-  async create(params: CreateUserParams): Promise<User | null> {
+  async create(params: CreateUserParams): Promise<User> {
+    const client = await createClient();
     const { firstName, lastName, email, password } = params;
 
-    const client = await createClient();
-
+    // Sign up with Supabase Auth
     const { data: authData, error: authError } = await client.auth.signUp({
       email,
       password,
     });
 
-    if (!authData?.user?.id || authError) {
-      console.log("sign up error", authError?.message);
-      throw new Error("Could not sign up user");
+    if (authError || !authData.user?.id) {
+      throw new Error(`Auth signup failed: ${authError?.message}`);
     }
 
+    // Insert into users table
     const { data: user, error } = await client
       .from("users")
       .insert({
@@ -74,48 +66,82 @@ export class SupabaseUserRepository implements UserRepository {
       .select()
       .single();
 
-    if (error) {
-      console.log("user create error", error?.message);
-      throw new Error("Could not sign up user");
+    if (error || !user) {
+      throw new Error(`DB insert failed: ${error?.message}`);
     }
 
-    return userMapper(user);
+    const mapped = userMapper(user);
+    if (!mapped) throw new Error("Inserted user is invalid");
+
+    return mapped;
   }
 
-  async login(params: LoginUserParams): Promise<User | null> {
+  async login(params: LoginParams): Promise<User> {
     const client = await createClient();
+
     const { data: authData, error: authError } =
       await client.auth.signInWithPassword(params);
 
-    if (!authData?.user?.id || authError) {
-      console.log(
-        "signInWithPassword error",
-        authError?.message ?? "signInWithPassword error",
-      );
-      throw new Error("Could not login user");
+    if (authError || !authData.user?.id) {
+      throw new Error(`Login failed: ${authError?.message}`);
     }
 
     const { data: user, error } = await client
       .from("users")
-      .select()
+      .select("*")
       .eq("id", authData.user.id)
       .single();
 
-    if (error) {
-      console.log("login error", error?.message);
-      throw new Error("Could not login user");
+    if (error || !user) {
+      throw new Error(`DB fetch after login failed: ${error?.message}`);
     }
 
-    return userMapper(user);
+    const mapped = userMapper(user);
+    if (!mapped) throw new Error("Fetched user is invalid");
+
+    return mapped;
   }
 
   async logout(): Promise<void> {
     const client = await createClient();
     const { error } = await client.auth.signOut();
 
-    if (error) {
-      console.error("logout failed", error);
-      throw new Error(error.message);
+    if (error) throw new Error(`Logout failed: ${error.message}`);
+  }
+
+  async count(params: UsersCountParams): Promise<number> {
+    const { filterBy } = params;
+    const client = await createClient();
+
+    let query = client
+      .from("users")
+      .select("*", { count: "exact", head: true });
+
+    // filters
+    for (const key in filterBy) {
+      const value = filterBy[key as keyof typeof filterBy];
+      if (!value) continue;
+
+      switch (key) {
+        case "role": {
+          query = query.eq("role", value);
+          break;
+        }
+
+        case "email": {
+          query = query.eq("email", value);
+          break;
+        }
+      }
     }
+
+    const { count, error } = await query;
+
+    if (error) {
+      console.error("SupabaseUserRepository count error", error);
+      return 0;
+    }
+
+    return count ?? 0;
   }
 }

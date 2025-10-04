@@ -1,32 +1,35 @@
-import type { CreateUserParams, LoginUserParams, User } from "../domains/user";
+import type {
+  CreateUserParams,
+  LoginParams,
+  User,
+  UsersCountParams,
+} from "../domains/user";
 import type { UserRepository } from "../ports/user-repository";
 
 export class UserService {
   constructor(readonly userRepo: UserRepository) {}
 
-  async current(): Promise<User | null> {
-    const user = await this.userRepo.current();
-
-    return user;
+  async me(): Promise<User | null> {
+    return await this.userRepo.me();
   }
 
-  async findById(id: string): Promise<User | null> {
-    const user = await this.userRepo.findById(id);
-
-    return user;
+  async detailsById(id: string): Promise<User | null> {
+    return await this.userRepo.findById(id);
   }
 
-  async create(params: CreateUserParams): Promise<User | null> {
-    const user = await this.userRepo.create(params);
-
-    return user;
+  async create(params: CreateUserParams): Promise<User> {
+    return await this.userRepo.create(params);
   }
 
-  async login(params: LoginUserParams): Promise<User | null> {
+  async login(params: LoginParams): Promise<User> {
     return await this.userRepo.login(params);
   }
 
   async logout(): Promise<void> {
     return await this.userRepo.logout();
+  }
+
+  async count(params: UsersCountParams = {}): Promise<number> {
+    return await this.userRepo.count(params);
   }
 }

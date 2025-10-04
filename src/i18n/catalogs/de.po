@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-explicit-id
+msgid "/+Z5u4"
+msgstr ""
+
+#. placeholder {0}: auctionName ?? id
+msgid "{0}"
+msgstr ""
+
 msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
 msgstr ""
 
@@ -22,13 +30,25 @@ msgstr ""
 msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
 msgstr ""
 
+msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+msgstr ""
+
+#~ msgid "Actions"
+#~ msgstr ""
+
 msgid "Already have an account ?"
 msgstr ""
 
 #~ msgid "Already have an account?"
 #~ msgstr ""
 
+msgid "Amount"
+msgstr ""
+
 msgid "Art"
+msgstr ""
+
+msgid "Ascending"
 msgstr ""
 
 msgid "auction"
@@ -43,16 +63,46 @@ msgstr ""
 msgid "bid"
 msgstr ""
 
+msgid "Bid"
+msgstr ""
+
+msgid "Bid on auction"
+msgstr ""
+
+msgid "Bid placed successfully!"
+msgstr ""
+
 msgid "Browse Auctions"
 msgstr ""
 
+msgid "Built to exacting standards using only the best quality hardware, pickups and tone woods..."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+#~ msgid "category"
+#~ msgstr ""
+
 msgid "Category"
+msgstr ""
+
+msgid "Category *"
 msgstr ""
 
 msgid "Choose a language"
 msgstr ""
 
+msgid "Closed"
+msgstr ""
+
 msgid "Collectibles"
+msgstr ""
+
+msgid "Create"
 msgstr ""
 
 msgid "Create account"
@@ -61,16 +111,40 @@ msgstr ""
 #~ msgid "Create Account"
 #~ msgstr ""
 
+msgid "Create auction"
+msgstr ""
+
 msgid "Create Auction"
+msgstr ""
+
+msgid "Create bid"
 msgstr ""
 
 msgid "Create your account."
 msgstr ""
 
+msgid "Create your auction"
+msgstr ""
+
 msgid "Creating account..."
 msgstr ""
 
+msgid "Creating auction..."
+msgstr ""
+
+msgid "Creating bid..."
+msgstr ""
+
 msgid "Current Bid"
+msgstr ""
+
+msgid "Descending"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Description *"
 msgstr ""
 
 msgid "Deutsch"
@@ -85,10 +159,25 @@ msgstr ""
 #~ msgid "Don't have an account? "
 #~ msgstr ""
 
+msgid "Draft"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
 msgid "Electronics"
 msgstr ""
 
 msgid "Email"
+msgstr ""
+
+msgid "End at"
+msgstr ""
+
+#~ msgid "End Date"
+#~ msgstr ""
+
+msgid "Ends"
 msgstr ""
 
 msgid "English"
@@ -103,10 +192,37 @@ msgstr ""
 msgid "Fill in your details to create a new account."
 msgstr ""
 
+msgid "Fill the form below to create a new auction"
+msgstr ""
+
+msgid "Fill the form below to update your draft auction"
+msgstr ""
+
+msgid "Filter auctions"
+msgstr ""
+
+#~ msgid "Filtres"
+#~ msgstr ""
+
 msgid "First name"
 msgstr ""
 
 msgid "Français"
+msgstr ""
+
+#~ msgid "Give a category to your auction"
+#~ msgstr ""
+
+msgid "Give a description to your auction"
+msgstr ""
+
+msgid "Give a Starting Price to your auction"
+msgstr ""
+
+#~ msgid "Give a startingPrice to your auction"
+#~ msgstr ""
+
+msgid "Give a title to your auction"
 msgstr ""
 
 msgid "Home"
@@ -124,6 +240,9 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
+msgid "Liste"
+msgstr ""
+
 msgid "Log out"
 msgstr ""
 
@@ -139,8 +258,35 @@ msgstr ""
 msgid "My Auctions"
 msgstr ""
 
+msgid "My Profile"
+msgstr ""
+
+msgid "My Settings"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+msgid "No description provided."
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open menu"
+msgstr ""
+
 msgid "Password"
 msgstr ""
+
+msgid "Place your bid"
+msgstr ""
+
+#~ msgid "Previous"
+#~ msgstr ""
 
 msgid "Product image"
 msgstr ""
@@ -148,8 +294,32 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
+msgid "Select a category"
+msgstr ""
+
+msgid "Select a category for your auction"
+msgstr ""
+
+msgid "Select a status"
+msgstr ""
+
+msgid "Select a status for your auction"
+msgstr ""
+
+msgid "Select date"
+msgstr ""
+
 #~ msgid "Séléctionner une langue"
 #~ msgstr ""
+
+msgid "Sending bid..."
+msgstr ""
+
+msgid "Set a date to end your auction"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
 
 msgid "Sign in"
 msgstr ""
@@ -163,13 +333,43 @@ msgstr ""
 msgid "Something went wrong, please try again later."
 msgstr ""
 
+msgid "Sort auctions"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Sort order"
+msgstr ""
+
 msgid "Sports"
 msgstr ""
+
+msgid "Started"
+msgstr ""
+
+#~ msgid "Starting Date"
+#~ msgstr ""
 
 msgid "Starting Price"
 msgstr ""
 
+msgid "Starting Price *"
+msgstr ""
+
+#~ msgid "startingPrice"
+#~ msgstr ""
+
+msgid "Status"
+msgstr ""
+
 msgid "Switch login/signup forms"
+msgstr ""
+
+msgid "This is your auction"
+msgstr ""
+
+msgid "This is your bid's amount."
 msgstr ""
 
 msgid "This is your private password."
@@ -187,10 +387,34 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Title *"
+msgstr ""
+
+#~ msgid "Toggle columns"
+#~ msgstr ""
+
 msgid "Toys"
 msgstr ""
 
+msgid "Update auction"
+msgstr ""
+
+#~ msgid "Update Auction"
+#~ msgstr ""
+
+msgid "Update your auction"
+msgstr ""
+
+msgid "Updating auction..."
+msgstr ""
+
 msgid "user"
+msgstr ""
+
+#~ msgid "View"
+#~ msgstr ""
+
+msgid "View auction"
 msgstr ""
 
 msgid "Welcome back!"
@@ -199,8 +423,14 @@ msgstr ""
 msgid "You logged out successfully"
 msgstr ""
 
+msgid "You successfully created your auction!"
+msgstr ""
+
 msgid "You successfully signed in!"
 msgstr ""
 
 msgid "You successfully signed up!"
+msgstr ""
+
+msgid "You successfully updated your auction!"
 msgstr ""

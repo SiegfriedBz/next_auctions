@@ -5,7 +5,8 @@ import { Trans, useLingui } from "@lingui/react/macro";
 import { type FC, startTransition, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
+import type { z } from "zod";
+import { signUp } from "@/actions/auth/sign-up";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,24 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signUp } from "./actions/sign-up";
+import { CreateUserParamsSchema } from "@/core/domains/user";
 
-const formSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, { message: `First name must be at least 2 characters` })
-    .max(50),
-  lastName: z
-    .string()
-    .min(2, { message: `Last name must be at least 2 characters` })
-    .max(50),
-  email: z.string().email({ message: `Please enter a valid email address` }),
-  password: z
-    .string()
-    .min(6, { message: `Password must be at least 6 characters` })
-    .max(50),
-});
-
+const formSchema = CreateUserParamsSchema;
 type FormSchema = z.infer<typeof formSchema>;
 
 type Props = {
@@ -61,14 +47,17 @@ export const SignUpForm: FC<Props> = (props) => {
   const onSubmit = useCallback(
     async (values: FormSchema) => {
       try {
-        await new Promise((res) => setTimeout(res, 5_000));
-        await signUp(values);
+        const result = await signUp(values);
 
         startTransition(() => {
           onCloseSideSheet();
         });
 
-        toast.success(t`You successfully signed up!`);
+        if (result.success) {
+          toast.success(t`You successfully signed up!`);
+        } else {
+          throw new Error(result.message);
+        }
       } catch (err) {
         console.error(err);
         toast.error(t`Something went wrong, please try again later.`);

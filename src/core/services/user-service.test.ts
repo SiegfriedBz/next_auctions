@@ -1,6 +1,8 @@
-import { type User, UserRole } from "@/core/domains/user";
+import { type User, UserRoleSchema } from "@/core/domains/user";
 import type { UserRepository } from "@/core/ports/user-repository";
 import { UserService } from "@/core/services/user-service";
+
+const VALID_UUID = "00000000-0000-0000-0000-000000000000";
 
 describe("UserService", () => {
   let repo: jest.Mocked<UserRepository>;
@@ -9,36 +11,39 @@ describe("UserService", () => {
 
   beforeEach(() => {
     repo = {
-      current: jest.fn(),
+      me: jest.fn(),
       create: jest.fn(),
       findById: jest.fn(),
       login: jest.fn(),
       logout: jest.fn(),
+      count: jest.fn(),
     };
     service = new UserService(repo);
 
     user = {
-      id: "u1",
+      id: VALID_UUID,
       firstName: "Jane",
       lastName: "Doe",
       email: "jane@example.com",
       avatarUrl: undefined,
-      role: UserRole.USER,
+      role: UserRoleSchema.enum.USER,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
   });
 
-  describe("current", () => {
+  describe("me", () => {
     it("returns current authenticated user", async () => {
-      repo.current.mockResolvedValue(null);
-      expect(await service.current()).toBeNull();
+      repo.me.mockResolvedValue(user);
+      expect(await service.me()).toEqual(user);
     });
   });
 
-  describe("findById", () => {
+  describe("detailsById", () => {
     it("returns user by id", async () => {
       repo.findById.mockResolvedValue(user);
 
-      const result = await service.findById("u1");
+      const result = await service.detailsById("u1");
 
       expect(result).toEqual(user);
       expect(repo.findById).toHaveBeenCalledWith("u1");
@@ -87,6 +92,27 @@ describe("UserService", () => {
     it("calls logout on repo", async () => {
       await service.logout();
       expect(repo.logout).toHaveBeenCalled();
+    });
+  });
+
+  describe("count", () => {
+    it("calls count on the repository with params", async () => {
+      repo.count.mockResolvedValue(42);
+
+      const params = { filterBy: { role: user.role } };
+      const result = await service.count(params);
+
+      expect(result).toBe(42);
+      expect(repo.count).toHaveBeenCalledWith(params);
+    });
+
+    it("calls count on the repository with default params", async () => {
+      repo.count.mockResolvedValue(0);
+
+      const result = await service.count();
+
+      expect(result).toBe(0);
+      expect(repo.count).toHaveBeenCalledWith({});
     });
   });
 });

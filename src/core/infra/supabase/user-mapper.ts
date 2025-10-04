@@ -1,23 +1,33 @@
-import type { User, UserRole } from "@/core/domains/user";
+import z from "zod";
+import { type User, UserSchema } from "@/core/domains/user";
 
-type SupabaseUser = {
-  id: string;
+export type SupabaseUser = Pick<User, "id" | "email" | "role"> & {
   first_name: string;
   last_name: string;
-  email: string;
   avatar_url?: string;
-  role: UserRole;
+  created_at: string;
+  updated_at: string;
 };
 
-export const userMapper = (user: SupabaseUser | null): User | null => {
-  if (!user) return null;
+export const userMapper = (row: SupabaseUser | null): User | null => {
+  if (!row) return null;
 
-  return {
-    id: user.id,
-    firstName: user.first_name,
-    lastName: user.last_name,
-    email: user.email,
-    avatarUrl: user.avatar_url,
-    role: user.role,
+  const normalized = {
+    id: row.id,
+    firstName: row.first_name,
+    lastName: row.last_name,
+    email: row.email,
+    avatarUrl: row.avatar_url ?? undefined,
+    role: row.role,
+    createdAt: new Date(row.created_at),
+    updatedAt: new Date(row.updated_at),
   };
+
+  const result = UserSchema.safeParse(normalized);
+  if (!result.success) {
+    console.warn("Invalid user data", z.treeifyError(result.error));
+    return null;
+  }
+
+  return result.data;
 };
