@@ -1,7 +1,7 @@
+import { setI18n } from "@lingui/react/server";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { setI18n } from "@lingui/react/server";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { FC, PropsWithChildren } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import {
@@ -15,6 +15,7 @@ import {
 import { Footer } from "../_components/footer";
 import { Header } from "../_components/header";
 import { ThemeProvider } from "../_context/theme-provider";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,19 +52,28 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <I18nProvider lang={lang} messages={allMessages[lang]}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <Toaster />
-          </ThemeProvider>
-        </I18nProvider>
+        <NuqsAdapter
+          defaultOptions={{
+            shallow: false,
+            // scroll: true,
+            clearOnDefault: false,
+            // limitUrlUpdates: throttle(250),
+          }}
+        >
+          <I18nProvider lang={lang} messages={allMessages[lang]}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <Toaster />
+            </ThemeProvider>
+          </I18nProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

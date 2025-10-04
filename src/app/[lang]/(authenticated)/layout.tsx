@@ -7,12 +7,12 @@ type Props = {
 };
 
 const Layout: FC<PropsWithChildren<Props>> = async (props) => {
-  const { children, breadcrumbs } = props;
+  const { breadcrumbs, children } = props;
 
   return (
-    <div className="grid grid-[auto_1fr] min-h-full gap-4 p-6">
+    <div className="flex flex-col min-h-screen p-4 sm:p-16 gap-4 sm:gap-8">
       <header>{breadcrumbs}</header>
-      <section> {children}</section>
+      <section className="">{children}</section>
     </div>
   );
 };

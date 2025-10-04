@@ -1,24 +1,16 @@
 import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import { Trans, useLingui } from "@lingui/react/macro";
-import {
-  CircleCheckIcon,
-  CircleHelpIcon,
-  CircleIcon,
-  HammerIcon,
-  type LucideIcon,
-} from "lucide-react";
+import { HammerIcon, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { FC } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
 type NavLink = {
@@ -131,23 +123,4 @@ function ListItem({
       </NavigationMenuLink>
     </li>
   );
-}
-
-{
-  /* 
-<ul className="flex space-x-4">
-      {AUCTIONS_NAV_LINKS(lang).map(({ href, label, icon: Icon }) => (
-        <li
-          key={href}
-          className="flex flex-col items-center px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
-        >
-          <Link href={href} className="flex h-10 space-x-2 items-center">
-            <Icon />
-            <span>{i18n._(label)}</span>
-          </Link>
-          <UnderNavLink href={href} />
-        </li>
-      ))}
-    </ul>
-*/
 }
