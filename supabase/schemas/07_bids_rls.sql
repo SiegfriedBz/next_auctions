@@ -78,7 +78,7 @@ BEGIN
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- TRIGGER AFTER INSERT OR UPDATE
 CREATE TRIGGER trigger_update_current_bid_after_insert_update
@@ -103,7 +103,7 @@ BEGIN
 
   RETURN OLD;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- TRIGGER AFTER DELETE
 CREATE TRIGGER trigger_update_current_bid_after_delete
