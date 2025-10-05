@@ -1,6 +1,7 @@
 import type {
   CreateUserParams,
   LoginParams,
+  UpdateUserParams,
   User,
   UsersCountParams,
 } from "../domains/user";
@@ -31,5 +32,15 @@ export class UserService {
 
   async count(params: UsersCountParams = {}): Promise<number> {
     return await this.userRepo.count(params);
+  }
+
+  async update(params: UpdateUserParams): Promise<User> {
+    const me = await this.me();
+
+    if (!me) {
+      throw new Error("Only authenticated user allowed");
+    }
+
+    return await this.userRepo.update({ ...params, id: me.id });
   }
 }

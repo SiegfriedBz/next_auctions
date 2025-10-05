@@ -1,4 +1,5 @@
 import z from "zod";
+import { ImageSchema } from "./image";
 
 // enums
 export const UserRoleSchema = z.enum(["USER", "ADMIN"]);
@@ -56,3 +57,12 @@ export const LoginParamsSchema = CreateUserParamsSchema.pick({
   password: true,
 });
 export type LoginParams = z.infer<typeof LoginParamsSchema>;
+
+// update user - FE params
+export const UpdateUserParamsSchema = UserSchema.pick({
+  firstName: true,
+  lastName: true,
+}).extend({
+  avatarUrl: ImageSchema.optional(),
+});
+export type UpdateUserParams = z.infer<typeof UpdateUserParamsSchema>;

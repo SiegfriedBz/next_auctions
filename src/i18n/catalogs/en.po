@@ -171,6 +171,9 @@ msgstr "Draft"
 msgid "Edit"
 msgstr "Edit"
 
+msgid "Edit my profile"
+msgstr "Edit my profile"
+
 msgid "Electronics"
 msgstr "Electronics"
 
@@ -204,6 +207,9 @@ msgstr "Fill the form below to create a new auction"
 msgid "Fill the form below to update your draft auction"
 msgstr "Fill the form below to update your draft auction"
 
+msgid "Fill the form below to update your profile"
+msgstr "Fill the form below to update your profile"
+
 msgid "Filter auctions"
 msgstr "Filter auctions"
 
@@ -212,6 +218,9 @@ msgstr "Filter auctions"
 
 msgid "First name"
 msgstr "First name"
+
+msgid "First name *"
+msgstr "First name *"
 
 msgid "Français"
 msgstr "Français"
@@ -246,6 +255,12 @@ msgstr "Language"
 msgid "Last name"
 msgstr "Last name"
 
+msgid "Last name *"
+msgstr "Last name *"
+
+msgid "Last Name *"
+msgstr "Last Name *"
+
 msgid "Light"
 msgstr "Light"
 
@@ -272,6 +287,9 @@ msgstr "My auctions"
 
 msgid "My Auctions"
 msgstr "My Auctions"
+
+msgid "My profile"
+msgstr "My profile"
 
 msgid "My Profile"
 msgstr "My Profile"
@@ -405,6 +423,12 @@ msgstr "This is your public display first name."
 msgid "This is your public display last name."
 msgstr "This is your public display last name."
 
+msgid "This is your public first name."
+msgstr "This is your public first name."
+
+msgid "This is your public last name."
+msgstr "This is your public last name."
+
 msgid "Title"
 msgstr "Title"
 
@@ -426,14 +450,26 @@ msgstr "Update auction"
 #~ msgid "Update Auction"
 #~ msgstr "Update Auction"
 
+msgid "Update my profile"
+msgstr "Update my profile"
+
 msgid "Update your auction"
 msgstr "Update your auction"
+
+msgid "Update your profile"
+msgstr "Update your profile"
 
 msgid "Updating auction..."
 msgstr "Updating auction..."
 
+msgid "Updating your profile..."
+msgstr "Updating your profile..."
+
 msgid "user"
 msgstr "user"
+
+msgid "User profile card"
+msgstr "User profile card"
 
 #~ msgid "View"
 #~ msgstr "View"
@@ -458,3 +494,6 @@ msgstr "You successfully signed up!"
 
 msgid "You successfully updated your auction!"
 msgstr "You successfully updated your auction!"
+
+msgid "You successfully updated your profile!"
+msgstr "You successfully updated your profile!"
