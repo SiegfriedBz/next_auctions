@@ -24,14 +24,14 @@ const BreadCrumbSlot: FC<Props> = async (props) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
+        <BreadcrumbItem className="hover:text-foreground">
           <Link href={`/${lang}/auctions`}>
             <Trans>Auctions</Trans>
           </Link>
         </BreadcrumbItem>
 
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
+        <BreadcrumbItem className="hover:text-foreground">
           <Link href={`/${lang}/auctions/${auction?.id}`}>
             <Trans>{auctionName ?? id}</Trans>
           </Link>

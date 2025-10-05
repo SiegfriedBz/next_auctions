@@ -24,7 +24,7 @@ const BreadCrumbSlot: FC<Props> = async (props) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
+        <BreadcrumbItem className="hover:text-foreground">
           <Link href={`/${lang}/auctions`}>
             <Trans>Auctions</Trans>
           </Link>

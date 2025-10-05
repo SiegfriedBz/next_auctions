@@ -258,11 +258,17 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#~ msgid "Me"
+#~ msgstr ""
+
 msgid "Music"
 msgstr ""
 
 #~ msgid "My Account"
 #~ msgstr ""
+
+msgid "My auctions"
+msgstr ""
 
 msgid "My Auctions"
 msgstr ""
