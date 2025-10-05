@@ -46,12 +46,12 @@ export class SupabaseBidRepository implements BidRepository {
 
       switch (key) {
         case "auctionId": {
-          query = query.eq("auctionId", value);
+          query = query.eq("auction_id", value);
           break;
         }
 
         case "bidderId": {
-          query = query.eq("bidderId", value);
+          query = query.eq("bidder_id", value);
           break;
         }
 

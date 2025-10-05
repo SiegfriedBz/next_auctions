@@ -35,7 +35,7 @@ export const getUserNavLinks: (lang: string) => NavLink[] = (lang) => [
     icon: UserRoundCheckIcon,
   },
   {
-    href: `/${lang}/auctions/mine`,
+    href: `/${lang}/auctions/me`,
     title: msg`My Auctions`,
     icon: ShieldHalfIcon,
   },

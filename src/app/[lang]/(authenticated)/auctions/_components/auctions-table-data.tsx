@@ -8,12 +8,26 @@ import {
 } from "@/app/_components/auctions/table";
 import { searchParamsCache } from "@/app/[lang]/search.params";
 import { Table } from "@/components/ui/table";
+import type { User } from "@/core/domains/user";
 import { auctions } from "@/core/instances/auctions";
+import { users } from "@/core/instances/users";
 
-export const AuctionsTableData: FC = async () => {
+type Props = {
+  isMe?: boolean;
+};
+
+export const AuctionsTableData: FC<Props> = async (props) => {
+  const { isMe = false } = props;
+
   const { pageIndex, pageSize, ...rest } = searchParamsCache.all();
 
+  let me: User | null = null;
+  if (isMe) {
+    me = await users().me();
+  }
+
   const filterBy = {
+    ownerId: me?.id ?? undefined,
     title: rest.title ?? undefined,
     category: rest.category ?? undefined,
     status: rest.status ?? undefined,
@@ -36,7 +50,12 @@ export const AuctionsTableData: FC = async () => {
   return (
     <>
       <AuctionsTableToolbar filteredCount={total} canCreate />
-      <AuctionsTableProvider data={list} count={total} className="space-y-4">
+      <AuctionsTableProvider
+        data={list}
+        count={total}
+        withRowActions={!isMe}
+        className="space-y-4"
+      >
         <Table className="rounded-md border">
           <AuctionsTableHeader />
           <AuctionsTableBody />

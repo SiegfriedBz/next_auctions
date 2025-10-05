@@ -1,0 +1,37 @@
+import type { SearchParams } from "nuqs/server";
+import { type FC, Suspense } from "react";
+import { AuctionsStatsData } from "@/app/_components/auctions/auctions-stats-data";
+import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auctions-stats";
+import { SkeletonTable } from "@/app/_components/skeletons/skeleton-table";
+import { searchParamsCache } from "@/app/[lang]/search.params";
+import { type LangParam, withI18n } from "@/i18n";
+import { AuctionsTableData } from "../_components/auctions-table-data";
+
+type Params = LangParam;
+
+type Props = {
+  params: Promise<Params>;
+  searchParams: Promise<SearchParams>;
+};
+
+const Page: FC<Props> = async (props) => {
+  searchParamsCache.parse(await props.searchParams);
+
+  return (
+    <div className="w-full container mx-auto space-y-12 py-4">
+      <section className="w-full">
+        <Suspense fallback={<SkeletonAuctionsStats />}>
+          <AuctionsStatsData isMe />
+        </Suspense>
+      </section>
+
+      <section className="w-full">
+        <Suspense fallback={<SkeletonTable />}>
+          <AuctionsTableData isMe />
+        </Suspense>
+      </section>
+    </div>
+  );
+};
+
+export default withI18n(Page);

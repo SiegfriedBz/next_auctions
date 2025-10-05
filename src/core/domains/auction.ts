@@ -65,7 +65,9 @@ export const AuctionDetailsSchema = AuctionSchema.extend({
 export type AuctionDetails = z.infer<typeof AuctionDetailsSchema>;
 
 export type AuctionsListingParams = {
-  filterBy?: Partial<Pick<Auction, "title" | "status" | "category">>;
+  filterBy?: Partial<
+    Pick<Auction, "title" | "status" | "category" | "ownerId">
+  >;
   orderBy?: {
     key: AuctionsSortKey;
     order: AuctionsSortOrder;
@@ -76,7 +78,10 @@ export type AuctionsListingParams = {
   };
 };
 
-export type AuctionsCountParams = Omit<AuctionsListingParams, "pagination">;
+export type AuctionsCountParams = Omit<
+  AuctionsListingParams,
+  "pagination" | "orderBy"
+>;
 
 // create & update params - FE
 const BaseAuctionFields = AuctionSchema.pick({

@@ -26,7 +26,7 @@ const BreacRumbSlot: FC<Props> = async (props) => {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <Trans>New</Trans>
+          <Trans>My auctions</Trans>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
