@@ -30,8 +30,8 @@ msgstr "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
 msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
 msgstr "{totalUsers, plural, =0 {user} one {user} other {users}}"
 
-msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
-msgstr "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+#~ msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+#~ msgstr "A set of layered sections of content—known as tab panels—that are displayed one at a time."
 
 #~ msgid "Actions"
 #~ msgstr "Actions"
@@ -102,8 +102,8 @@ msgstr "Closed"
 msgid "Collectibles"
 msgstr "Collectibles"
 
-msgid "Create"
-msgstr "Create"
+#~ msgid "Create"
+#~ msgstr "Create"
 
 msgid "Create account"
 msgstr "Create account"
@@ -126,6 +126,9 @@ msgstr "Create your account."
 msgid "Create your auction"
 msgstr "Create your auction"
 
+msgid "Created at"
+msgstr "Created at"
+
 msgid "Creating account..."
 msgstr "Creating account..."
 
@@ -137,6 +140,9 @@ msgstr "Creating bid..."
 
 msgid "Current Bid"
 msgstr "Current Bid"
+
+msgid "Dark"
+msgstr "Dark"
 
 msgid "Descending"
 msgstr "Descending"
@@ -240,8 +246,11 @@ msgstr "Language"
 msgid "Last name"
 msgstr "Last name"
 
-msgid "Liste"
-msgstr "Liste"
+msgid "Light"
+msgstr "Light"
+
+#~ msgid "Liste"
+#~ msgstr "Liste"
 
 msgid "Log out"
 msgstr "Log out"
@@ -252,8 +261,8 @@ msgstr "Login"
 msgid "Music"
 msgstr "Music"
 
-msgid "My Account"
-msgstr "My Account"
+#~ msgid "My Account"
+#~ msgstr "My Account"
 
 msgid "My Auctions"
 msgstr "My Auctions"
@@ -261,8 +270,8 @@ msgstr "My Auctions"
 msgid "My Profile"
 msgstr "My Profile"
 
-msgid "My Settings"
-msgstr "My Settings"
+#~ msgid "My Settings"
+#~ msgstr "My Settings"
 
 msgid "New"
 msgstr "New"
@@ -272,6 +281,9 @@ msgstr "New"
 
 msgid "No description provided."
 msgstr "No description provided."
+
+msgid "No results."
+msgstr "No results."
 
 msgid "Open"
 msgstr "Open"
@@ -291,8 +303,8 @@ msgstr "Place your bid"
 msgid "Product image"
 msgstr "Product image"
 
-msgid "Profile"
-msgstr "Profile"
+#~ msgid "Profile"
+#~ msgstr "Profile"
 
 msgid "Select a category"
 msgstr "Select a category"
@@ -318,8 +330,8 @@ msgstr "Sending bid..."
 msgid "Set a date to end your auction"
 msgstr "Set a date to end your auction"
 
-msgid "Settings"
-msgstr "Settings"
+#~ msgid "Settings"
+#~ msgstr "Settings"
 
 msgid "Sign in"
 msgstr "Sign in"
@@ -366,6 +378,9 @@ msgstr "Status"
 msgid "Switch login/signup forms"
 msgstr "Switch login/signup forms"
 
+msgid "System"
+msgstr "System"
+
 msgid "This is your auction"
 msgstr "This is your auction"
 
@@ -392,6 +407,9 @@ msgstr "Title *"
 
 #~ msgid "Toggle columns"
 #~ msgstr "Toggle columns"
+
+msgid "Toggle theme"
+msgstr "Toggle theme"
 
 msgid "Toys"
 msgstr "Toys"

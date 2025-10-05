@@ -37,15 +37,15 @@ export const NavLinks: FC<PropsWithChildren<Props>> = (props) => {
       value={menuValue}
       onValueChange={setMenuValue}
     >
-      <NavigationMenuList className="flex items-center gap-x-4">
-        {/* user menu */}
-        {user && <UserMenu user={user} />}
-
+      <NavigationMenuList className="flex items-center gap-x-6">
         {/* auctions menu */}
         <AuctionsMenu />
 
         {/* general settings menu */}
         <SettingsMenu onCloseMenu={onCloseMenu}>{children}</SettingsMenu>
+
+        {/* user menu */}
+        {user && <UserMenu user={user} />}
       </NavigationMenuList>
     </NavigationMenu>
   );
