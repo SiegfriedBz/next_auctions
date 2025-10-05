@@ -11,9 +11,15 @@ import { FormatDate } from "../../../format-date";
 import { RowAction } from "../row-actions";
 import { AuctionTableImage } from "../table-image";
 
-export const useColumns: () => ColumnDef<Auction>[] = () => {
+type Params = {
+  withRowActions?: boolean;
+};
+
+export const useColumns = (params: Params = {}): ColumnDef<Auction>[] => {
+  const { withRowActions = true } = params;
+
   return useMemo(() => {
-    return [
+    const columns: ColumnDef<Auction>[] = [
       {
         accessorKey: "title",
         header: () => (
@@ -90,10 +96,15 @@ export const useColumns: () => ColumnDef<Auction>[] = () => {
           return <FormatDate value={row.original.endAt ?? null} />;
         },
       },
-      {
+    ];
+
+    if (withRowActions) {
+      columns.push({
         id: "actions",
         cell: ({ row }) => <RowAction auction={row.original} />,
-      },
-    ];
-  }, []);
+      });
+    }
+
+    return columns;
+  }, [withRowActions]);
 };
