@@ -6,7 +6,8 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { getAuctionsNavLinks } from "./get-links";
+import { cn } from "@/lib/utils";
+import { getAuctionsNavLinks } from "./get-nav-links";
 import { NavListItem } from "./nav-list-item";
 import { navMenuItemClasses } from "./navigation-menu-classes";
 
@@ -17,9 +18,12 @@ export const AuctionsMenu: FC = () => {
   const auctionsNavLinks = useMemo(() => getAuctionsNavLinks(lang), [lang]);
 
   return (
-    <NavigationMenuItem className={navMenuItemClasses}>
-      <NavigationMenuTrigger className={navMenuItemClasses}>
-        <Grid3x3Icon size={24} className="size-9" />
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className={cn("h-10 sm:h-12", navMenuItemClasses)}>
+        <Grid3x3Icon
+          size={24}
+          className="size-10 sm:size-12 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"
+        />
       </NavigationMenuTrigger>
 
       <NavigationMenuContent>

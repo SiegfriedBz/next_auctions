@@ -6,6 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 import { navMenuItemClasses } from "./navigation-menu-classes";
 import { ThemeToggleButton } from "./theme-toggle-button";
 
@@ -15,9 +16,12 @@ export const SettingsMenu: FC<PropsWithChildren<Props>> = (props) => {
   const { onCloseMenu, children } = props;
 
   return (
-    <NavigationMenuItem className={navMenuItemClasses}>
-      <NavigationMenuTrigger className={navMenuItemClasses}>
-        <SettingsIcon size={24} className="size-9" />
+    <NavigationMenuItem>
+      <NavigationMenuTrigger className={cn("h-10 sm:h-12", navMenuItemClasses)}>
+        <SettingsIcon
+          size={24}
+          className="size-10 sm:size-12 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"
+        />
       </NavigationMenuTrigger>
 
       <NavigationMenuContent>
@@ -33,7 +37,7 @@ export const SettingsMenu: FC<PropsWithChildren<Props>> = (props) => {
               {/* to prevent closing NavigationMenu on open ThemeToggleButton dropdown */}
               <ThemeToggleButton
                 onCloseParent={onCloseMenu}
-                className="pointer-events-auto h-12 text-sm leading-none font-medium flex flex-row justify-center items-center gap-x-2"
+                className="pointer-events-auto h-10 sm:h-12 text-sm leading-none font-medium flex flex-row justify-center items-center gap-x-2"
               />
             </NavigationMenuLink>
           </li>

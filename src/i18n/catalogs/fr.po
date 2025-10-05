@@ -30,8 +30,8 @@ msgstr ""
 msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
 msgstr ""
 
-msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
-msgstr ""
+#~ msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+#~ msgstr ""
 
 #~ msgid "Actions"
 #~ msgstr ""
@@ -102,8 +102,8 @@ msgstr ""
 msgid "Collectibles"
 msgstr ""
 
-msgid "Create"
-msgstr ""
+#~ msgid "Create"
+#~ msgstr ""
 
 msgid "Create account"
 msgstr ""
@@ -126,6 +126,9 @@ msgstr ""
 msgid "Create your auction"
 msgstr ""
 
+msgid "Created at"
+msgstr ""
+
 msgid "Creating account..."
 msgstr ""
 
@@ -136,6 +139,9 @@ msgid "Creating bid..."
 msgstr ""
 
 msgid "Current Bid"
+msgstr ""
+
+msgid "Dark"
 msgstr ""
 
 msgid "Descending"
@@ -240,8 +246,11 @@ msgstr "Langue"
 msgid "Last name"
 msgstr ""
 
-msgid "Liste"
+msgid "Light"
 msgstr ""
+
+#~ msgid "Liste"
+#~ msgstr ""
 
 msgid "Log out"
 msgstr ""
@@ -252,8 +261,8 @@ msgstr ""
 msgid "Music"
 msgstr ""
 
-msgid "My Account"
-msgstr ""
+#~ msgid "My Account"
+#~ msgstr ""
 
 msgid "My Auctions"
 msgstr ""
@@ -261,8 +270,8 @@ msgstr ""
 msgid "My Profile"
 msgstr ""
 
-msgid "My Settings"
-msgstr ""
+#~ msgid "My Settings"
+#~ msgstr ""
 
 msgid "New"
 msgstr ""
@@ -271,6 +280,9 @@ msgstr ""
 #~ msgstr ""
 
 msgid "No description provided."
+msgstr ""
+
+msgid "No results."
 msgstr ""
 
 msgid "Open"
@@ -291,8 +303,8 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
-msgid "Profile"
-msgstr ""
+#~ msgid "Profile"
+#~ msgstr ""
 
 msgid "Select a category"
 msgstr ""
@@ -318,8 +330,8 @@ msgstr ""
 msgid "Set a date to end your auction"
 msgstr ""
 
-msgid "Settings"
-msgstr ""
+#~ msgid "Settings"
+#~ msgstr ""
 
 msgid "Sign in"
 msgstr ""
@@ -366,6 +378,9 @@ msgstr ""
 msgid "Switch login/signup forms"
 msgstr ""
 
+msgid "System"
+msgstr ""
+
 msgid "This is your auction"
 msgstr ""
 
@@ -392,6 +407,9 @@ msgstr ""
 
 #~ msgid "Toggle columns"
 #~ msgstr ""
+
+msgid "Toggle theme"
+msgstr ""
 
 msgid "Toys"
 msgstr ""

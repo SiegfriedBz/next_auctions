@@ -40,8 +40,8 @@ export const LogOutButton: FC<Props> = (props) => {
         className,
       )}
     >
-      <ArrowRightIcon size={16} />
       <Trans>Log out</Trans>
+      <ArrowRightIcon size={16} />
     </Button>
   );
 };

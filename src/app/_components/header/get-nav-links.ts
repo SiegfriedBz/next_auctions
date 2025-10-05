@@ -32,11 +32,6 @@ export const getUserNavLinks: (lang: string) => NavLink[] = (lang) => [
   {
     href: `/${lang}/profile`,
     title: msg`My Profile`,
-    icon: UserRoundIcon,
-  },
-  {
-    href: `/${lang}/settings`,
-    title: msg`My Settings`,
     icon: UserRoundCheckIcon,
   },
   {
