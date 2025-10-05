@@ -13,7 +13,7 @@ import {
   withI18n,
 } from "@/i18n";
 import { Footer } from "../_components/footer";
-import { Header } from "../_components/header";
+import { Header } from "../_components/header/header";
 import { ThemeProvider } from "../_context/theme-provider";
 import "./globals.css";
 
