@@ -1,9 +1,6 @@
 import z from "zod";
-import {
-  type Auction,
-  type AuctionImage,
-  AuctionSchema,
-} from "@/core/domains/auction";
+import { type Auction, AuctionSchema } from "@/core/domains/auction";
+import type { AuctionImage } from "@/core/domains/image";
 
 export type SupabaseAuctionImage = Pick<AuctionImage, "url" | "name"> & {
   uploaded_at?: string;

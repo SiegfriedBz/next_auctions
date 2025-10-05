@@ -43,12 +43,14 @@ export const UserAvatar: FC<Props> = ({
         )}
       >
         <AvatarImage src={user?.avatarUrl} />
-        <AvatarFallback>{getInitials(user)}</AvatarFallback>
+        <AvatarFallback className="rounded-md">
+          {getInitials(user)}
+        </AvatarFallback>
       </Avatar>
       {!onlyAvatar && (
-        <div className="flex flex-col max-md:hidden">
+        <div className="flex flex-col">
           <span className="font-medium capitalize">{getFullName(user)}</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400 max-lg:hidden">
+          <span className="text-sm sm:text-base text-muted-foreground dark:text-muted-foreground">
             {user.email}
           </span>
         </div>

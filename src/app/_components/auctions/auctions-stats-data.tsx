@@ -10,10 +10,11 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   isMe?: boolean;
+  className?: string;
 };
 
 export const AuctionsStatsData: FC<Props> = async (props) => {
-  const { isMe = false } = props;
+  const { isMe = false, className } = props;
 
   let me: User | null = null;
   let totalUsers: number = 0;
@@ -39,9 +40,13 @@ export const AuctionsStatsData: FC<Props> = async (props) => {
 
   return (
     <div
-      className={cn("grid grid-cols-1 sm:grid-cols-2 gap-4", {
-        "lg:grid-cols-3": !isMe,
-      })}
+      className={cn(
+        "grid grid-cols-1 sm:grid-cols-2 gap-4",
+        {
+          "lg:grid-cols-3": !isMe,
+        },
+        className,
+      )}
     >
       <Card>
         <CardContent className="flex-1 flex items-center justify-between gap-4">
