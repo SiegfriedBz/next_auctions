@@ -16,6 +16,7 @@ import { Footer } from "../_components/footer";
 import { Header } from "../_components/header/header";
 import { ThemeProvider } from "../_context/theme-provider";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -74,6 +75,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
             </ThemeProvider>
           </I18nProvider>
         </NuqsAdapter>
+        <Analytics />
       </body>
     </html>
   );
