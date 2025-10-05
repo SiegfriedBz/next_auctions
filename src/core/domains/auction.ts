@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ImageSchema } from "./image";
 import { UserSchema } from "./user";
 
 // enums
@@ -23,22 +24,13 @@ export const AuctionStatusSchema = z.enum([
 ]);
 export type AuctionStatus = z.infer<typeof AuctionStatusSchema>;
 
-// img
-export const AuctionImageSchema = z.object({
-  url: z.url(),
-  name: z.string().optional(),
-  uploadedAt: z.date().optional(),
-});
-
-export type AuctionImage = z.infer<typeof AuctionImageSchema>;
-
 // Auction
 export const AuctionSchema = z.object({
   id: z.uuid(),
   ownerId: z.uuid(),
   title: z.string(),
   description: z.string(),
-  images: z.array(AuctionImageSchema),
+  images: z.array(ImageSchema),
   category: AuctionCategorySchema,
   startingPrice: z
     .number()
@@ -103,7 +95,7 @@ export const CreateAuctionStatusSchema = z.enum([
 export const CreateAuctionParamsSchema = BaseAuctionFields.extend({
   endAt: AuctionSchema.shape.endAt.optional(),
   status: CreateAuctionStatusSchema,
-  images: z.array(AuctionImageSchema).optional(),
+  images: z.array(ImageSchema).optional(),
 });
 export type CreateAuctionParams = z.infer<typeof CreateAuctionParamsSchema>;
 
@@ -112,7 +104,7 @@ export const UpdateAuctionStatusSchema = AuctionStatusSchema;
 export const UpdateAuctionParamsSchema = BaseAuctionUpdateFields.extend({
   endAt: AuctionSchema.shape.endAt.optional(),
   status: UpdateAuctionStatusSchema,
-  images: z.array(AuctionImageSchema).optional(),
+  images: z.array(ImageSchema).optional(),
 });
 export type UpdateAuctionParams = z.infer<typeof UpdateAuctionParamsSchema>;
 

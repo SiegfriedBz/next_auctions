@@ -17,6 +17,7 @@ describe("UserService", () => {
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),
+      update: jest.fn(),
     };
     service = new UserService(repo);
 
@@ -113,6 +114,49 @@ describe("UserService", () => {
 
       expect(result).toBe(0);
       expect(repo.count).toHaveBeenCalledWith({});
+    });
+  });
+
+  describe("update", () => {
+    it("throws an error when no user is authenticated", async () => {
+      repo.me.mockResolvedValue(null);
+
+      await expect(
+        service.update({
+          firstName: "John",
+          lastName: "Doe",
+        }),
+      ).rejects.toThrow("Only authenticated user allowed");
+
+      expect(repo.me).toHaveBeenCalled();
+      expect(repo.update).not.toHaveBeenCalled();
+    });
+
+    it("updates the user when authenticated", async () => {
+      repo.me.mockResolvedValue(user);
+      repo.update.mockResolvedValue({
+        ...user,
+        firstName: "John",
+        lastName: "Doe",
+      });
+
+      const params = {
+        firstName: "John",
+        lastName: "Doe",
+      };
+
+      const result = await service.update(params);
+
+      expect(repo.me).toHaveBeenCalled();
+      expect(repo.update).toHaveBeenCalledWith({
+        ...params,
+        id: VALID_UUID,
+      });
+      expect(result).toEqual({
+        ...user,
+        firstName: "John",
+        lastName: "Doe",
+      });
     });
   });
 });

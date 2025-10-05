@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import type { FC } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 type Item = {
   title: MessageDescriptor;
@@ -12,15 +13,25 @@ type Item = {
 
 type Props = {
   items: Item[];
+  isMe?: boolean;
+  className?: string;
 };
 
 export const SkeletonStats: FC<Props> = (props) => {
-  const { items } = props;
+  const { items, isMe = false, className } = props;
 
   const { i18n } = useLingui();
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div
+      className={cn(
+        "grid grid-cols-1 sm:grid-cols-2 gap-4",
+        {
+          "lg:grid-cols-3": !isMe,
+        },
+        className,
+      )}
+    >
       {items.map((item) => {
         const { title, icon } = item;
         const Icon = icon;

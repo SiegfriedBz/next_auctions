@@ -171,6 +171,9 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+msgid "Edit my profile"
+msgstr ""
+
 msgid "Electronics"
 msgstr ""
 
@@ -204,6 +207,9 @@ msgstr ""
 msgid "Fill the form below to update your draft auction"
 msgstr ""
 
+msgid "Fill the form below to update your profile"
+msgstr ""
+
 msgid "Filter auctions"
 msgstr ""
 
@@ -211,6 +217,9 @@ msgstr ""
 #~ msgstr ""
 
 msgid "First name"
+msgstr ""
+
+msgid "First name *"
 msgstr ""
 
 msgid "Français"
@@ -246,6 +255,12 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
+msgid "Last name *"
+msgstr ""
+
+msgid "Last Name *"
+msgstr ""
+
 msgid "Light"
 msgstr ""
 
@@ -271,6 +286,9 @@ msgid "My auctions"
 msgstr ""
 
 msgid "My Auctions"
+msgstr ""
+
+msgid "My profile"
 msgstr ""
 
 msgid "My Profile"
@@ -405,6 +423,12 @@ msgstr ""
 msgid "This is your public display last name."
 msgstr ""
 
+msgid "This is your public first name."
+msgstr ""
+
+msgid "This is your public last name."
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
@@ -426,13 +450,25 @@ msgstr ""
 #~ msgid "Update Auction"
 #~ msgstr ""
 
+msgid "Update my profile"
+msgstr ""
+
 msgid "Update your auction"
+msgstr ""
+
+msgid "Update your profile"
 msgstr ""
 
 msgid "Updating auction..."
 msgstr ""
 
+msgid "Updating your profile..."
+msgstr ""
+
 msgid "user"
+msgstr ""
+
+msgid "User profile card"
 msgstr ""
 
 #~ msgid "View"
@@ -457,4 +493,7 @@ msgid "You successfully signed up!"
 msgstr ""
 
 msgid "You successfully updated your auction!"
+msgstr ""
+
+msgid "You successfully updated your profile!"
 msgstr ""

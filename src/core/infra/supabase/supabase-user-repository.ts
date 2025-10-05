@@ -4,7 +4,10 @@ import type {
   User,
   UsersCountParams,
 } from "@/core/domains/user";
-import type { UserRepository } from "@/core/ports/user-repository";
+import type {
+  RepoUpdateUserParams,
+  UserRepository,
+} from "@/core/ports/user-repository";
 import { createClient } from "@/utils/supabase/server";
 import { userMapper } from "./user-mapper";
 
@@ -143,5 +146,29 @@ export class SupabaseUserRepository implements UserRepository {
     }
 
     return count ?? 0;
+  }
+
+  async update(params: RepoUpdateUserParams): Promise<User> {
+    const client = await createClient();
+    const { id, firstName, lastName } = params;
+
+    const { data: user, error } = await client
+      .from("users")
+      .update({
+        first_name: firstName,
+        last_name: lastName,
+      })
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (error || !user) {
+      throw new Error(`DB update failed: ${error?.message}`);
+    }
+
+    const mapped = userMapper(user);
+    if (!mapped) throw new Error("Updated user is invalid");
+
+    return mapped;
   }
 }
