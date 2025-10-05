@@ -39,6 +39,10 @@ export class SupabaseAuctionRepository implements AuctionRepository {
           query = query.eq("category", value);
           break;
         }
+        case "ownerId": {
+          query = query.eq("owner_id", value);
+          break;
+        }
       }
     }
 
@@ -95,6 +99,10 @@ export class SupabaseAuctionRepository implements AuctionRepository {
         }
         case "category": {
           query = query.eq("category", value);
+          break;
+        }
+        case "ownerId": {
+          query = query.eq("owner_id", value);
           break;
         }
       }
