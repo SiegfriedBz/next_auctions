@@ -150,13 +150,14 @@ export class SupabaseUserRepository implements UserRepository {
 
   async update(params: RepoUpdateUserParams): Promise<User> {
     const client = await createClient();
-    const { id, firstName, lastName } = params;
+    const { id, firstName, lastName, avatarUrl } = params;
 
     const { data: user, error } = await client
       .from("users")
       .update({
         first_name: firstName,
         last_name: lastName,
+        avatar_url: avatarUrl,
       })
       .eq("id", id)
       .select()
