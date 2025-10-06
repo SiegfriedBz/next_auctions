@@ -77,6 +77,7 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --uppy-browse-color: oklch(0.6 0.118 184.704);
 }
 
 .dark {
@@ -111,6 +112,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
+  --uppy-browse-color: oklch(0.92 0.004 286.32);
 }
 
 @theme {
@@ -158,6 +160,7 @@
   }
 }
 
+/* scrollbar */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
@@ -168,4 +171,47 @@
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: hsl(var(--muted-foreground)) transparent;
+}
+
+/* Uppy Dashboard */
+.uppy-Dashboard-inner {
+  background: transparent !important;
+  border-color: var(--ring) !important;
+  border-width: 0.025rem !important;
+  border-radius: 2%;
+  box-shadow: none !important;
+}
+
+.uppy-Dashboard-innerWrap {
+  background: transparent !important;
+}
+
+.uppy-Dashboard-AddFiles {
+  background: transparent !important;
+  border-color: var(--ring) !important;
+  border-width: 0.01rem !important;
+  border-radius: 2% !important;
+}
+
+.uppy-Dashboard-AddFiles-title {
+  color: var(--card-foreground) !important;
+  font-family: var(--font-geist-sans) !important;
+  font-size: medium !important;
+  font-weight: 400 !important;
+}
+
+button.uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse {
+  color: var(--card-foreground) !important;
+  font-family: var(--font-geist-sans) !important;
+  border-bottom-color: var(--card-foreground) !important;
+  font-size: medium !important;
+  font-weight: 400 !important;
+}
+.uppy-Dashboard-poweredBy {
+  display: none !important;
+}
+
+/* cancel btn */
+.uppy-DashboardContent-back {
+  display: none !important;
 }

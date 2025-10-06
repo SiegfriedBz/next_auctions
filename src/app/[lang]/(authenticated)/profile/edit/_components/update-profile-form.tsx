@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 import { updateUser } from "@/actions/user/update-user";
+import { UppyAvatarUploader } from "@/app/_components/uppy/uppy-uploader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,15 +32,16 @@ type FormSchema = z.infer<typeof formSchema>;
 const DEFAULT_VALUES: UpdateUserParams = {
   firstName: "",
   lastName: "",
-  // avatarUrl:
+  avatarUrl: "",
 };
 
 type Props = {
   defaultValues: Partial<FormSchema>;
+  userId: string;
 };
 
 export const UpdateProfileForm: FC<Props> = (props) => {
-  const { defaultValues } = props;
+  const { defaultValues, userId } = props;
 
   const { t, i18n } = useLingui();
   const { locale: lang } = i18n;
@@ -115,6 +117,12 @@ export const UpdateProfileForm: FC<Props> = (props) => {
               <FormMessage />
             </FormItem>
           )}
+        />
+
+        <UppyAvatarUploader
+          userId={userId}
+          fieldName={"avatarUrl"}
+          bucketName={"avatars"}
         />
 
         <Button
