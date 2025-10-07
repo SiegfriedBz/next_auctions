@@ -14,13 +14,20 @@ export const Header: FC = async () => {
   const user = await users().me();
 
   return (
-    <header className="flex justify-between items-center h-20 sm:h-32 px-4 sm:px-8 md:px-16">
-      <Link href={`/${lang}/`}>LOGOLOGO</Link>
+    <header className="flex justify-between items-center h-28 sm:h-32 md:h-38 px-4 sm:px-8 md:px-16">
+      <Link href={`/${lang}/`} className="flex flex-col">
+        <span className="font-extrabold text-2xl sm:text-3xl tracking-widest">
+          GavL
+        </span>
+        <span className="text-sm md:text-base text-muted-foreground mt-1 font-medium tracking-wide">
+          Track Auctions Effortlessly
+        </span>
+      </Link>
 
-      <div className="flex flex-row items-center gap-x-6 h-full">
+      <div className="flex flex-row items-center gap-x-2 sm:gap-x-4 md:gap-x-6 h-full">
         {!user && (
           <Button asChild variant={"outline"}>
-            <AuthButton className="h-10 sm:h-12 cursor-pointer text-sm leading-none font-medium flex flex-row justify-center items-center gap-x-2" />
+            <AuthButton className="h-8 sm:h-10 cursor-pointer text-sm leading-none font-medium flex flex-row justify-center items-center gap-x-2" />
           </Button>
         )}
 

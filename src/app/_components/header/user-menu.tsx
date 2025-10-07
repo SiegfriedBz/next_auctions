@@ -36,7 +36,7 @@ export const UserMenu: FC<Props> = (props) => {
       </NavigationMenuTrigger>
 
       <NavigationMenuContent>
-        <ul className="w-32 gap-2">
+        <ul className="grid w-44 gap-2 grid-cols-1">
           {userNavLinks.map((c) => (
             <NavListItem
               key={i18n._(c.title)}
@@ -48,7 +48,7 @@ export const UserMenu: FC<Props> = (props) => {
 
           <li>
             <NavigationMenuLink asChild>
-              <LogOutButton className="h-10 sm:h-12 text-sm leading-none font-medium flex flex-row justify-end items-center gap-x-2" />
+              <LogOutButton className="h-8 sm:h-10 text-sm leading-none font-medium flex flex-row justify-end items-center gap-x-2" />
             </NavigationMenuLink>
           </li>
         </ul>

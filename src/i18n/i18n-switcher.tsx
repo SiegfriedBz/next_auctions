@@ -53,7 +53,7 @@ export const I18nSwitcher: FC<Props> = (props) => {
       <SelectTrigger className={cn("w-full", className)}>
         <SelectValue placeholder={t`Choose a language`} />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="mt-2">
         <SelectGroup>
           <SelectLabel>
             <Trans>Language</Trans>
