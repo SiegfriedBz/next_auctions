@@ -27,8 +27,8 @@ export const AuctionsTableSort: FC = () => {
           </TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex gap-4">
-        <DropdownMenuItem>
+      <DropdownMenuContent>
+        <DropdownMenuItem asChild>
           <QuerySortSelect />
         </DropdownMenuItem>
       </DropdownMenuContent>
