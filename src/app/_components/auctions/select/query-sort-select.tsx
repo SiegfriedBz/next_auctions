@@ -43,8 +43,13 @@ export const QuerySortSelect: FC = () => {
   const [sortOrder, setSortOrder] = useQueryState("order", sortParsers.order);
 
   const onKeyChange = useCallback(
-    (key: string) => setSortKey(key as typeof sortKey),
-    [setSortKey],
+    (key: string) => {
+      setSortKey(key as typeof sortKey);
+      if (key != null && !sortOrder) {
+        setSortOrder(AuctionsSortOrderSchema.enum.asc);
+      }
+    },
+    [setSortKey, sortOrder, setSortOrder],
   );
 
   const onOrderChange = useCallback(
@@ -58,27 +63,32 @@ export const QuerySortSelect: FC = () => {
   }, [setSortKey, setSortOrder]);
 
   return (
-    <div className="flex gap-x-2 max-w-[28rem] justify-between items-center">
-      {/* Sort Field */}
-      <SelectFor<AuctionsSortKey>
-        options={SORT_KEY_OPTIONS}
-        value={sortKey ?? undefined}
-        onChange={onKeyChange}
-        placeholder={msg`Sort by`}
-        className="w-full min-w-44"
-      />
+    <div className="flex items-center gap-2">
+      <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
+        {/* Sort Field */}
+        <SelectFor<AuctionsSortKey>
+          options={SORT_KEY_OPTIONS}
+          value={sortKey ?? undefined}
+          onChange={onKeyChange}
+          placeholder={msg`Sort by`}
+          className="w-fit min-w-44"
+          key={`sortKey-${sortKey?.toString()}`}
+        />
 
-      {/* Sort Order */}
-      <SelectFor<AuctionsSortOrder>
-        options={SORT_ORDER_OPTIONS}
-        value={sortOrder ?? undefined}
-        onChange={onOrderChange}
-        placeholder={msg`Sort order`}
-        className="w-full min-w-44"
-      />
+        {/* Sort Order */}
+        <SelectFor<AuctionsSortOrder>
+          options={SORT_ORDER_OPTIONS}
+          value={sortOrder ?? undefined}
+          onChange={onOrderChange}
+          placeholder={msg`Sort order`}
+          className="w-fit min-w-44"
+          key={`sortOrder-${sortOrder?.toString()}`}
+        />
+      </div>
 
       <Button
         onClick={onReset}
+        disabled={!sortKey && !sortOrder}
         size={"sm"}
         variant={"ghost"}
         className="flex justify-center items-center cursor-pointer"

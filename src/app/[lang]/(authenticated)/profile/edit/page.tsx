@@ -26,7 +26,7 @@ const Page: FC<Props> = async (props) => {
   }
 
   return (
-    <div className="max-w-5xl flex flex-col gap-4 mx-auto pb-4">
+    <div className="max-w-2xl flex flex-col gap-4 mx-auto pb-4">
       <Card>
         <CardHeader>
           <CardTitle className="h2">

@@ -17,7 +17,8 @@ export const UpdateUserFormWithData: FC = async () => {
   const defaultValues = {
     firstName: me.firstName,
     lastName: me.lastName,
+    avatarUrl: me.avatarUrl,
   };
 
-  return <UpdateProfileForm defaultValues={defaultValues} />;
+  return <UpdateProfileForm defaultValues={defaultValues} userId={me.id} />;
 };

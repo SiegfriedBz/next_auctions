@@ -60,6 +60,9 @@ msgstr ""
 msgid "Automotive"
 msgstr ""
 
+msgid "Avatar uploaded successfully!"
+msgstr ""
+
 msgid "bid"
 msgstr ""
 
@@ -73,6 +76,9 @@ msgid "Bid placed successfully!"
 msgstr ""
 
 msgid "Browse Auctions"
+msgstr ""
+
+msgid "browse files"
 msgstr ""
 
 msgid "Built to exacting standards using only the best quality hardware, pickups and tone woods..."
@@ -96,10 +102,16 @@ msgstr ""
 msgid "Choose a language"
 msgstr "Selectionner une langue"
 
+msgid "Click on Update your profile"
+msgstr ""
+
 msgid "Closed"
 msgstr ""
 
 msgid "Collectibles"
+msgstr ""
+
+msgid "Continue"
 msgstr ""
 
 #~ msgid "Create"
@@ -168,6 +180,9 @@ msgstr ""
 msgid "Draft"
 msgstr ""
 
+msgid "Drop files here or"
+msgstr ""
+
 msgid "Edit"
 msgstr ""
 
@@ -193,6 +208,9 @@ msgid "English"
 msgstr ""
 
 msgid "Enter your email and password to access."
+msgstr ""
+
+msgid "Failed to upload avatar. Please try again."
 msgstr ""
 
 msgid "Fashion"
@@ -265,6 +283,9 @@ msgid "Light"
 msgstr ""
 
 #~ msgid "Liste"
+#~ msgstr ""
+
+#~ msgid "Loading uploader..."
 #~ msgstr ""
 
 msgid "Log out"
@@ -465,6 +486,15 @@ msgstr ""
 msgid "Updating your profile..."
 msgstr ""
 
+msgid "Upload your avatar"
+msgstr ""
+
+msgid "Upload your new avatar?"
+msgstr ""
+
+msgid "Uploading avatar..."
+msgstr ""
+
 msgid "user"
 msgstr ""
 
@@ -496,4 +526,7 @@ msgid "You successfully updated your auction!"
 msgstr ""
 
 msgid "You successfully updated your profile!"
+msgstr ""
+
+msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
 msgstr ""
