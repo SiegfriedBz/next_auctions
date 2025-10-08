@@ -78,6 +78,9 @@ msgstr "Bid placed successfully!"
 msgid "Browse Auctions"
 msgstr "Browse Auctions"
 
+msgid "browse files"
+msgstr "browse files"
+
 msgid "Built to exacting standards using only the best quality hardware, pickups and tone woods..."
 msgstr "Built to exacting standards using only the best quality hardware, pickups and tone woods..."
 
@@ -176,6 +179,9 @@ msgstr "Don't have an account ? "
 
 msgid "Draft"
 msgstr "Draft"
+
+msgid "Drop files here or"
+msgstr "Drop files here or"
 
 msgid "Edit"
 msgstr "Edit"
@@ -279,8 +285,8 @@ msgstr "Light"
 #~ msgid "Liste"
 #~ msgstr "Liste"
 
-msgid "Loading uploader..."
-msgstr "Loading uploader..."
+#~ msgid "Loading uploader..."
+#~ msgstr "Loading uploader..."
 
 msgid "Log out"
 msgstr "Log out"

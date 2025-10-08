@@ -28,11 +28,11 @@ export const AuctionsTableFilter: FC = () => {
           </TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex gap-4">
-        <DropdownMenuItem>
+      <DropdownMenuContent className="p-2 grid w-fit gap-2 grid-cols-1 sm:grid-cols-2">
+        <DropdownMenuItem asChild>
           <QueryCategorySelect />
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <QueryStatusSelect />
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -10,7 +10,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
   const { breadcrumbs, children } = props;
 
   return (
-    <div className="flex flex-col min-h-screen p-4 sm:p-16 gap-4 sm:gap-8">
+    <div className="flex flex-col min-h-screen p-4 sm:p-16 sm:pt-8 gap-4">
       <header>{breadcrumbs}</header>
       <section className="">{children}</section>
     </div>

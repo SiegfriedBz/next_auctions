@@ -26,10 +26,11 @@ export const QueryStatusSelect: FC = () => {
         value={status ?? undefined}
         onChange={setStatus}
         placeholder={msg`Select a status`}
-        key={status} // force re-render on status change
+        key={status}
       />
       <Button
         onClick={onReset}
+        disabled={!status}
         size={"sm"}
         variant={"ghost"}
         className="flex justify-center items-center cursor-pointer"

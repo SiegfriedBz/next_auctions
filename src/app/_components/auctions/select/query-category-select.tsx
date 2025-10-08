@@ -28,10 +28,11 @@ export const QueryCategorySelect: FC = () => {
         value={category ?? undefined}
         onChange={setCategory}
         placeholder={msg`Select a category`}
-        key={status} // force re-render on status change
+        key={category}
       />
       <Button
         onClick={onReset}
+        disabled={!category}
         size={"sm"}
         variant={"ghost"}
         className="flex justify-center items-center cursor-pointer"

@@ -19,15 +19,15 @@ export const AuctionsMenu: FC = () => {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className={cn("h-10 sm:h-12", navMenuItemClasses)}>
+      <NavigationMenuTrigger className={cn("h-8 sm:h-10", navMenuItemClasses)}>
         <Grid3x3Icon
-          size={24}
-          className="size-10 sm:size-12 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"
+          size={20}
+          className="size-8 sm:size-10 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"
         />
       </NavigationMenuTrigger>
 
       <NavigationMenuContent>
-        <ul className="grid w-72 gap-2 grid-cols-2">
+        <ul className="grid w-44 sm:w-72 gap-2 grid-cols-1 sm:grid-cols-2">
           {auctionsNavLinks.map((c) => {
             return (
               <NavListItem

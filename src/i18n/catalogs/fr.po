@@ -78,6 +78,9 @@ msgstr ""
 msgid "Browse Auctions"
 msgstr ""
 
+msgid "browse files"
+msgstr ""
+
 msgid "Built to exacting standards using only the best quality hardware, pickups and tone woods..."
 msgstr ""
 
@@ -175,6 +178,9 @@ msgstr ""
 #~ msgstr ""
 
 msgid "Draft"
+msgstr ""
+
+msgid "Drop files here or"
 msgstr ""
 
 msgid "Edit"
@@ -279,8 +285,8 @@ msgstr ""
 #~ msgid "Liste"
 #~ msgstr ""
 
-msgid "Loading uploader..."
-msgstr ""
+#~ msgid "Loading uploader..."
+#~ msgstr ""
 
 msgid "Log out"
 msgstr ""

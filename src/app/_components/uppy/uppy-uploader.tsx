@@ -68,7 +68,7 @@ export const UppyAvatarUploader = ({
             </CardHeader>
 
             {uppyIsReady ? (
-              <CardContent className="flex max-[476px]:flex-col [476px]:flex-row gap-3 [476px]:gap-6 items-center justify-center px-4">
+              <CardContent className="flex flex-col items-center justify-center px-4">
                 <Dashboard
                   uppy={uppy}
                   theme="dark"
@@ -77,7 +77,6 @@ export const UppyAvatarUploader = ({
                   hideUploadButton
                   // showProgressDetails={true}
                   proudlyDisplayPoweredByUppy={false}
-                  className="sm:ms-4"
                 />
                 {field.value != null && (
                   <Image
@@ -85,7 +84,7 @@ export const UppyAvatarUploader = ({
                     height={128}
                     src={field.value}
                     alt="Avatar preview"
-                    className="w-32 h-32 rounded-lg object-cover"
+                    className="w-44 h-44 rounded-lg object-cover mt-6"
                   />
                 )}
               </CardContent>
