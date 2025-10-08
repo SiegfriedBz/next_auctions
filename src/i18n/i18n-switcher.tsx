@@ -2,6 +2,7 @@
 
 import { msg } from "@lingui/core/macro";
 import { Trans, useLingui } from "@lingui/react/macro";
+import { GlobeIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { type FC, useCallback, useMemo } from "react";
 import {
@@ -50,7 +51,10 @@ export const I18nSwitcher: FC<Props> = (props) => {
 
   return (
     <Select defaultValue={locale} onValueChange={onChange}>
-      <SelectTrigger className={cn("w-full", className)}>
+      <SelectTrigger
+        className={cn("w-full border-0 dark:bg-transparent", className)}
+      >
+        <GlobeIcon size={16} />
         <SelectValue placeholder={t`Choose a language`} />
       </SelectTrigger>
       <SelectContent className="mt-2">

@@ -36,9 +36,9 @@ export const ThemeToggleButton: FC<Props> = (props) => {
       <DropdownMenuTrigger asChild className={className}>
         <Button
           variant="ghost"
-          className="cursor-pointer w-full rounded-md flex items-center gap-x-2 px-2"
+          className="cursor-pointer w-full rounded-md px-2 gap-x-2 flex justify-start items-center dark:hover:bg-input/50 "
         >
-          <span className="inline-flex relative w-10 h-10">
+          <span className="inline-flex relative w-4 h-8">
             <Sun className="absolute top-1/2 -translate-y-1/2 h-[1.2rem] w-[1.2rem] scale-100 transition-all dark:scale-0" />
             <Moon className="absolute top-1/2 -translate-y-1/2  h-[1.2rem] w-[1.2rem] scale-0 transition-all dark:scale-100" />
           </span>
@@ -46,7 +46,7 @@ export const ThemeToggleButton: FC<Props> = (props) => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="mt-2">
         <DropdownMenuItem onClick={() => onToggleTo("light")}>
           <Trans>Light</Trans>
         </DropdownMenuItem>

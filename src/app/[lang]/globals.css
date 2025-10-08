@@ -201,6 +201,9 @@
 }
 
 button.uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse {
+  display: flex;
+  justify-self: center;
+  margin-top: 8px;
   color: var(--card-foreground) !important;
   font-family: var(--font-geist-sans) !important;
   border-bottom-color: var(--card-foreground) !important;

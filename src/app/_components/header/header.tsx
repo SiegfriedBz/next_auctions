@@ -14,7 +14,7 @@ export const Header: FC = async () => {
   const user = await users().me();
 
   return (
-    <header className="flex justify-between items-center h-28 sm:h-32 md:h-38 px-4 sm:px-8 md:px-16">
+    <header className="flex justify-between items-center h-28 sm:h-32 md:h-38 px-4 sm:px-16">
       <Link href={`/${lang}/`} className="flex flex-col">
         <span className="font-extrabold text-2xl sm:text-3xl tracking-widest">
           GavL
@@ -32,7 +32,13 @@ export const Header: FC = async () => {
         )}
 
         <NavLinks user={user}>
-          <I18nSwitcher className="pointer-events-auto h-full text-sm leading-none font-medium flex flex-row justify-center items-center" />
+          <I18nSwitcher
+            className={`
+              pointer-events-auto h-10 sm:h-12 text-sm leading-none font-medium 
+              flex flex-row justify-start items-center gap-x-2
+              px-2 py-6 rounded-md
+            `}
+          />
         </NavLinks>
       </div>
     </header>
