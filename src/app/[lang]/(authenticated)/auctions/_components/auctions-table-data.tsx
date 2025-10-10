@@ -60,7 +60,7 @@ export const AuctionsTableData: FC<Props> = async (props) => {
           <AuctionsTableHeader />
           <AuctionsTableBody />
         </Table>
-        <AuctionsTablePagination />
+        <AuctionsTablePagination className="mt-8" />
       </AuctionsTableProvider>
     </>
   );

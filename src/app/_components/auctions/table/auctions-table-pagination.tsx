@@ -2,12 +2,12 @@
 
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import type { ComponentProps, FC } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import { cn } from "@/lib/utils";
 import { useAuctionsTable } from "./hooks/use-auctions-table";
 
-type Props = ComponentProps<"div">;
+type Props = ComponentProps<typeof ButtonGroup>;
 
 export const AuctionsTablePagination: FC<Props> = (props) => {
   const { className, ...rest } = props;
@@ -29,38 +29,39 @@ export const AuctionsTablePagination: FC<Props> = (props) => {
   const currentPage = getState().pagination.pageIndex + 1;
 
   return (
-    <div
+    <ButtonGroup
       {...rest}
-      className={cn(
-        "mx-auto flex items-center gap-1 justify-center",
-        className,
-      )}
+      className={cn("mx-auto flex items-center justify-center", className)}
     >
-      <Button
-        onClick={onPreviousPage}
-        disabled={!canPreviousPage}
-        variant={"outline"}
-        className={cn({
-          "cursor-pointer": canPreviousPage,
-        })}
-      >
-        <ChevronLeftIcon />
-      </Button>
-
-      <Badge variant="outline" className="mx-4 rounded-full text-lg">
-        {currentPage}
-      </Badge>
-
-      <Button
-        onClick={onNextPage}
-        disabled={!canNextPage}
-        variant={"outline"}
-        className={cn("", {
-          "cursor-pointer": canNextPage,
-        })}
-      >
-        <ChevronRightIcon />
-      </Button>
-    </div>
+      <ButtonGroup>
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label="Previous"
+          onClick={onPreviousPage}
+          disabled={!canPreviousPage}
+          className={cn({
+            "cursor-pointer": canPreviousPage,
+          })}
+        >
+          <ChevronLeftIcon />
+        </Button>
+        <Button variant="outline" size="sm" aria-label="page" asChild>
+          <span className="text-lg sm:text-xl">{currentPage}</span>
+        </Button>
+        <Button
+          size="sm"
+          aria-label="Next"
+          onClick={onNextPage}
+          disabled={!canNextPage}
+          variant={"outline"}
+          className={cn("", {
+            "cursor-pointer": canNextPage,
+          })}
+        >
+          <ChevronRightIcon />
+        </Button>
+      </ButtonGroup>
+    </ButtonGroup>
   );
 };
