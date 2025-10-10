@@ -11,7 +11,7 @@ type Props = {
   meId: string;
 };
 
-export const UpdateAuctionFormWithData: FC<Props> = async (props) => {
+export const UpdateAuctionFormServer: FC<Props> = async (props) => {
   const { auctionId, meId } = props;
 
   const { i18n } = useLingui();

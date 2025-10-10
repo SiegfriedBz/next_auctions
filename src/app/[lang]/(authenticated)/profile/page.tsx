@@ -1,6 +1,6 @@
 import { type FC, Suspense } from "react";
 import { type LangParam, withI18n } from "@/i18n";
-import { ProfileData } from "./_components/profile-data";
+import { ProfileServer } from "./_components/profile-server";
 import { SkeletonProfileCard } from "./_components/skeleton-profile-card";
 
 type Params = LangParam;
@@ -13,7 +13,7 @@ const Page: FC<Props> = async (props) => {
   return (
     <div className="container sm:max-w-5xl mx-auto py-4 space-y-6">
       <Suspense fallback={<SkeletonProfileCard />}>
-        <ProfileData {...props} />
+        <ProfileServer {...props} />
       </Suspense>
     </div>
   );

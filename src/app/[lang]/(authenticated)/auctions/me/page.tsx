@@ -1,11 +1,11 @@
 import type { SearchParams } from "nuqs/server";
 import { type FC, Suspense } from "react";
-import { AuctionsStatsData } from "@/app/_components/auctions/auctions-stats-data";
+import { AuctionsStatsServer } from "@/app/_components/auctions/auctions-stats-server";
 import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auctions-stats";
 import { SkeletonTable } from "@/app/_components/skeletons/skeleton-table";
 import { searchParamsCache } from "@/app/[lang]/search.params";
 import { type LangParam, withI18n } from "@/i18n";
-import { AuctionsTableData } from "../_components/auctions-table-data";
+import { AuctionsTableServer } from "../_components/auctions-table-server";
 
 type Params = LangParam;
 
@@ -21,13 +21,13 @@ const Page: FC<Props> = async (props) => {
     <div className="w-full container mx-auto space-y-12 py-4">
       <section className="w-full">
         <Suspense fallback={<SkeletonAuctionsStats isMe />}>
-          <AuctionsStatsData isMe />
+          <AuctionsStatsServer isMe />
         </Suspense>
       </section>
 
       <section className="w-full">
         <Suspense fallback={<SkeletonTable />}>
-          <AuctionsTableData isMe />
+          <AuctionsTableServer isMe />
         </Suspense>
       </section>
     </div>

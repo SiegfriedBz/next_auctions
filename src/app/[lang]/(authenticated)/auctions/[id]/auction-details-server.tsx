@@ -32,7 +32,7 @@ type Props = {
   params: Promise<Pick<Auction, "id">> & Promise<LangParam>;
 };
 
-export const AuctionDetailsData: FC<Props> = async (props) => {
+export const AuctionDetailsServer: FC<Props> = async (props) => {
   const { id, lang } = await props.params;
 
   const [me, auction] = await Promise.all([

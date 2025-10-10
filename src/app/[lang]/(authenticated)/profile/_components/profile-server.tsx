@@ -2,7 +2,7 @@ import { Trans } from "@lingui/react/macro";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { type FC, Suspense } from "react";
-import { AuctionsStatsData } from "@/app/_components/auctions/auctions-stats-data";
+import { AuctionsStatsServer } from "@/app/_components/auctions/auctions-stats-server";
 import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auctions-stats";
 import { UserAvatar } from "@/app/_components/user-avatar";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ type Props = {
   params: Promise<LangParam>;
 };
 
-export const ProfileData: FC<Props> = async (props) => {
+export const ProfileServer: FC<Props> = async (props) => {
   const { lang } = await props.params;
 
   const me = await users().me();
@@ -39,7 +39,7 @@ export const ProfileData: FC<Props> = async (props) => {
           />
 
           <Suspense fallback={<SkeletonAuctionsStats isMe />}>
-            <AuctionsStatsData
+            <AuctionsStatsServer
               isMe
               className="grid md:grid-cols-2 items-center"
             />
