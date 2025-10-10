@@ -51,7 +51,9 @@ export const AuctionsStatsData: FC<Props> = async (props) => {
       <Card>
         <CardContent className="flex-1 flex items-center justify-between gap-4">
           <div>
-            <CardTitle className="text-3xl">{totalAuctions}</CardTitle>
+            <CardTitle className="text-2xl sm:text-3xl">
+              {totalAuctions}
+            </CardTitle>
             <Plural
               _0="auction"
               one="auction"
@@ -59,17 +61,17 @@ export const AuctionsStatsData: FC<Props> = async (props) => {
               value={totalAuctions}
             />
           </div>
-          <PickaxeIcon size={42} />
+          <PickaxeIcon size={32} />
         </CardContent>
       </Card>
 
       <Card>
         <CardContent className="flex-1 flex items-center justify-between gap-4">
           <div>
-            <CardTitle className="text-3xl">{totalBids}</CardTitle>
+            <CardTitle className="text-2xl sm:text-3xl">{totalBids}</CardTitle>
             <Plural _0="bid" one="bid" other="bids" value={totalBids} />
           </div>
-          <CoinsIcon size={42} />
+          <CoinsIcon size={32} />
         </CardContent>
       </Card>
 
@@ -77,10 +79,12 @@ export const AuctionsStatsData: FC<Props> = async (props) => {
         <Card>
           <CardContent className="flex-1 flex items-center justify-between gap-4">
             <div>
-              <CardTitle className="text-3xl">{totalUsers}</CardTitle>
+              <CardTitle className="text-2xl sm:text-3xl">
+                {totalUsers}
+              </CardTitle>
               <Plural _0="user" one="user" other="users" value={totalUsers} />
             </div>
-            <UsersIcon size={42} />
+            <UsersIcon size={32} />
           </CardContent>
         </Card>
       )}

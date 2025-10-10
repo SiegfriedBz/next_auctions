@@ -18,9 +18,14 @@ export const NavListItem: FC<ListItemProps> = (props) => {
       <NavigationMenuLink asChild>
         <Link
           href={href}
-          className="text-sm h-12 leading-none font-medium flex flex-row items-center gap-x-2"
+          className="group text-sm h-12 leading-none font-medium flex flex-row items-center gap-x-2"
         >
-          {Icon && <Icon size={16} />}
+          {Icon && (
+            <Icon
+              size={16}
+              className="opacity-50 group-hover:opacity-100 group-hover:font-extrabold transition-all duration-200"
+            />
+          )}
           {title}
         </Link>
       </NavigationMenuLink>
