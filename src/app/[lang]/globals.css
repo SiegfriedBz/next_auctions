@@ -176,45 +176,45 @@
 /* Uppy Dashboard */
 .uppy-Dashboard-inner {
   background: transparent !important;
-  border-color: var(--ring) !important;
-  border-width: 0.025rem !important;
+  border-color: var(--ring);
+  border-width: 0.025rem;
   border-radius: 2%;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .uppy-Dashboard-innerWrap {
-  background: transparent !important;
+  background: transparent;
 }
 
 .uppy-Dashboard-AddFiles {
-  background: transparent !important;
-  border-color: var(--ring) !important;
-  border-width: 0.01rem !important;
-  border-radius: 2% !important;
+  background: transparent;
+  border-color: var(--ring);
+  border-width: 0.01rem;
+  border-radius: 2%;
 }
 
 .uppy-Dashboard-AddFiles-title {
   color: var(--card-foreground) !important;
-  font-family: var(--font-geist-sans) !important;
-  font-size: medium !important;
-  font-weight: 400 !important;
+  font-family: var(--font-geist-sans);
+  font-size: medium;
+  font-weight: 400;
 }
 
 button.uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse {
   display: flex;
   justify-self: center;
   margin-top: 8px;
-  color: var(--card-foreground) !important;
-  font-family: var(--font-geist-sans) !important;
-  border-bottom-color: var(--card-foreground) !important;
-  font-size: medium !important;
-  font-weight: 400 !important;
+  color: var(--card-foreground);
+  font-family: var(--font-geist-sans);
+  border-bottom-color: var(--card-foreground);
+  font-size: medium;
+  font-weight: 400;
 }
 .uppy-Dashboard-poweredBy {
-  display: none !important;
+  display: none;
 }
 
 /* cancel btn */
 .uppy-DashboardContent-back {
-  display: none !important;
+  display: none;
 }

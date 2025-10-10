@@ -31,7 +31,10 @@ export const AuctionsTableToolbar: FC<Props> = (props) => {
       <AuctionsTableFilter />
       <AuctionsTableSort />
       {canCreate && <CreateAuctionButton />}
-      <Badge className="absolute -right-4.5 -top-4.5" variant={"secondary"}>
+      <Badge
+        className="absolute -right-5.5 -top-4.5 sm:-right-6 sm:-top-5 sm:text-sm"
+        variant={"secondary"}
+      >
         {filteredCount}
       </Badge>
     </div>
