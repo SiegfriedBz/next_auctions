@@ -1,6 +1,5 @@
 "use client";
 
-import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import { XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";

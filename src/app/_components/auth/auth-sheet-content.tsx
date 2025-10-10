@@ -1,7 +1,7 @@
 "use client";
 
 import { Trans, useLingui } from "@lingui/react/macro";
-import { MoveRightIcon } from "lucide-react";
+import { ArrowRightFromLineIcon, MoveRightIcon } from "lucide-react";
 import { type FC, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -29,7 +29,7 @@ export const AuthSheetContent: FC<Props> = (props) => {
   }, []);
 
   return (
-    <SheetContent>
+    <SheetContent className="overflow-y-auto">
       <SheetHeader>
         <SheetTitle>
           {isLogin ? (
@@ -49,30 +49,30 @@ export const AuthSheetContent: FC<Props> = (props) => {
       </SheetHeader>
 
       <div
-        className="flex flex-col gap-1.5 p-4 animate-fade-in"
+        className="flex flex-col gap-1.5 px-4 pb-4 animate-fade-in"
         key={isLogin.toString()}
       >
         <AuthForm isLogin={isLogin} onCloseSideSheet={onCloseSideSheet} />
 
         <Separator className="my-4" />
 
-        <div className="flex items-center justify-start gap-x-2">
-          <div className="flex items-center gap-x-2">
+        <div className="flex items-center justify-end gap-x-2">
+          <span className="max-sm:text-xs text-sm">
             {isLogin ? (
               <Trans>Don't have an account ? </Trans>
             ) : (
               <Trans>Already have an account ?</Trans>
             )}
-            <MoveRightIcon size={16} />
-          </div>
+          </span>
 
           <Button
             onClick={handleSwitchForm}
             variant={"secondary"}
-            size={"sm"}
             aria-label={t`Switch login/signup forms`}
+            className="flex items-center gap-x-2 max-sm:text-xs text-sm cursor-pointer"
           >
-            {isLogin ? <Trans>Sign Up</Trans> : <Trans>Login</Trans>}
+            <ArrowRightFromLineIcon size={8} />
+            {isLogin ? <Trans>Sign up</Trans> : <Trans>Login</Trans>}
           </Button>
         </div>
       </div>

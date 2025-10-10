@@ -1,5 +1,5 @@
 import { Trans, useLingui } from "@lingui/react/macro";
-import { PlusIcon } from "lucide-react";
+import { CirclePlusIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, FC } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +46,7 @@ const CreateAuctionButton: FC = () => {
     <Tooltip>
       <TooltipTrigger>
         <Link href={`/${lang}/auctions/new`}>
-          <PlusIcon size={16} className="cursor-pointer" />
+          <CirclePlusIcon size={16} className="cursor-pointer" />
         </Link>
       </TooltipTrigger>
       <TooltipContent>

@@ -19,7 +19,9 @@ export const AuctionsMenu: FC = () => {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger className={cn("h-8 sm:h-10", navMenuItemClasses)}>
+      <NavigationMenuTrigger
+        className={cn("h-8 sm:h-10 cursor-pointer", navMenuItemClasses)}
+      >
         <Grid3x3Icon
           size={20}
           className="size-8 sm:size-10 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"

@@ -24,11 +24,11 @@ const Page: FC<Props> = async (props) => {
 
   return (
     <main className="flex flex-col gap-4">
-      <section className="h-[calc(100dvh-6rem)]">
+      <section className="w-full">
         <Hero />
       </section>
 
-      <section className="w-full">
+      <section className="w-full mt-8 mb-4 scroll-mt-8" id="stats">
         <Suspense fallback={<SkeletonAuctionsStats />}>
           <AuctionsStatsData />
         </Suspense>

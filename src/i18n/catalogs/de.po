@@ -117,8 +117,8 @@ msgstr ""
 #~ msgid "Create"
 #~ msgstr ""
 
-msgid "Create account"
-msgstr ""
+#~ msgid "Create account"
+#~ msgstr ""
 
 #~ msgid "Create Account"
 #~ msgstr ""
@@ -141,8 +141,8 @@ msgstr ""
 msgid "Created at"
 msgstr ""
 
-msgid "Creating account..."
-msgstr ""
+#~ msgid "Creating account..."
+#~ msgstr ""
 
 msgid "Creating auction..."
 msgstr ""
@@ -291,6 +291,9 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
+msgid "Logging in..."
+msgstr ""
+
 msgid "Login"
 msgstr ""
 
@@ -378,13 +381,19 @@ msgstr ""
 #~ msgid "Settings"
 #~ msgstr ""
 
-msgid "Sign in"
+#~ msgid "Sign in"
+#~ msgstr ""
+
+msgid "Sign up"
 msgstr ""
 
-msgid "Sign Up"
-msgstr ""
+#~ msgid "Sign Up"
+#~ msgstr ""
 
-msgid "Signing in..."
+#~ msgid "Signing in..."
+#~ msgstr ""
+
+msgid "Signing up..."
 msgstr ""
 
 msgid "Something went wrong, please try again later."

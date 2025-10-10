@@ -52,9 +52,15 @@ export const I18nSwitcher: FC<Props> = (props) => {
   return (
     <Select defaultValue={locale} onValueChange={onChange}>
       <SelectTrigger
-        className={cn("w-full border-0 dark:bg-transparent", className)}
+        className={cn(
+          "group w-full border-0 dark:bg-transparent cursor-pointer",
+          className,
+        )}
       >
-        <GlobeIcon size={16} />
+        <GlobeIcon
+          size={16}
+          className="opacity-50 group-hover:opacity-100 group-hover:font-extrabold transition-all duration-200"
+        />
         <SelectValue placeholder={t`Choose a language`} />
       </SelectTrigger>
       <SelectContent className="mt-2">
