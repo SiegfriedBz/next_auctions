@@ -24,17 +24,17 @@ const Page: FC<Props> = async (props) => {
 
   return (
     <main className="flex flex-col gap-4">
-      <section className="h-[calc(100dvh-6rem)]">
+      <section className="w-full">
         <Hero />
       </section>
 
-      <section className="w-full">
+      <section className="w-full mt-8 mb-4 scroll-mt-8" id="stats">
         <Suspense fallback={<SkeletonAuctionsStats />}>
           <AuctionsStatsData />
         </Suspense>
       </section>
 
-      <section className="w-full container mx-auto py-8 space-y-8">
+      <section className="w-full container mx-auto mt-12 space-y-8 min-h-[88svh]">
         <Suspense fallback={<SkeletonTable />}>
           <LandingAuctionsTableData />
         </Suspense>

@@ -1,5 +1,5 @@
 import { Trans, useLingui } from "@lingui/react/macro";
-import { PlusIcon } from "lucide-react";
+import { CirclePlusIcon } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, FC } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +31,10 @@ export const AuctionsTableToolbar: FC<Props> = (props) => {
       <AuctionsTableFilter />
       <AuctionsTableSort />
       {canCreate && <CreateAuctionButton />}
-      <Badge className="absolute -right-4.5 -top-4.5" variant={"secondary"}>
+      <Badge
+        className="absolute -right-5.5 -top-4.5 sm:-right-6 sm:-top-5 sm:text-sm"
+        variant={"secondary"}
+      >
         {filteredCount}
       </Badge>
     </div>
@@ -46,7 +49,7 @@ const CreateAuctionButton: FC = () => {
     <Tooltip>
       <TooltipTrigger>
         <Link href={`/${lang}/auctions/new`}>
-          <PlusIcon size={16} className="cursor-pointer" />
+          <CirclePlusIcon size={16} className="cursor-pointer" />
         </Link>
       </TooltipTrigger>
       <TooltipContent>

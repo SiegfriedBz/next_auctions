@@ -25,7 +25,7 @@ const Page: FC<Props> = async (props) => {
         </Suspense>
       </section>
 
-      <section className="w-full">
+      <section className="w-full container mx-auto mt-12 space-y-8 min-h-[88svh]">
         <Suspense fallback={<SkeletonTable />}>
           <AuctionsTableData />
         </Suspense>

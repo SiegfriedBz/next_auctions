@@ -117,8 +117,8 @@ msgstr "Continue"
 #~ msgid "Create"
 #~ msgstr "Create"
 
-msgid "Create account"
-msgstr "Create account"
+#~ msgid "Create account"
+#~ msgstr "Create account"
 
 #~ msgid "Create Account"
 #~ msgstr "Create Account"
@@ -141,8 +141,8 @@ msgstr "Create your auction"
 msgid "Created at"
 msgstr "Created at"
 
-msgid "Creating account..."
-msgstr "Creating account..."
+#~ msgid "Creating account..."
+#~ msgstr "Creating account..."
 
 msgid "Creating auction..."
 msgstr "Creating auction..."
@@ -291,6 +291,9 @@ msgstr "Light"
 msgid "Log out"
 msgstr "Log out"
 
+msgid "Logging in..."
+msgstr "Logging in..."
+
 msgid "Login"
 msgstr "Login"
 
@@ -378,14 +381,20 @@ msgstr "Set a date to end your auction"
 #~ msgid "Settings"
 #~ msgstr "Settings"
 
-msgid "Sign in"
-msgstr "Sign in"
+#~ msgid "Sign in"
+#~ msgstr "Sign in"
 
-msgid "Sign Up"
-msgstr "Sign Up"
+msgid "Sign up"
+msgstr "Sign up"
 
-msgid "Signing in..."
-msgstr "Signing in..."
+#~ msgid "Sign Up"
+#~ msgstr "Sign Up"
+
+#~ msgid "Signing in..."
+#~ msgstr "Signing in..."
+
+msgid "Signing up..."
+msgstr "Signing up..."
 
 msgid "Something went wrong, please try again later."
 msgstr "Something went wrong, please try again later."

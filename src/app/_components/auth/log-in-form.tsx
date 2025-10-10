@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Trans, useLingui } from "@lingui/react/macro";
+import { ArrowRightFromLineIcon } from "lucide-react";
 import { type FC, startTransition, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -110,8 +111,19 @@ export const LoginForm: FC<Props> = (props) => {
           )}
         />
 
-        <Button className="w-full" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? <Trans>Signing in...</Trans> : <Trans>Sign in</Trans>}
+        <Button
+          className="w-full cursor-pointer"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <Trans>Logging in...</Trans>
+          ) : (
+            <span className="inline-flex gap-x-2 items-center">
+              <ArrowRightFromLineIcon size={8} />
+              <Trans>Login</Trans>
+            </span>
+          )}
         </Button>
       </form>
     </Form>

@@ -11,7 +11,7 @@ type Props = {
 
 const Page: FC<Props> = async (props) => {
   return (
-    <div className="w-full container max-w-5xl mx-auto py-4 space-y-6">
+    <div className="container sm:max-w-5xl mx-auto py-4 space-y-6">
       <Suspense fallback={<SkeletonProfileCard />}>
         <ProfileData {...props} />
       </Suspense>

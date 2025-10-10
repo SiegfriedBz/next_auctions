@@ -36,12 +36,15 @@ export const LogOutButton: FC<Props> = (props) => {
       variant="ghost"
       onClick={handleLogOut}
       className={cn(
-        "rounded-xl w-full flex items-center gap-x-2 cursor-pointer",
+        "group rounded-xl w-full flex items-center gap-x-2 cursor-pointer",
         className,
       )}
     >
       <Trans>Log out</Trans>
-      <ArrowRightIcon size={16} />
+      <ArrowRightIcon
+        size={16}
+        className="opacity-50 group-hover:opacity-100 group-hover:font-extrabold transition-all duration-200"
+      />
     </Button>
   );
 };

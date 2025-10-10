@@ -1,7 +1,7 @@
 "use client";
 
 import { Trans } from "@lingui/react/macro";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightFromLineIcon, ArrowRightIcon } from "lucide-react";
 import { type ComponentProps, type FC, useCallback, useState } from "react";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -22,8 +22,10 @@ export const AuthButton: FC<Props> = (props) => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen} {...rest}>
-      <SheetTrigger className={cn("flex items-center gap-x-2", className)}>
-        <ArrowRightIcon />
+      <SheetTrigger
+        className={cn("flex items-center gap-x-2 max-sm:text-xs", className)}
+      >
+        <ArrowRightFromLineIcon size={16} />
         <Trans>Login</Trans>
       </SheetTrigger>
       <AuthSheetContent onCloseSideSheet={onClose} />

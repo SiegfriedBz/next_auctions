@@ -1,9 +1,9 @@
 import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import {
+  CirclePlusIcon,
   HammerIcon,
   type LucideIcon,
-  PlusIcon,
   ShieldHalfIcon,
   UserRoundCheckIcon,
   UserRoundIcon,
@@ -24,7 +24,7 @@ export const getAuctionsNavLinks: (lang: string) => NavLink[] = (lang) => [
   {
     href: `/${lang}/auctions/new`,
     title: msg`Create auction`,
-    icon: PlusIcon,
+    icon: CirclePlusIcon,
   },
 ];
 

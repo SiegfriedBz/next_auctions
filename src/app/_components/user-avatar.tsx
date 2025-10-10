@@ -5,7 +5,7 @@ import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
 
 const userAvatarVariants = cva(
-  "flex items-center gap-x-2 px-3 py-2 rounded-md",
+  "flex items-center gap-x-2 px-3 py-2 rounded-md overflow-hidden truncate text-ellipsis",
   {
     variants: {
       variant: {
@@ -50,7 +50,7 @@ export const UserAvatar: FC<Props> = ({
       {!onlyAvatar && (
         <div className="flex flex-col">
           <span className="font-medium capitalize">{getFullName(user)}</span>
-          <span className="text-sm sm:text-base text-muted-foreground dark:text-muted-foreground">
+          <span className="max-[480px]:hidden sm:text-base text-muted-foreground dark:text-muted-foreground">
             {user.email}
           </span>
         </div>

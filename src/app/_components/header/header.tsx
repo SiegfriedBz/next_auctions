@@ -19,7 +19,7 @@ export const Header: FC = async () => {
         <span className="font-extrabold text-2xl sm:text-3xl tracking-widest">
           GavL
         </span>
-        <span className="text-sm md:text-base text-muted-foreground mt-1 font-medium tracking-wide">
+        <span className="max-[374px]:max-w-24 text-xs sm:text-xs md:text-base text-muted-foreground mt-1 font-medium tracking-wide">
           Track Auctions Effortlessly
         </span>
       </Link>
