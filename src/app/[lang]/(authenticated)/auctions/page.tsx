@@ -4,8 +4,8 @@ import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auct
 import { SkeletonTable } from "@/app/_components/skeletons/skeleton-table";
 import { searchParamsCache } from "@/app/[lang]/search.params";
 import { type LangParam, withI18n } from "@/i18n";
-import { AuctionsStatsData } from "../../../_components/auctions/auctions-stats-data";
-import { AuctionsTableData } from "./_components/auctions-table-data";
+import { AuctionsStatsServer } from "../../../_components/auctions/auctions-stats-server";
+import { AuctionsTableServer } from "./_components/auctions-table-server";
 
 type Params = LangParam;
 
@@ -21,13 +21,13 @@ const Page: FC<Props> = async (props) => {
     <div className="w-full container mx-auto space-y-12 py-4">
       <section className="w-full">
         <Suspense fallback={<SkeletonAuctionsStats />}>
-          <AuctionsStatsData />
+          <AuctionsStatsServer />
         </Suspense>
       </section>
 
       <section className="w-full container mx-auto mt-12 space-y-8 min-h-[88svh]">
         <Suspense fallback={<SkeletonTable />}>
-          <AuctionsTableData />
+          <AuctionsTableServer />
         </Suspense>
       </section>
     </div>

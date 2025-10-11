@@ -8,7 +8,7 @@ import { Table } from "@/components/ui/table";
 import { auctions } from "@/core/instances/auctions";
 import { searchParamsCache } from "../../search.params";
 
-export const LandingAuctionsTableData = async () => {
+export const LandingAuctionsTableServer = async () => {
   const { pageIndex, ...rest } = searchParamsCache.all();
 
   const filterBy = {

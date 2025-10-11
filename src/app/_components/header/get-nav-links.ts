@@ -6,7 +6,6 @@ import {
   type LucideIcon,
   ShieldHalfIcon,
   UserRoundCheckIcon,
-  UserRoundIcon,
 } from "lucide-react";
 
 type NavLink = {

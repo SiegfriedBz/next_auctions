@@ -1,6 +1,6 @@
 import { useLingui } from "@lingui/react/macro";
 import { Grid3x3Icon } from "lucide-react";
-import { type FC, useMemo } from "react";
+import type { FC } from "react";
 import {
   NavigationMenuContent,
   NavigationMenuItem,
@@ -15,7 +15,7 @@ export const AuctionsMenu: FC = () => {
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 
-  const auctionsNavLinks = useMemo(() => getAuctionsNavLinks(lang), [lang]);
+  const auctionsNavLinks = getAuctionsNavLinks(lang);
 
   return (
     <NavigationMenuItem>

@@ -1,52 +1,39 @@
-"use client";
-
-import {
-  type ComponentProps,
-  type FC,
-  type PropsWithChildren,
-  useCallback,
-  useState,
-} from "react";
+import type { FC } from "react";
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import type { User } from "@/core/domains/user";
+import { users } from "@/core/instances/users";
+import { AuthButton } from "../auth/auth-button";
 import { AuctionsMenu } from "./auctions-menu";
+import { NotificationsMenu } from "./notifications/notifications-menu";
 import { SettingsMenu } from "./settings-menu";
 import { UserMenu } from "./user-menu";
 
-type Props = ComponentProps<typeof NavigationMenu> & {
-  user: User | null;
-};
-
-export const NavLinks: FC<PropsWithChildren<Props>> = (props) => {
-  const { user, children } = props;
-
-  const [menuValue, setMenuValue] = useState<string | undefined>(undefined);
-
-  // to prevent closing NavigationMenu on open ThemeToggleButton dropdown
-  const onCloseMenu = useCallback(() => {
-    setMenuValue(undefined);
-  }, []);
+export const NavLinks: FC = async () => {
+  const me = await users().me();
 
   return (
-    <NavigationMenu
-      {...props}
-      viewport={true}
-      value={menuValue}
-      onValueChange={setMenuValue}
-    >
-      <NavigationMenuList className="flex items-center gap-x-2 sm:gap-x-4 md:gap-x-6">
-        {/* auctions menu */}
-        <AuctionsMenu />
+    <div className="flex flex-row items-center gap-x-2 sm:gap-x-4 md:gap-x-6 h-full">
+      {!me && (
+        <Button asChild variant={"outline"}>
+          <AuthButton className="h-8 sm:h-10 cursor-pointer text-sm leading-none font-medium flex flex-row justify-center items-center gap-x-2" />
+        </Button>
+      )}
 
-        {/* general settings menu */}
-        <SettingsMenu onCloseMenu={onCloseMenu}>{children}</SettingsMenu>
-
-        {/* user menu */}
-        {user && <UserMenu user={user} />}
-      </NavigationMenuList>
-    </NavigationMenu>
+      <NavigationMenu viewport={true}>
+        <NavigationMenuList className="flex items-center gap-x-2 sm:gap-x-4 md:gap-x-6">
+          <AuctionsMenu />
+          <SettingsMenu />
+          {me && (
+            <>
+              <UserMenu me={me} />
+              <NotificationsMenu me={me} />
+            </>
+          )}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   );
 };

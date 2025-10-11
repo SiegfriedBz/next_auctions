@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { users } from "@/core/instances/users";
 import { UpdateProfileForm } from "./update-profile-form";
 
-export const UpdateUserFormWithData: FC = async () => {
+export const UpdateUserFormServer: FC = async () => {
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 

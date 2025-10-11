@@ -1,5 +1,5 @@
 import { useLingui } from "@lingui/react/macro";
-import { type FC, useMemo } from "react";
+import type { FC } from "react";
 import {
   NavigationMenuContent,
   NavigationMenuItem,
@@ -14,21 +14,25 @@ import { getUserNavLinks } from "./get-nav-links";
 import { NavListItem } from "./nav-list-item";
 import { navMenuItemClasses } from "./navigation-menu-classes";
 
-type Props = { user: User };
+type Props = {
+  me: User;
+};
 
 export const UserMenu: FC<Props> = (props) => {
-  const { user } = props;
+  const { me } = props;
 
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 
-  const userNavLinks = useMemo(() => getUserNavLinks(lang), [lang]);
+  const userNavLinks = getUserNavLinks(lang);
+
+  if (!me) return null;
 
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger className={cn("h-10 sm:h-12", navMenuItemClasses)}>
         <UserAvatar
-          user={user}
+          user={me}
           onlyAvatar
           className={navMenuItemClasses}
           avatarClassName="size-10 sm:size-12 bg-transparent opacity-90 hover:opacity-100 transition-all duration-200"

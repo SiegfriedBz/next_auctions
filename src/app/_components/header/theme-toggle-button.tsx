@@ -3,7 +3,7 @@
 import { Trans } from "@lingui/react/macro";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { type FC, useCallback } from "react";
+import type { FC } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,24 +12,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-type ThemeT = "dark" | "light" | "system";
-
 type Props = {
-  onCloseParent?: () => void;
   className?: string;
 };
 
 export const ThemeToggleButton: FC<Props> = (props) => {
-  const { onCloseParent = undefined, className } = props;
+  const { className } = props;
   const { setTheme } = useTheme();
-
-  const onToggleTo = useCallback(
-    (to: ThemeT) => {
-      setTheme(to);
-      onCloseParent?.();
-    },
-    [setTheme, onCloseParent],
-  );
 
   return (
     <DropdownMenu>
@@ -47,13 +36,13 @@ export const ThemeToggleButton: FC<Props> = (props) => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="mt-2">
-        <DropdownMenuItem onClick={() => onToggleTo("light")}>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
           <Trans>Light</Trans>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onToggleTo("dark")}>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
           <Trans>Dark</Trans>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onToggleTo("system")}>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
           <Trans>System</Trans>
         </DropdownMenuItem>
       </DropdownMenuContent>

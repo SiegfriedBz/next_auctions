@@ -59,7 +59,7 @@ export type AuctionDetails = z.infer<typeof AuctionDetailsSchema>;
 export type AuctionsListingParams = {
   filterBy?: Partial<
     Pick<Auction, "title" | "status" | "category" | "ownerId">
-  >;
+  > & { ids?: string[] };
   orderBy?: {
     key: AuctionsSortKey;
     order: AuctionsSortOrder;
@@ -69,6 +69,8 @@ export type AuctionsListingParams = {
     size: number;
   };
 };
+
+export type ListingReturn<T> = { list: T[]; total: number };
 
 export type AuctionsCountParams = Omit<
   AuctionsListingParams,

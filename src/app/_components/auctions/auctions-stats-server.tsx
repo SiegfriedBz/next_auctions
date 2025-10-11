@@ -13,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-export const AuctionsStatsData: FC<Props> = async (props) => {
+export const AuctionsStatsServer: FC<Props> = async (props) => {
   const { isMe = false, className } = props;
 
   let me: User | null = null;

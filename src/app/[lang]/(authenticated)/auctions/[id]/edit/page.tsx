@@ -12,7 +12,7 @@ import {
 import type { Auction } from "@/core/domains/auction";
 import { users } from "@/core/instances/users";
 import { type LangParam, withI18n } from "@/i18n";
-import { UpdateAuctionFormWithData } from "./_components/update-auction-form-with-data";
+import { UpdateAuctionFormServer } from "./_components/update-auction-form-server";
 
 type Props = {
   params: Promise<Pick<Auction, "id">> & Promise<LangParam>;
@@ -40,7 +40,7 @@ const Page: FC<Props> = async (props) => {
 
         <CardContent>
           <Suspense fallback={<SkeletonAuctionForm />}>
-            <UpdateAuctionFormWithData auctionId={id} meId={me.id} />
+            <UpdateAuctionFormServer auctionId={id} meId={me.id} />
           </Suspense>
         </CardContent>
       </Card>

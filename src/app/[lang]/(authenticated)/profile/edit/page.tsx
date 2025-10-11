@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { users } from "@/core/instances/users";
 import { type LangParam, withI18n } from "@/i18n";
-import { UpdateUserFormWithData } from "./_components/update-profile-form-with-data";
+import { UpdateUserFormServer } from "./_components/update-profile-form-server";
 
 type Props = {
   params: Promise<LangParam>;
@@ -39,7 +39,7 @@ const Page: FC<Props> = async (props) => {
 
         <CardContent>
           <Suspense fallback={<SkeletonProfileForm />}>
-            <UpdateUserFormWithData />
+            <UpdateUserFormServer />
           </Suspense>
         </CardContent>
       </Card>
