@@ -47,6 +47,7 @@ export const normalizeAuctionData = (row: SupabaseAuction) => {
     ownerId: row.owner_id,
     title: row.title,
     description: row.description,
+    // TODO FIX
     images: [{ url: "https://github.com/shadcn.png" }],
     category: row.category,
     startingPrice: row.starting_price,

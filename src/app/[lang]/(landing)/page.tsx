@@ -2,14 +2,14 @@ import { Trans } from "@lingui/react/macro";
 import Link from "next/link";
 import type { SearchParams } from "nuqs/server";
 import { type FC, Suspense } from "react";
-import { AuctionsStatsData } from "@/app/_components/auctions/auctions-stats-data";
+import { AuctionsStatsServer } from "@/app/_components/auctions/auctions-stats-server";
 import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auctions-stats";
 import { searchParamsCache } from "@/app/[lang]/search.params";
 import { Button } from "@/components/ui/button";
 import { type LangParam, withI18n } from "@/i18n";
 import { SkeletonTable } from "../../_components/skeletons/skeleton-table";
 import { Hero } from "./_components/hero";
-import { LandingAuctionsTableData } from "./_components/landing-auctions-table-data";
+import { LandingAuctionsTableServer } from "./_components/landing-auctions-table-server";
 
 type Params = LangParam;
 
@@ -30,13 +30,13 @@ const Page: FC<Props> = async (props) => {
 
       <section className="w-full mt-8 mb-4 scroll-mt-8" id="stats">
         <Suspense fallback={<SkeletonAuctionsStats />}>
-          <AuctionsStatsData />
+          <AuctionsStatsServer />
         </Suspense>
       </section>
 
       <section className="w-full container mx-auto mt-12 space-y-8 min-h-[88svh]">
         <Suspense fallback={<SkeletonTable />}>
-          <LandingAuctionsTableData />
+          <LandingAuctionsTableServer />
         </Suspense>
 
         <div className="flex justify-center">

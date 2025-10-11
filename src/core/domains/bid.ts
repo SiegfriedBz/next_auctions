@@ -13,13 +13,9 @@ export type Bid = z.infer<typeof BidSchema>;
 
 export type BidsListingParams = {
   filterBy?: Partial<Pick<Bid, "auctionId" | "bidderId" | "amount">>;
-  pagination?: {
-    page: number;
-    size: number;
-  };
 };
 
-export type BidsCountParams = Omit<BidsListingParams, "pagination">;
+export type BidsCountParams = BidsListingParams;
 
 // create bid - FE params
 export const CreateBidParamsSchema = BidSchema.omit({

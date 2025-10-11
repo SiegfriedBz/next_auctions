@@ -68,6 +68,7 @@ describe("AuctionService", () => {
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),
+      update: jest.fn(),
     };
     auctionRepo = {
       list: jest.fn(),
