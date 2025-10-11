@@ -330,7 +330,16 @@ msgstr ""
 msgid "No description provided."
 msgstr ""
 
+msgid "No notification"
+msgstr ""
+
 msgid "No results."
+msgstr ""
+
+msgid "Notification card with link"
+msgstr ""
+
+msgid "Notification marked as seen"
 msgstr ""
 
 msgid "Open"

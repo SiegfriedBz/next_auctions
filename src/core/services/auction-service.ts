@@ -5,6 +5,7 @@ import type {
   AuctionsCountParams,
   AuctionsListingParams,
   CreateAuctionParams,
+  ListingReturn,
   UpdateAuctionParams,
 } from "../domains/auction";
 import type { AuctionRepository } from "../ports/auction-repository";
@@ -18,7 +19,7 @@ export class AuctionService {
 
   async listing(
     params: AuctionsListingParams = {},
-  ): Promise<{ list: Auction[]; total: number }> {
+  ): Promise<ListingReturn<Auction>> {
     const {
       filterBy = {},
       orderBy = { key: "createdAt", order: "asc" },

@@ -1,4 +1,8 @@
-import type { Bid, BidsCountParams } from "@/core/domains/bid";
+import type {
+  Bid,
+  BidsCountParams,
+  BidsListingParams,
+} from "@/core/domains/bid";
 import type {
   BidRepository,
   RepoCreateBidParams,
@@ -31,6 +35,45 @@ export class SupabaseBidRepository implements BidRepository {
     if (!mapped) throw new Error("Inserted bid is invalid");
 
     return mapped;
+  }
+
+  async list(params: BidsListingParams): Promise<Bid[]> {
+    const { filterBy } = params;
+
+    const client = await createClient();
+    let query = client.from("bids").select();
+
+    // filters
+    for (const key in filterBy) {
+      const value = filterBy[key as keyof typeof filterBy];
+      if (!value) continue;
+
+      switch (key) {
+        case "auctionId": {
+          query = query.eq("auction_id", value);
+          break;
+        }
+        case "bidderId": {
+          query = query.eq("bidder_id", value);
+          break;
+        }
+        case "amount": {
+          query = query.eq("amount", value);
+          break;
+        }
+      }
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error("SupabaseBidRepository list error", error);
+      return [];
+    }
+
+    if (!data) return [];
+
+    return data.map(bidMapper).filter((bid): bid is Bid => bid !== null);
   }
 
   async count(params: BidsCountParams): Promise<number> {

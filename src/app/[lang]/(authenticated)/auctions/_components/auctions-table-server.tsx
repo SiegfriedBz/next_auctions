@@ -16,7 +16,7 @@ type Props = {
   isMe?: boolean;
 };
 
-export const AuctionsTableData: FC<Props> = async (props) => {
+export const AuctionsTableServer: FC<Props> = async (props) => {
   const { isMe = false } = props;
 
   const { pageIndex, pageSize, ...rest } = searchParamsCache.all();

@@ -1,7 +1,7 @@
 "use client";
 
 import { Trans } from "@lingui/react/macro";
-import { ArrowRightFromLineIcon, ArrowRightIcon } from "lucide-react";
+import { ArrowRightFromLineIcon } from "lucide-react";
 import { type ComponentProps, type FC, useCallback, useState } from "react";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";

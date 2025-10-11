@@ -112,7 +112,11 @@ export const BidForm: FC<Props> = (props) => {
             <Trans>Cancel</Trans>
           </AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Button className="w-fit" type="submit" disabled={isSubmitting}>
+            <Button
+              className="w-full sm:w-fit"
+              type="submit"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <Trans>Creating bid...</Trans>
               ) : (
