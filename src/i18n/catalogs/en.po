@@ -330,8 +330,17 @@ msgstr "New"
 msgid "No description provided."
 msgstr "No description provided."
 
+msgid "No notification"
+msgstr "No notification"
+
 msgid "No results."
 msgstr "No results."
+
+msgid "Notification card with link"
+msgstr "Notification card with link"
+
+msgid "Notification marked as seen"
+msgstr "Notification marked as seen"
 
 msgid "Open"
 msgstr "Open"
