@@ -1,3 +1,5 @@
+"use client";
+
 import { useLingui } from "@lingui/react/macro";
 import type { FC } from "react";
 import {

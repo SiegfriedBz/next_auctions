@@ -1,3 +1,5 @@
+"use client";
+
 import { useLingui } from "@lingui/react/macro";
 import { Grid3x3Icon } from "lucide-react";
 import type { FC } from "react";

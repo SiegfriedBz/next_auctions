@@ -1,3 +1,5 @@
+"use client";
+
 import { SettingsIcon } from "lucide-react";
 import type { FC } from "react";
 import {
