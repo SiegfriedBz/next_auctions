@@ -60,8 +60,8 @@ msgstr "Auctions"
 msgid "Automotive"
 msgstr "Automotive"
 
-msgid "Avatar uploaded successfully!"
-msgstr "Avatar uploaded successfully!"
+#~ msgid "Avatar uploaded successfully!"
+#~ msgstr "Avatar uploaded successfully!"
 
 msgid "bid"
 msgstr "bid"
@@ -210,8 +210,11 @@ msgstr "English"
 msgid "Enter your email and password to access."
 msgstr "Enter your email and password to access."
 
-msgid "Failed to upload avatar. Please try again."
-msgstr "Failed to upload avatar. Please try again."
+#~ msgid "Failed to upload avatar. Please try again."
+#~ msgstr "Failed to upload avatar. Please try again."
+
+msgid "Failed to upload image. Please try again."
+msgstr "Failed to upload image. Please try again."
 
 msgid "Fashion"
 msgstr "Fashion"
@@ -260,6 +263,9 @@ msgstr "Give a title to your auction"
 
 msgid "Home"
 msgstr "Home"
+
+msgid "Image uploaded successfully!"
+msgstr "Image uploaded successfully!"
 
 msgid "Images"
 msgstr "Images"

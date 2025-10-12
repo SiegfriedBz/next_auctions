@@ -78,11 +78,11 @@ export const UppyAvatarUploader = ({
                   // showProgressDetails={true}
                   proudlyDisplayPoweredByUppy={false}
                 />
-                {field.value != null && (
+                {field.value && (
                   <Image
                     width={128}
                     height={128}
-                    src={field.value}
+                    src={`${field.value}?t=${Date.now()}`}
                     alt="Avatar preview"
                     className="w-44 h-44 rounded-lg object-cover mt-6"
                   />
