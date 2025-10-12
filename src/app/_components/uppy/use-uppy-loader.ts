@@ -39,26 +39,29 @@ export const useUppyLoader = (params: Params) => {
 
     const supabase = createClient();
     try {
-      const path = `${userId}/${file.name}`;
+      const fileExt = file?.name?.split(".")?.pop();
+      const filePath = `${userId}/avatar.${fileExt}`;
 
       const { data, error } = await supabase.storage
         .from(bucketName)
-        .upload(path, file.data as File, { upsert: true });
+        .upload(filePath, file.data as File, {
+          upsert: true,
+        });
 
       if (error || !data) throw error;
 
       const {
         data: { publicUrl },
-      } = supabase.storage.from("avatars").getPublicUrl(path);
+      } = supabase.storage.from(bucketName).getPublicUrl(filePath);
 
       // update RHF field
       setValue(fieldName, publicUrl, { shouldValidate: true });
 
-      toast.success(t`Avatar uploaded successfully!`);
+      toast.success(t`Image uploaded successfully!`);
       toast.info(t`Click on Update your profile`);
     } catch (err) {
       console.error(err);
-      toast.error(t`Failed to upload avatar. Please try again.`);
+      toast.error(t`Failed to upload image. Please try again.`);
       onRemoveFile();
     }
   }, [userId, fieldName, bucketName, setValue, file, onRemoveFile, t]);
