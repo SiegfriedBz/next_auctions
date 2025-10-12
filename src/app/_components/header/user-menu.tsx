@@ -43,7 +43,7 @@ export const UserMenu: FC<Props> = (props) => {
         <ul className="grid w-44 gap-2 grid-cols-1">
           {userNavLinks.map((c) => (
             <NavListItem
-              key={i18n._(c.title)}
+              key={c.title.id}
               title={i18n._(c.title)}
               icon={c.icon}
               href={c.href}
