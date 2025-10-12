@@ -1,3 +1,5 @@
+"use client";
+
 import { SettingsIcon } from "lucide-react";
 import type { FC } from "react";
 import {
@@ -25,7 +27,7 @@ export const SettingsMenu: FC = () => {
 
       <NavigationMenuContent>
         <ul className="grid w-44 sm:w-72 gap-2 grid-cols-1 sm:grid-cols-2">
-          <li className="flex justify-center items-center">
+          <li key="I18nSwitcher" className="flex justify-center items-center">
             <NavigationMenuLink asChild>
               <I18nSwitcher
                 className={`
@@ -36,7 +38,7 @@ export const SettingsMenu: FC = () => {
               />
             </NavigationMenuLink>
           </li>
-          <li>
+          <li key="ThemeToggleButton">
             <NavigationMenuLink asChild>
               <ThemeToggleButton
                 className="pointer-events-auto h-10 sm:h-12 text-sm leading-none font-medium

@@ -1,3 +1,5 @@
+"use client";
+
 import { useLingui } from "@lingui/react/macro";
 import { Grid3x3Icon } from "lucide-react";
 import type { FC } from "react";
@@ -33,7 +35,7 @@ export const AuctionsMenu: FC = () => {
           {auctionsNavLinks.map((c) => {
             return (
               <NavListItem
-                key={i18n._(c.title)}
+                key={c.title.id}
                 title={i18n._(c.title)}
                 icon={c.icon}
                 href={c.href}
