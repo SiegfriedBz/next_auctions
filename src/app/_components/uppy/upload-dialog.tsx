@@ -1,16 +1,19 @@
 "use client";
 
 import { Trans } from "@lingui/react/macro";
-import type { ComponentProps, Dispatch, FC, SetStateAction } from "react";
+import type {
+  ComponentProps,
+  Dispatch,
+  FC,
+  PropsWithChildren,
+  SetStateAction,
+} from "react";
 import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
 type Props = Omit<
@@ -23,12 +26,13 @@ type Props = Omit<
   onRemoveFile: () => void;
 };
 
-export const UploadDialog: FC<Props> = (props) => {
+export const UploadDialog: FC<PropsWithChildren<Props>> = (props) => {
   const {
     openUploadDialog,
     setOpenUploadDialog,
     onStartUpload,
     onRemoveFile,
+    children,
     ...rest
   } = props;
 
@@ -39,17 +43,7 @@ export const UploadDialog: FC<Props> = (props) => {
       onOpenChange={setOpenUploadDialog}
     >
       <AlertDialogContent className="z-[9999] w-92">
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            <Trans>Upload your new avatar?</Trans>
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            <Trans>
-              Your image will be uploaded now, but it won't update your profile
-              until you click “Update your profile”.
-            </Trans>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+        {children}
         <AlertDialogFooter>
           <AlertDialogCancel onClick={onRemoveFile}>
             <Trans>Cancel</Trans>
