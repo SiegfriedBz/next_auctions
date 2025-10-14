@@ -38,6 +38,8 @@ export const UpdateAuctionFormServer: FC<Props> = async (props) => {
     category: auction.category,
     endAt: auction.endAt,
     status: auction.status,
+    storageId: auction.storageId,
+    images: auction.images,
   };
 
   const excludedNextStatus = getForbiddenNextStatuses({
