@@ -43,14 +43,13 @@ describe("NotificationService", () => {
         id: VALID_UUID,
         ownerId: user.id,
         title: "Test Auction",
-        images: [{ url: "https://github.com/shadcn.png" }],
+        images: ["https://github.com/shadcn.png"],
       },
     };
 
     userRepo = {
       me: jest.fn(),
       create: jest.fn(),
-      findById: jest.fn(),
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),

@@ -81,50 +81,6 @@ END;
 $function$
 ;
 
-CREATE OR REPLACE FUNCTION public.update_auction_current_bid()
- RETURNS trigger
- LANGUAGE plpgsql
- SECURITY DEFINER
-AS $function$
-DECLARE
-  max_bid NUMERIC;
-BEGIN
-  SELECT MAX(amount) INTO max_bid
-  FROM bids
-  WHERE auction_id = NEW.auction_id;
-
-  UPDATE auctions
-  SET current_bid = max_bid,
-      updated_at = NOW()
-  WHERE id = NEW.auction_id;
-
-  RETURN NEW;
-END;
-$function$
-;
-
-CREATE OR REPLACE FUNCTION public.update_current_bid_after_delete()
- RETURNS trigger
- LANGUAGE plpgsql
- SECURITY DEFINER
-AS $function$
-DECLARE
-  max_bid NUMERIC;
-BEGIN
-  SELECT MAX(amount) INTO max_bid
-  FROM bids
-  WHERE auction_id = OLD.auction_id;
-
-  UPDATE auctions
-  SET current_bid = max_bid,
-      updated_at = NOW()
-  WHERE id = OLD.auction_id;
-
-  RETURN OLD;
-END;
-$function$
-;
-
 grant delete on table "public"."notifications" to "anon";
 
 grant insert on table "public"."notifications" to "anon";

@@ -37,6 +37,11 @@ USING (
   id = auth.uid()
 );
 
+-- 5. Create a view that only exposes a safe count
+CREATE VIEW public.users_stats AS
+SELECT COUNT(*) AS total_users
+FROM public.users;
+
 -- ROLE ADMIN POLICIES
 -- 1. ADMINS CAN VIEW ALL ACCOUNTS
 CREATE POLICY "admins_can_view_all_accounts"

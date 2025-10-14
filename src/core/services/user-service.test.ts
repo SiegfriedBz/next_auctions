@@ -13,7 +13,6 @@ describe("UserService", () => {
     repo = {
       me: jest.fn(),
       create: jest.fn(),
-      findById: jest.fn(),
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),
@@ -37,17 +36,6 @@ describe("UserService", () => {
     it("returns current authenticated user", async () => {
       repo.me.mockResolvedValue(user);
       expect(await service.me()).toEqual(user);
-    });
-  });
-
-  describe("detailsById", () => {
-    it("returns user by id", async () => {
-      repo.findById.mockResolvedValue(user);
-
-      const result = await service.detailsById("u1");
-
-      expect(result).toEqual(user);
-      expect(repo.findById).toHaveBeenCalledWith("u1");
     });
   });
 
@@ -100,11 +88,10 @@ describe("UserService", () => {
     it("calls count on the repository with params", async () => {
       repo.count.mockResolvedValue(42);
 
-      const params = { filterBy: { role: user.role } };
-      const result = await service.count(params);
+      const result = await service.count();
 
       expect(result).toBe(42);
-      expect(repo.count).toHaveBeenCalledWith(params);
+      expect(repo.count).toHaveBeenCalled();
     });
 
     it("calls count on the repository with default params", async () => {
@@ -113,7 +100,7 @@ describe("UserService", () => {
       const result = await service.count();
 
       expect(result).toBe(0);
-      expect(repo.count).toHaveBeenCalledWith({});
+      expect(repo.count).toHaveBeenCalled();
     });
   });
 

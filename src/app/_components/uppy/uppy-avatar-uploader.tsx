@@ -4,17 +4,22 @@ import { Dashboard } from "@uppy/react";
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
-import { Trans } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import { SquareUserRoundIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
+import {
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { useUppy } from "./hooks/use-uppy";
+import { LoaderType, useUppyLoader } from "./hooks/use-uppy-loader";
 import { SkeletonUppyDashboard } from "./skeleton-uppy-dashboard";
 import { UploadDialog } from "./upload-dialog";
-import { useUppy } from "./use-uppy";
-import { useUppyLoader } from "./use-uppy-loader";
 
 type Props = {
   userId: string;
@@ -29,16 +34,23 @@ export const UppyAvatarUploader = ({
 }: Props) => {
   const [uppyIsReady, setUppyIsReady] = useState<boolean>(false);
 
+  const { t } = useLingui();
+
   const { control, setValue } = useFormContext();
 
   const { uppy } = useUppy();
+
   const { openUploadDialog, setOpenUploadDialog, onStartUpload, onRemoveFile } =
     useUppyLoader({
-      uppy,
+      type: LoaderType.SINGLE,
       userId,
+      uppy,
       fieldName,
       setValue,
       bucketName,
+      successMessage: t`Avatar uploaded successfully!`,
+      infoMessage: t`Click on Update your profile`,
+      errorMessage: t`Failed to upload avatar. Please try again.`,
     });
 
   useEffect(() => {
@@ -54,7 +66,20 @@ export const UppyAvatarUploader = ({
         setOpenUploadDialog={setOpenUploadDialog}
         onStartUpload={onStartUpload}
         onRemoveFile={onRemoveFile}
-      />
+      >
+        <AlertDialogHeader>
+          <AlertDialogTitle>
+            <Trans>Upload your new avatar?</Trans>
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            <Trans>
+              Your image will be uploaded now, but it won't update your profile
+              until you click “Update your profile”.
+            </Trans>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+      </UploadDialog>
+
       <Controller
         name={fieldName}
         control={control}

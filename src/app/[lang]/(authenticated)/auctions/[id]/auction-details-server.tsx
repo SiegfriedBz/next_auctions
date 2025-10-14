@@ -48,11 +48,6 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
     return notFound();
   }
 
-  const urls = [
-    ...auction.images.map((i) => i.url),
-    ...auction.images.map((i) => i.url),
-  ];
-
   return (
     <>
       <AuctionHeaderCard auction={auction} />
@@ -60,7 +55,7 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
       <Card>
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <AuctionCarousel urls={urls} />
+            <AuctionCarousel urls={auction.images} />
           </div>
 
           <div className="flex flex-col space-y-6">

@@ -1,19 +1,19 @@
 alter table "public"."auctions" enable row level security;
 
-create policy "auth_auction_owner_can_delete_draft_closed_cancelled_auctions"
+create policy "auth_auction_owner_can_delete_draft_closed_auctions"
 on "public"."auctions"
 as permissive
 for delete
 to public
-using (((owner_id = auth.uid()) AND (status = ANY (ARRAY['DRAFT'::auction_status, 'CLOSED'::auction_status, 'CANCELLED'::auction_status]))));
+using (((owner_id = auth.uid()) AND (status = ANY (ARRAY['DRAFT'::auction_status, 'CLOSED'::auction_status]))));
 
 
-create policy "auth_auction_owner_can_update_draft_auctions"
+create policy "auth_auction_owner_can_update_draft_open_auctions"
 on "public"."auctions"
 as permissive
 for update
 to public
-using (((owner_id = auth.uid()) AND (status = 'DRAFT'::auction_status)))
+using (((owner_id = auth.uid()) AND (status = ANY (ARRAY['DRAFT'::auction_status, 'OPEN'::auction_status]))))
 with check ((owner_id = auth.uid()));
 
 

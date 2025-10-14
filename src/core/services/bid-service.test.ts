@@ -56,7 +56,7 @@ describe("BidService", () => {
       ownerId: owner.id,
       title: "Test Auction",
       description: "Test description",
-      images: [{ url: "https://github.com/shadcn.png" }],
+      images: [],
       category: "MUSIC",
       startingPrice: 100,
       currentBid: undefined,
@@ -90,7 +90,6 @@ describe("BidService", () => {
     userRepo = {
       me: jest.fn(),
       create: jest.fn(),
-      findById: jest.fn(),
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),

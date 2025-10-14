@@ -5,6 +5,7 @@ set check_function_bodies = off;
 CREATE OR REPLACE FUNCTION public.update_auction_current_bid()
  RETURNS trigger
  LANGUAGE plpgsql
+ SECURITY DEFINER
 AS $function$
 DECLARE
   max_bid NUMERIC;
@@ -26,6 +27,7 @@ $function$
 CREATE OR REPLACE FUNCTION public.update_current_bid_after_delete()
  RETURNS trigger
  LANGUAGE plpgsql
+ SECURITY DEFINER
 AS $function$
 DECLARE
   max_bid NUMERIC;

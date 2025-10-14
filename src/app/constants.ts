@@ -26,7 +26,6 @@ export const STATUS_OPTIONS = Object.keys(AuctionStatusSchema.enum).map(
 );
 
 export const EXCLUDED_STATUSES_ON_CREATE: AuctionStatus[] = [
-  AuctionStatusSchema.enum.CANCELLED,
   AuctionStatusSchema.enum.CLOSED,
 ];
 
