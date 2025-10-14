@@ -23,16 +23,6 @@ export const UserSchema = z.object({
 });
 export type User = z.infer<typeof UserSchema>;
 
-export type UsersListingParams = {
-  filterBy?: Partial<Pick<User, "email" | "role">>;
-  pagination?: {
-    page: number;
-    size: number;
-  };
-};
-
-export type UsersCountParams = Omit<UsersListingParams, "pagination">;
-
 // create params
 const PasswordSchema = z
   .string()

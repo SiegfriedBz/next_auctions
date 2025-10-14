@@ -5,8 +5,21 @@ import {
 } from "@/core/domains/auction";
 
 /**
- * Returns an array of statuses to which an auction can not be updated to,
- * given an auction current status and current bid
+ * Compute which statuses are forbidden as next states
+ * for a given auction.
+ *
+ * There are exactly 3 possible statuses:
+ *  - DRAFT
+ *  - OPEN
+ *  - CLOSED
+ *
+ * Rules:
+ *  - If the auction already has a bid (currentBid != null):
+ *      → The auction creator cannot revert it to DRAFT.
+ *      → The auction creator cannot manually close it (CLOSED).
+ *
+ *  - If the auction is already CLOSED:
+ *      → It cannot be changed to any other state (LOCKED forever).
  */
 
 type Params = Pick<Auction, "status" | "currentBid">;
@@ -16,28 +29,20 @@ export const getForbiddenNextStatuses = (params: Params): AuctionStatus[] => {
 
   const excluded: AuctionStatus[] = [];
 
-  // An auction with bids cannot go back to draft and cannot be cancelled
+  // If there are bids, prevent reverting to DRAFT or manually closing it
   if (currentBid != null) {
     excluded.push(
       AuctionStatusSchema.enum.DRAFT,
-      AuctionStatusSchema.enum.CANCELLED,
+      AuctionStatusSchema.enum.CLOSED,
     );
   }
 
-  // Only draft or open auctions can be closed
-  if (
-    status !== AuctionStatusSchema.enum.DRAFT &&
-    status !== AuctionStatusSchema.enum.OPEN
-  ) {
-    excluded.push(AuctionStatusSchema.enum.CLOSED);
-  }
-
-  // Only draft auctions can be opened
-  if (
-    status !== AuctionStatusSchema.enum.DRAFT &&
-    status !== AuctionStatusSchema.enum.OPEN
-  ) {
-    excluded.push(AuctionStatusSchema.enum.OPEN);
+  // Once CLOSED, forbid changing to any other status (final state)
+  if (status === AuctionStatusSchema.enum.CLOSED) {
+    excluded.push(
+      AuctionStatusSchema.enum.DRAFT,
+      AuctionStatusSchema.enum.OPEN,
+    );
   }
 
   return excluded;

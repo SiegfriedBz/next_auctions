@@ -40,8 +40,7 @@ export const normalizeNotificationData = (row: SupabaseNotification) => {
       id: row.auction.id,
       title: row.auction.title,
       ownerId: row.auction.owner_id,
-      // TODO FIX
-      images: [{ url: "https://github.com/shadcn.png" }],
+      images: row.auction.images ?? [],
     },
   };
 };
