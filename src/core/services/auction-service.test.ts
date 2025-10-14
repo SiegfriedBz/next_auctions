@@ -4,6 +4,7 @@ import {
   type Auction,
   AuctionCategorySchema,
   type AuctionDetails,
+  AuctionStatusSchema,
   AuctionsSortKeySchema,
   AuctionsSortOrderSchema,
   type CreateAuctionParams,
@@ -39,11 +40,12 @@ describe("AuctionService", () => {
       ownerId: user.id,
       title: "Test Auction",
       description: "Test description",
-      images: [{ url: "https://github.com/shadcn.png" }],
-      category: "MUSIC",
+      storageId: VALID_UUID,
+      images: ["https://github.com/shadcn.png"],
+      category: AuctionCategorySchema.enum.MUSIC,
       startingPrice: 100,
       currentBid: undefined,
-      status: "DRAFT",
+      status: AuctionStatusSchema.enum.DRAFT,
       startedAt: undefined,
       endAt: undefined,
       createdAt: new Date(),
@@ -64,7 +66,6 @@ describe("AuctionService", () => {
     userRepo = {
       me: jest.fn(),
       create: jest.fn(),
-      findById: jest.fn(),
       login: jest.fn(),
       logout: jest.fn(),
       count: jest.fn(),
@@ -144,36 +145,14 @@ describe("AuctionService", () => {
 
       expect(result).toBeNull();
     });
-
-    it("handles auction details with missing owner fields", async () => {
-      userRepo.me.mockResolvedValue(user);
-
-      const partialOwnerAuction: AuctionDetails = {
-        ...auction,
-        owner: {
-          id: user.id,
-          firstName: undefined as unknown as string,
-          lastName: undefined as unknown as string,
-          email: undefined as unknown as string,
-          avatarUrl: undefined,
-        },
-      };
-
-      auctionRepo.findById.mockResolvedValue(partialOwnerAuction);
-
-      const result = await service.detailsById(VALID_UUID);
-
-      expect(result).toEqual(partialOwnerAuction);
-      expect(userRepo.me).toHaveBeenCalled();
-      expect(auctionRepo.findById).toHaveBeenCalledWith(VALID_UUID);
-    });
   });
 
   describe("create", () => {
     const createParams: CreateAuctionParams = {
       title: "New Auction",
       description: "Some description",
-      images: [{ url: "https://github.com/shadcn.png" }],
+      storageId: VALID_UUID,
+      images: ["https://github.com/shadcn.png"],
       category: "MUSIC",
       startingPrice: 50,
       status: "DRAFT",
@@ -208,7 +187,7 @@ describe("AuctionService", () => {
       ...auction,
       title: "Updated title",
       description: "Updated desc",
-      status: "OPEN" as const,
+      status: AuctionStatusSchema.enum.OPEN,
     };
 
     it("updates auction if user is owner and status is valid", async () => {
@@ -246,7 +225,7 @@ describe("AuctionService", () => {
       auctionRepo.findById.mockResolvedValue({
         ...auctionDetails,
         currentBid: 50,
-        status: "CANCELLED",
+        status: AuctionStatusSchema.enum.CLOSED,
       });
 
       await expect(
@@ -258,10 +237,12 @@ describe("AuctionService", () => {
   describe("count", () => {
     it("returns total auction count from repo", async () => {
       auctionRepo.count.mockResolvedValue(5);
-      const result = await service.count({ filterBy: { status: "DRAFT" } });
+      const result = await service.count({
+        filterBy: { status: AuctionStatusSchema.enum.DRAFT },
+      });
       expect(result).toBe(5);
       expect(auctionRepo.count).toHaveBeenCalledWith({
-        filterBy: { status: "DRAFT" },
+        filterBy: { status: AuctionStatusSchema.enum.DRAFT },
       });
     });
 

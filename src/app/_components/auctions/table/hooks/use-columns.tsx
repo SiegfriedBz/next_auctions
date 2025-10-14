@@ -36,9 +36,7 @@ export const useColumns = (params: Params = {}): ColumnDef<Auction>[] => {
           </div>
         ),
         cell: ({ row }) => {
-          return (
-            <AuctionTableImage url={row.original.images?.at(0)?.url ?? null} />
-          );
+          return <AuctionTableImage url={row.original.images?.at(0) ?? null} />;
         },
       },
       {

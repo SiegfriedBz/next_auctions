@@ -1,23 +1,18 @@
 import z from "zod";
 import { type Auction, AuctionSchema } from "@/core/domains/auction";
-import type { AuctionImage } from "@/core/domains/image";
-
-export type SupabaseAuctionImage = Pick<AuctionImage, "url" | "name"> & {
-  uploaded_at?: string;
-};
 
 export type SupabaseAuction = Pick<
   Auction,
-  "id" | "title" | "description" | "category" | "status"
+  "id" | "title" | "description" | "category" | "status" | "images"
 > & {
   owner_id: string;
-  images: SupabaseAuctionImage[];
   starting_price: number;
   current_bid?: number;
   started_at?: string;
   end_at?: string;
   created_at: string;
   updated_at: string;
+  storage_id?: string;
 };
 
 export const auctionMapper = (row: SupabaseAuction | null) => {
@@ -35,20 +30,13 @@ export const auctionMapper = (row: SupabaseAuction | null) => {
 };
 
 export const normalizeAuctionData = (row: SupabaseAuction) => {
-  // TODO FIX
-  // const normalizedImages: AuctionImage[] = row.images?.map((img) => ({
-  //   url: img.url,
-  //   name: img.name ?? undefined,
-  //   uploadedAt: img.uploaded_at ? new Date(img.uploaded_at) : undefined,
-  // }));
-
   return {
     id: row.id,
     ownerId: row.owner_id,
     title: row.title,
     description: row.description,
-    // TODO FIX
-    images: [{ url: "https://github.com/shadcn.png" }],
+    storageId: row.storage_id ?? undefined,
+    images: row.images ?? [],
     category: row.category,
     startingPrice: row.starting_price,
     currentBid: row.current_bid ?? undefined,

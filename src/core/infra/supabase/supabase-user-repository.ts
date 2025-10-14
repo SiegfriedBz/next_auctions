@@ -1,9 +1,4 @@
-import type {
-  CreateUserParams,
-  LoginParams,
-  User,
-  UsersCountParams,
-} from "@/core/domains/user";
+import type { CreateUserParams, LoginParams, User } from "@/core/domains/user";
 import type {
   RepoUpdateUserParams,
   UserRepository,
@@ -22,20 +17,6 @@ export class SupabaseUserRepository implements UserRepository {
       .from("users")
       .select("*")
       .eq("id", authData.user.id)
-      .single();
-
-    if (error) return null;
-
-    return userMapper(data);
-  }
-
-  async findById(id: string): Promise<User | null> {
-    const client = await createClient();
-
-    const { data, error } = await client
-      .from("users")
-      .select("*")
-      .eq("id", id)
       .single();
 
     if (error) return null;
@@ -112,40 +93,17 @@ export class SupabaseUserRepository implements UserRepository {
     if (error) throw new Error(`Logout failed: ${error.message}`);
   }
 
-  async count(params: UsersCountParams): Promise<number> {
-    const { filterBy } = params;
+  async count(): Promise<number> {
     const client = await createClient();
 
-    let query = client
-      .from("users")
-      .select("*", { count: "exact", head: true });
+    const { data, error } = await client
+      .from("users_stats")
+      .select("total_users")
+      .single();
 
-    // filters
-    for (const key in filterBy) {
-      const value = filterBy[key as keyof typeof filterBy];
-      if (!value) continue;
+    if (error || !data) return 0;
 
-      switch (key) {
-        case "role": {
-          query = query.eq("role", value);
-          break;
-        }
-
-        case "email": {
-          query = query.eq("email", value);
-          break;
-        }
-      }
-    }
-
-    const { count, error } = await query;
-
-    if (error) {
-      console.error("SupabaseUserRepository count error", error);
-      return 0;
-    }
-
-    return count ?? 0;
+    return data.total_users;
   }
 
   async update(params: RepoUpdateUserParams): Promise<User> {

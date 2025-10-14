@@ -144,6 +144,8 @@ export class SupabaseAuctionRepository implements AuctionRepository {
       category,
       endAt,
       status,
+      images,
+      storageId,
     } = params;
 
     const client = await createClient();
@@ -159,6 +161,8 @@ export class SupabaseAuctionRepository implements AuctionRepository {
         description,
         category,
         status,
+        images,
+        storage_id: storageId,
       })
       .select()
       .single();
@@ -174,8 +178,17 @@ export class SupabaseAuctionRepository implements AuctionRepository {
   }
 
   async update(params: RepoUpdateAuctionParams): Promise<Auction> {
-    const { id, title, description, startingPrice, category, status, endAt } =
-      params;
+    const {
+      id,
+      title,
+      description,
+      startingPrice,
+      category,
+      status,
+      endAt,
+      images,
+      storageId,
+    } = params;
 
     const client = await createClient();
 
@@ -188,10 +201,12 @@ export class SupabaseAuctionRepository implements AuctionRepository {
         description,
         category,
         status,
+        images,
+        storage_id: storageId,
       })
       .eq("id", id)
       .select()
-      .single();
+      .maybeSingle();
 
     if (error || !auction) {
       throw new Error(`DB update failed: ${error?.message}`);

@@ -1,5 +1,5 @@
 -- ENUM TYPES
-CREATE TYPE auction_status AS ENUM ('DRAFT', 'OPEN', 'CLOSED', 'CANCELLED');
+CREATE TYPE auction_status AS ENUM ('DRAFT', 'OPEN', 'CLOSED');
 CREATE TYPE auction_category AS ENUM (
   'ELECTRONICS', 'FASHION', 'COLLECTIBLES', 'ART', 'MUSIC',
   'SPORTS', 'HOME', 'TOYS', 'AUTOMOTIVE'
@@ -8,6 +8,7 @@ CREATE TYPE auction_category AS ENUM (
 -- AUCTIONS TABLE
 CREATE TABLE auctions (
   id UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+  storage_id UUID UNIQUE,-- used as pointer to images in Supabase storage
   owner_id UUID NOT NULL REFERENCES users(id),
   title TEXT NOT NULL,
   description TEXT NOT NULL,
@@ -22,27 +23,27 @@ CREATE TABLE auctions (
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- TRIGGER FUNCTION BEFORE UPDATE AUCTIONS
 CREATE FUNCTION before_update_auction()
 RETURNS TRIGGER AS $$
 BEGIN
-  -- ENFORCE end_at EXISTS BEFORE OPENING
+  -- Prevent opening without end_at
   IF NEW.status = 'OPEN' THEN
     IF NEW.end_at IS NULL THEN
       RAISE EXCEPTION 'Cannot open auction without end_at';
     END IF;
-    -- SET started_at WHEN OPENING
+
+    -- If moving from DRAFT → OPEN, set started_at
     IF OLD.status = 'DRAFT' THEN
       NEW.started_at := NOW();
     END IF;
   END IF;
 
-  -- ALWAYS UPDATE updated_at
+  -- Always update updated_at timestamp
   NEW.updated_at := NOW();
 
   RETURN NEW;
 END;
-$$ LANGUAGE PLPGSQL;
+$$ LANGUAGE plpgsql;
 
 -- TRIGGER BEFORE UPDATE
 CREATE TRIGGER trigger_before_update_auction

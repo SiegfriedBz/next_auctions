@@ -1,9 +1,10 @@
 create type "public"."auction_category" as enum ('ELECTRONICS', 'FASHION', 'COLLECTIBLES', 'ART', 'MUSIC', 'SPORTS', 'HOME', 'TOYS', 'AUTOMOTIVE');
 
-create type "public"."auction_status" as enum ('DRAFT', 'OPEN', 'CLOSED', 'CANCELLED');
+create type "public"."auction_status" as enum ('DRAFT', 'OPEN', 'CLOSED');
 
 create table "public"."auctions" (
     "id" uuid not null default gen_random_uuid(),
+    "storage_id" uuid,
     "owner_id" uuid not null,
     "title" text not null,
     "description" text not null,
@@ -20,6 +21,8 @@ create table "public"."auctions" (
 
 
 CREATE UNIQUE INDEX auctions_pkey ON public.auctions USING btree (id);
+
+CREATE UNIQUE INDEX auctions_storage_id_key ON public.auctions USING btree (storage_id);
 
 alter table "public"."auctions" add constraint "auctions_pkey" PRIMARY KEY using index "auctions_pkey";
 
@@ -39,6 +42,8 @@ alter table "public"."auctions" add constraint "auctions_starting_price_check" C
 
 alter table "public"."auctions" validate constraint "auctions_starting_price_check";
 
+alter table "public"."auctions" add constraint "auctions_storage_id_key" UNIQUE using index "auctions_storage_id_key";
+
 set check_function_bodies = off;
 
 CREATE OR REPLACE FUNCTION public.before_update_auction()
@@ -46,18 +51,19 @@ CREATE OR REPLACE FUNCTION public.before_update_auction()
  LANGUAGE plpgsql
 AS $function$
 BEGIN
-  -- ENFORCE end_at EXISTS BEFORE OPENING
+  -- Prevent opening without end_at
   IF NEW.status = 'OPEN' THEN
     IF NEW.end_at IS NULL THEN
       RAISE EXCEPTION 'Cannot open auction without end_at';
     END IF;
-    -- SET started_at WHEN OPENING
+
+    -- If moving from DRAFT → OPEN, set started_at
     IF OLD.status = 'DRAFT' THEN
       NEW.started_at := NOW();
     END IF;
   END IF;
 
-  -- ALWAYS UPDATE updated_at
+  -- Always update updated_at timestamp
   NEW.updated_at := NOW();
 
   RETURN NEW;

@@ -3,7 +3,6 @@ import type {
   LoginParams,
   UpdateUserParams,
   User,
-  UsersCountParams,
 } from "../domains/user";
 import type { UserRepository } from "../ports/user-repository";
 
@@ -12,10 +11,6 @@ export class UserService {
 
   async me(): Promise<User | null> {
     return await this.userRepo.me();
-  }
-
-  async detailsById(id: string): Promise<User | null> {
-    return await this.userRepo.findById(id);
   }
 
   async create(params: CreateUserParams): Promise<User> {
@@ -30,8 +25,8 @@ export class UserService {
     return await this.userRepo.logout();
   }
 
-  async count(params: UsersCountParams = {}): Promise<number> {
-    return await this.userRepo.count(params);
+  async count(): Promise<number> {
+    return await this.userRepo.count();
   }
 
   async update(params: UpdateUserParams): Promise<User> {

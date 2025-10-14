@@ -3,7 +3,7 @@
 import { msg } from "@lingui/core/macro";
 import { ChevronDownIcon } from "lucide-react";
 import { type FC, useMemo, useState } from "react";
-import type { DateBefore, Matcher } from "react-day-picker";
+import type { Matcher } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {

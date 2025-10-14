@@ -14,9 +14,11 @@ import { useRouter } from "next/navigation";
 import { type FC, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
 import type { z } from "zod";
 import { updateAuction } from "@/actions/auctions/update-auction";
 import { DayPicker } from "@/app/_components/date-picker";
+import { UppyMultiUploader } from "@/app/_components/uppy/uppy-multi-uploader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -57,7 +59,8 @@ const DEFAULT_VALUES: UpdateAuctionParams = {
   category: AuctionCategorySchema.enum.MUSIC,
   endAt: TOMORROW,
   status: AuctionStatusSchema.enum.OPEN,
-  // images: [],
+  storageId: undefined,
+  images: [],
 };
 
 type Props = {
@@ -68,16 +71,22 @@ type Props = {
 export const UpdateAuctionForm: FC<Props> = (props) => {
   const { defaultValues, excludedStatuses = [] } = props;
 
+  const newStorageId = uuidv4();
+
   const { t, i18n } = useLingui();
   const { locale: lang } = i18n;
 
   const router = useRouter();
+
+  // create uuid if no images uploaded yet for this auction
+  const storageId = defaultValues?.storageId ?? newStorageId;
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       ...DEFAULT_VALUES,
       ...defaultValues,
+      storageId,
     },
   });
 
@@ -258,6 +267,14 @@ export const UpdateAuctionForm: FC<Props> = (props) => {
             )}
           />
         </div>
+
+        <UppyMultiUploader
+          storageId={storageId}
+          fieldName={"images"}
+          bucketName={"auctions"}
+          maxNumberOfFiles={3}
+          infoMessage={t`Click on Update Auction`}
+        />
 
         <Button
           className="max-sm:w-full sm:flex sm:justify-self-end cursor-pointer"

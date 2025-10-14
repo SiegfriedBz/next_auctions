@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 import { updateUser } from "@/actions/user/update-user";
-import { UppyAvatarUploader } from "@/app/_components/uppy/uppy-uploader";
+import { UppyAvatarUploader } from "@/app/_components/uppy/uppy-avatar-uploader";
 import { Button } from "@/components/ui/button";
 import {
   Form,

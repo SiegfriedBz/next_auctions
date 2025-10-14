@@ -14,10 +14,12 @@ import { useRouter } from "next/navigation";
 import { type FC, useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
 import type { z } from "zod";
 import { createAuction } from "@/actions/auctions/create-auction";
 import { SliderInput } from "@/app/_components/auctions/slider-input";
 import { DayPicker } from "@/app/_components/date-picker";
+import { UppyMultiUploader } from "@/app/_components/uppy/uppy-multi-uploader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -56,10 +58,13 @@ const DEFAULT_VALUES: CreateAuctionParams = {
   category: AuctionCategorySchema.enum.MUSIC,
   endAt: TOMORROW,
   status: AuctionStatusSchema.enum.DRAFT,
-  // images: [],
+  storageId: "",
+  images: [],
 };
 
 export const CreateAuctionForm: FC = () => {
+  const storageId = uuidv4();
+
   const { t, i18n } = useLingui();
   const { locale: lang } = i18n;
 
@@ -69,6 +74,7 @@ export const CreateAuctionForm: FC = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       ...DEFAULT_VALUES,
+      storageId,
     },
   });
 
@@ -251,6 +257,14 @@ export const CreateAuctionForm: FC = () => {
             )}
           />
         </div>
+
+        <UppyMultiUploader
+          storageId={storageId}
+          fieldName={"images"}
+          bucketName={"auctions"}
+          maxNumberOfFiles={3}
+          infoMessage={t`Click on Create Auction`}
+        />
 
         <Button
           className="max-sm:w-full sm:flex sm:justify-self-end cursor-pointer"

@@ -39,7 +39,42 @@ describe("notificationMapper", () => {
         id: VALID_UUID,
         ownerId: VALID_UUID,
         title: "Test Auction",
-        images: [{ url: "https://github.com/shadcn.png" }], // placeholder as in normalize
+        images: [],
+      },
+    };
+
+    expect(notificationMapper(supabaseNotification)).toEqual(expected);
+  });
+
+  it("maps SupabaseNotification fields to Notification correctly", () => {
+    const supabaseNotification = {
+      id: VALID_UUID,
+      recipient_id: VALID_UUID,
+      auction_id: VALID_UUID,
+      bidder_id: VALID_UUID,
+      read: false,
+      created_at: "2025-10-11T11:26:42.261Z",
+      updated_at: "2025-10-11T12:00:05.990Z",
+      auction: {
+        id: VALID_UUID,
+        owner_id: VALID_UUID,
+        title: "Test Auction",
+        images: ["https://github.com/shadcn.png"],
+      },
+    };
+
+    const expected: Notification = {
+      id: VALID_UUID,
+      recipientId: VALID_UUID,
+      auctionId: VALID_UUID,
+      read: false,
+      createdAt: new Date("2025-10-11T11:26:42.261Z"),
+      updatedAt: new Date("2025-10-11T12:00:05.990Z"),
+      auction: {
+        id: VALID_UUID,
+        ownerId: VALID_UUID,
+        title: "Test Auction",
+        images: ["https://github.com/shadcn.png"],
       },
     };
 
@@ -95,7 +130,7 @@ describe("notificationMapper", () => {
         id: VALID_UUID,
         ownerId: VALID_UUID,
         title: "Test Auction",
-        images: [{ url: "https://github.com/shadcn.png" }],
+        images: [],
       },
     });
   });

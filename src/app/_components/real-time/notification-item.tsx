@@ -24,7 +24,7 @@ export const NotificationItem: FC<Props> = (props) => {
     auction: { id: auctionId, title, images },
   } = notification;
 
-  const img = images?.at(0)?.url;
+  const img = images?.at(0);
 
   const { i18n, t } = useLingui();
   const { locale: lang } = i18n;

@@ -1,12 +1,7 @@
 "use client";
 
 import { Trans, useLingui } from "@lingui/react/macro";
-import {
-  CoinsIcon,
-  EyeIcon,
-  MoreHorizontalIcon,
-  MoreVerticalIcon,
-} from "lucide-react";
+import { CoinsIcon, EyeIcon, MoreVerticalIcon } from "lucide-react";
 import Link from "next/link";
 import { type FC, useCallback, useState } from "react";
 import { BidDialog } from "@/app/_components/bids/bid-dialog";
@@ -15,8 +10,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { type Auction, AuctionStatusSchema } from "@/core/domains/auction";

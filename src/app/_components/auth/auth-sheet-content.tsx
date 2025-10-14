@@ -1,7 +1,7 @@
 "use client";
 
 import { Trans, useLingui } from "@lingui/react/macro";
-import { ArrowRightFromLineIcon, MoveRightIcon } from "lucide-react";
+import { ArrowRightFromLineIcon } from "lucide-react";
 import { type FC, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
