@@ -13,10 +13,7 @@ Deno.serve(async (_req) => {
     const SUPABASE_SERVICE_ROLE_KEY =
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
-    const supabase = createClient(
-      SUPABASE_URL,
-      SUPABASE_SERVICE_ROLE_KEY
-    );
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // Find all open auctions with a highest bid and ended
     const { data: auctions, error } = await supabase
@@ -51,7 +48,6 @@ Deno.serve(async (_req) => {
     });
   }
 });
-
 
 /* To invoke locally:
 
