@@ -15,16 +15,17 @@ Deno.serve(async (_req) => {
 
     const supabase = createClient(
       SUPABASE_URL,
-      SUPABASE_SERVICE_ROLE_KEY,
-      // { global: { headers: { Authorization: req.headers.get('Authorization')! } } }
+      SUPABASE_SERVICE_ROLE_KEY
     );
 
-    // Find all open auctions with a highest bid
+    // Find all open auctions with a highest bid and ended
     const { data: auctions, error } = await supabase
       .from("auctions")
       .select("id")
       .eq("status", "OPEN")
-      .not("highest_bid", "is", null);
+      .not("highest_bid", "is", null)
+      .lt("end_at", new Date().toISOString())
+      .not("end_at", "is", null);
 
     if (error) throw error;
     if (!auctions || auctions.length === 0) {
@@ -50,6 +51,7 @@ Deno.serve(async (_req) => {
     });
   }
 });
+
 
 /* To invoke locally:
 
