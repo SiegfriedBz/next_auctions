@@ -49,6 +49,12 @@ export const AuctionDetailsSchema = AuctionSchema.extend({
     createdAt: true,
     updatedAt: true,
   }).nullable(),
+}).extend({
+  highestBidder: UserSchema.omit({
+    role: true,
+    createdAt: true,
+    updatedAt: true,
+  }).nullable(),
 });
 
 export type AuctionDetails = z.infer<typeof AuctionDetailsSchema>;

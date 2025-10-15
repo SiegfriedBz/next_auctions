@@ -59,7 +59,7 @@ describe("BidService", () => {
       images: [],
       category: "MUSIC",
       startingPrice: 100,
-      currentBid: undefined,
+      highestBid: undefined,
       status: AuctionStatusSchema.enum.OPEN,
       startedAt: new Date(),
       endAt: undefined,

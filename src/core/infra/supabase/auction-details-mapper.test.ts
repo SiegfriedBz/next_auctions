@@ -36,6 +36,13 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatar_url: "https://example.com/avatar.png",
       },
+      highest_bidder: {
+        id: VALID_UUID,
+        first_name: "Jane",
+        last_name: "DoeDoe",
+        email: "jane.doedoe@example.com",
+        avatar_url: null,
+      },
     };
 
     const expected: AuctionDetails = {
@@ -60,6 +67,13 @@ describe("auctionDetailsMapper", () => {
         lastName: "Doe",
         email: "john.doe@example.com",
         avatarUrl: "https://example.com/avatar.png",
+      },
+      highestBidder: {
+        id: VALID_UUID,
+        firstName: "Jane",
+        lastName: "DoeDoe",
+        email: "jane.doedoe@example.com",
+        avatarUrl: undefined,
       },
     };
 
@@ -90,6 +104,7 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatar_url: "https://example.com/avatar.png",
       },
+      highest_bidder: null,
     };
 
     const expected: AuctionDetails = {
@@ -115,6 +130,7 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatarUrl: "https://example.com/avatar.png",
       },
+      highestBidder: null,
     };
 
     expect(auctionDetailsMapper(supabaseAuctionDetails)).toEqual(expected);
