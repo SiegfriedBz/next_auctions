@@ -186,6 +186,7 @@ const AuctionActions: FC<{
 }> = ({ auction, me, lang }) => {
   const isMyAuction = auction.ownerId === me.id;
   const isOpenedAuction = auction.status === AuctionStatusSchema.enum.OPEN;
+  const isAuctionWithBid = auction.currentBid && auction.currentBid > 0;
 
   return (
     <div className="flex w-fit ml-auto mt-auto">
@@ -194,11 +195,13 @@ const AuctionActions: FC<{
           <Badge variant="secondary" className="px-3 py-1 text-sm">
             <Trans>This is your auction</Trans>
           </Badge>
-          <Button asChild variant="outline">
-            <Link href={`/${lang}/auctions/${auction.id}/edit`}>
-              <Trans>Edit</Trans>
-            </Link>
-          </Button>
+          {!isAuctionWithBid && (
+            <Button asChild variant="outline">
+              <Link href={`/${lang}/auctions/${auction.id}/edit`}>
+                <Trans>Edit</Trans>
+              </Link>
+            </Button>
+          )}
         </div>
       ) : isOpenedAuction ? (
         <BidDialog auction={auction} />
