@@ -22,6 +22,8 @@ export type AuctionStatus = z.infer<typeof AuctionStatusSchema>;
 export const AuctionSchema = z.object({
   id: z.uuid(),
   ownerId: z.uuid(),
+  highestBidderId: z.uuid().optional(),
+  highestBid: z.number().optional(),
   title: z.string(),
   description: z.string(),
   storageId: z.uuid().optional(),
@@ -30,7 +32,7 @@ export const AuctionSchema = z.object({
   startingPrice: z
     .number()
     .min(1, { message: "Starting price must be greater than 1" }),
-  currentBid: z.number().optional(),
+
   status: AuctionStatusSchema,
   startedAt: z.date().optional(),
   endAt: z.date().optional(),

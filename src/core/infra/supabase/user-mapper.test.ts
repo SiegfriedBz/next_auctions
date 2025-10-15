@@ -35,12 +35,13 @@ describe("userMapper", () => {
     expect(userMapper(supabaseUser)).toEqual(expected);
   });
 
-  it("handles optional avatar_url correctly (undefined)", () => {
+  it("handles null avatar_url correctly", () => {
     const supabaseUser = {
       id: VALID_UUID,
       first_name: "John",
       last_name: "Smith",
       email: "john@example.com",
+      avatar_url: null,
       role: UserRoleSchema.enum.ADMIN,
       created_at: "2025-08-12",
       updated_at: "2025-08-12",
@@ -66,6 +67,7 @@ describe("userMapper", () => {
       first_name: "", // invalid: min length 2
       last_name: "Doe",
       email: "invalid-email", // invalid email
+      avatar_url: null,
       role: UserRoleSchema.enum.USER,
       created_at: "2025-08-12",
       updated_at: "2025-08-12",
