@@ -1,4 +1,7 @@
-import type { Notification } from "@/core/domains/notifications";
+import {
+  type Notification,
+  NotificationTypeSchema,
+} from "@/core/domains/notifications";
 import {
   normalizeNotificationData,
   notificationMapper,
@@ -18,6 +21,7 @@ describe("notificationMapper", () => {
       auction_id: VALID_UUID,
       bidder_id: VALID_UUID,
       read: false,
+      type: NotificationTypeSchema.enum.NEW_BID,
       created_at: "2025-10-11T11:26:42.261Z",
       updated_at: "2025-10-11T12:00:05.990Z",
       auction: {
@@ -33,6 +37,7 @@ describe("notificationMapper", () => {
       recipientId: VALID_UUID,
       auctionId: VALID_UUID,
       read: false,
+      type: NotificationTypeSchema.enum.NEW_BID,
       createdAt: new Date("2025-10-11T11:26:42.261Z"),
       updatedAt: new Date("2025-10-11T12:00:05.990Z"),
       auction: {
@@ -53,6 +58,7 @@ describe("notificationMapper", () => {
       auction_id: VALID_UUID,
       bidder_id: VALID_UUID,
       read: false,
+      type: NotificationTypeSchema.enum.NEW_AUCTION_WON,
       created_at: "2025-10-11T11:26:42.261Z",
       updated_at: "2025-10-11T12:00:05.990Z",
       auction: {
@@ -68,6 +74,7 @@ describe("notificationMapper", () => {
       recipientId: VALID_UUID,
       auctionId: VALID_UUID,
       read: false,
+      type: NotificationTypeSchema.enum.NEW_AUCTION_WON,
       createdAt: new Date("2025-10-11T11:26:42.261Z"),
       updatedAt: new Date("2025-10-11T12:00:05.990Z"),
       auction: {
@@ -88,6 +95,7 @@ describe("notificationMapper", () => {
       auction_id: VALID_UUID,
       bidder_id: VALID_UUID,
       read: false,
+      type: NotificationTypeSchema.enum.NEW_BID,
       created_at: "invalid-date",
       updated_at: "invalid-date",
       auction: {
@@ -108,6 +116,7 @@ describe("notificationMapper", () => {
       auction_id: VALID_UUID,
       bidder_id: VALID_UUID,
       read: true,
+      type: NotificationTypeSchema.enum.NEW_BID,
       created_at: "2025-10-11T11:26:42.261Z",
       updated_at: "2025-10-11T12:00:05.990Z",
       auction: {
@@ -124,6 +133,7 @@ describe("notificationMapper", () => {
       recipientId: VALID_UUID,
       auctionId: VALID_UUID,
       read: true,
+      type: NotificationTypeSchema.enum.NEW_BID,
       createdAt: new Date("2025-10-11T11:26:42.261Z"),
       updatedAt: new Date("2025-10-11T12:00:05.990Z"),
       auction: {

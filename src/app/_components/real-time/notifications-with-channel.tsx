@@ -4,7 +4,7 @@ import { type FC, useCallback, useState } from "react";
 import { findNotificationById } from "@/actions/notifications/find-notification-by-id";
 import type { Notification } from "@/core/domains/notifications";
 import { RealTimeNotificationsMenu } from "../header/notifications/real-time-notifications-menu";
-import { useNotificationsOnBids } from "./hooks/use-notifications-on-bids";
+import { useNotificationsChannel } from "./hooks/use-notifications-channel";
 
 type Props = {
   userId: string;
@@ -33,7 +33,7 @@ export const NotificationsWithChannel: FC<Props> = (props) => {
     setNotifications((prev) => prev.filter((n) => n.id !== notificationId));
   }, []);
 
-  useNotificationsOnBids({ userId, onNewNotification });
+  useNotificationsChannel({ userId, onNewNotification });
 
   return (
     <RealTimeNotificationsMenu
