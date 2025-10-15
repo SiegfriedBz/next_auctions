@@ -4,7 +4,7 @@ import { type User, UserSchema } from "@/core/domains/user";
 export type SupabaseUser = Pick<User, "id" | "email" | "role"> & {
   first_name: string;
   last_name: string;
-  avatar_url?: string;
+  avatar_url: string | null;
   created_at: string;
   updated_at: string;
 };

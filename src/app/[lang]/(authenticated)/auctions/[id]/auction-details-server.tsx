@@ -5,6 +5,7 @@ import {
   CoinsIcon,
   GemIcon,
   NotebookTextIcon,
+  TrophyIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -48,9 +49,14 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
     return notFound();
   }
 
+  const meIsHighestBidder = me.id === auction.highestBidderId;
+
   return (
     <>
-      <AuctionHeaderCard auction={auction} />
+      <AuctionHeaderCard
+        auction={auction}
+        meIsHighestBidder={meIsHighestBidder}
+      />
 
       <Card>
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -70,10 +76,15 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
 };
 
 // ---------- AuctionHeaderCard ----------
-const AuctionHeaderCard: FC<{
+type AuctionHeaderCardProps = {
   auction: AuctionDetails;
-}> = ({ auction }) => {
-  const { title, category, owner, currentBid } = auction;
+  meIsHighestBidder: boolean;
+};
+const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
+  const {
+    auction: { title, category, owner, highestBid, status },
+    meIsHighestBidder = false,
+  } = props;
 
   return (
     <Card>
@@ -85,7 +96,7 @@ const AuctionHeaderCard: FC<{
             <div className="flex gap-x-4 items-center">
               <AuctionCategoryBadge category={category} />
               <div className="sm:hidden">
-                <AuctionStatusBadge status={auction.status} />
+                <AuctionStatusBadge status={status} />
               </div>
             </div>
 
@@ -93,24 +104,47 @@ const AuctionHeaderCard: FC<{
               {owner && <UserAvatar user={owner} />}
             </div>
 
-            <div className="sm:hidden flex items-center gap-2 text-lg font-medium">
-              <CoinsIcon className="size-4 text-amber-500" />
-              <Trans>Current Bid</Trans>:
-              <span className="font-bold text-primary">
-                <FormatCurrency value={currentBid ?? null} />
-              </span>
+            <div className="sm:hidden flex flex-col gap-4 text-lg font-medium">
+              <div className="flex flex-wrap items-center gap-2">
+                <CoinsIcon className="size-4 text-amber-500" />
+                <span className="whitespace-nowrap">
+                  <Trans>Current Bid</Trans>
+                </span>
+
+                <span className="font-bold text-primary">
+                  <FormatCurrency value={highestBid ?? null} />
+                </span>
+              </div>
+
+              {meIsHighestBidder && (
+                <div className="flex items-center gap-2">
+                  <TrophyIcon className="size-4 text-amber-500" />
+                  <Trans>You are the Highest Bidder</Trans>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="max-sm:hidden flex flex-col justify-between items-end h-full">
-            <div className="flex items-center gap-2 text-lg font-medium">
-              <CoinsIcon className="size-5 text-amber-500" />
-              <Trans>Current Bid</Trans>:
-              <span className="font-bold text-primary">
-                <FormatCurrency value={currentBid ?? null} />
-              </span>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <CoinsIcon className="size-5 text-amber-500" />
+                <span className="whitespace-nowrap">
+                  <Trans>Current Bid</Trans>:
+                </span>
+
+                <span className="font-bold text-primary">
+                  <FormatCurrency value={highestBid ?? null} />
+                </span>
+              </div>
+              {meIsHighestBidder && (
+                <div className="flex items-center gap-2">
+                  <TrophyIcon className="size-4 text-amber-500" />
+                  <Trans>You are the Highest Bidder</Trans>
+                </div>
+              )}
             </div>
-            <AuctionStatusBadge status={auction.status} />
+            <AuctionStatusBadge status={status} />
           </div>
         </CardTitle>
       </CardHeader>
@@ -152,11 +186,11 @@ const AuctionDetailsList: FC<{ auction: AuctionDetails }> = ({ auction }) => (
 
     <div className="flex items-center gap-2">
       <CoinsIcon className="size-4 text-amber-500" />
-      <span className="text-lg font-medium">
+      <span className="font-medium">
         <Trans>Current Bid</Trans>:
       </span>
-      <span className="text-xl font-bold text-primary">
-        <FormatCurrency value={auction.currentBid ?? null} />
+      <span className="text-lg font-bold text-primary">
+        <FormatCurrency value={auction.highestBid ?? null} />
       </span>
     </div>
 
@@ -186,7 +220,7 @@ const AuctionActions: FC<{
 }> = ({ auction, me, lang }) => {
   const isMyAuction = auction.ownerId === me.id;
   const isOpenedAuction = auction.status === AuctionStatusSchema.enum.OPEN;
-  const isAuctionWithBid = auction.currentBid && auction.currentBid > 0;
+  const isAuctionWithBid = auction.highestBid && auction.highestBid > 0;
 
   return (
     <div className="flex w-fit ml-auto mt-auto">

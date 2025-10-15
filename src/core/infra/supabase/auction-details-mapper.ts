@@ -8,6 +8,11 @@ type SupabaseAuctionDetails = SupabaseAuction & {
     SupabaseUser,
     "id" | "email" | "first_name" | "last_name" | "avatar_url"
   > | null;
+} & {
+  highest_bidder: Pick<
+    SupabaseUser,
+    "id" | "email" | "first_name" | "last_name" | "avatar_url"
+  > | null;
 };
 
 export const auctionDetailsMapper = (row: SupabaseAuctionDetails | null) => {
@@ -22,6 +27,15 @@ export const auctionDetailsMapper = (row: SupabaseAuctionDetails | null) => {
           firstName: row?.owner?.first_name,
           lastName: row?.owner?.last_name,
           avatarUrl: row?.owner?.avatar_url ?? undefined,
+        }
+      : null,
+    highestBidder: row?.highest_bidder
+      ? {
+          id: row?.highest_bidder?.id,
+          email: row?.highest_bidder?.email,
+          firstName: row?.highest_bidder?.first_name,
+          lastName: row?.highest_bidder?.last_name,
+          avatarUrl: row?.highest_bidder?.avatar_url ?? undefined,
         }
       : null,
   };
