@@ -37,7 +37,13 @@ USING (
   id = auth.uid()
 );
 
--- 5. Create a view that only exposes a safe count
+-- VIEWS 
+-- 1. Create a view that only exposes partial user data
+CREATE VIEW public.users_public AS
+SELECT id, first_name, last_name, email, avatar_url
+FROM public.users;
+
+-- 2. Create a view that only exposes a safe count
 CREATE VIEW public.users_stats AS
 SELECT COUNT(*) AS total_users
 FROM public.users;
