@@ -15,8 +15,7 @@ import {
  *
  * Rules:
  *  - If the auction already has a bid (currentBid != null):
- *      → The auction creator cannot revert it to DRAFT.
- *      → The auction creator cannot manually close it (CLOSED).
+ *      → The auction creator cannot update (blocked by RLS).
  *
  *  - If the auction is already CLOSED:
  *      → It cannot be changed to any other state (LOCKED forever).
@@ -29,9 +28,10 @@ export const getForbiddenNextStatuses = (params: Params): AuctionStatus[] => {
 
   const excluded: AuctionStatus[] = [];
 
-  // If there are bids, prevent reverting to DRAFT or manually closing it
+  // If there is a bid, all statuses are forbidden (update blocked by RLS)
   if (currentBid != null) {
     excluded.push(
+      AuctionStatusSchema.enum.OPEN,
       AuctionStatusSchema.enum.DRAFT,
       AuctionStatusSchema.enum.CLOSED,
     );
