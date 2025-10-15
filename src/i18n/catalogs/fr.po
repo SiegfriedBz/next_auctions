@@ -57,11 +57,14 @@ msgstr ""
 msgid "Auctions"
 msgstr ""
 
+msgid "Auctions won"
+msgstr ""
+
 msgid "Automotive"
 msgstr ""
 
-#~ msgid "Avatar uploaded successfully!"
-#~ msgstr ""
+msgid "Avatar uploaded successfully!"
+msgstr ""
 
 msgid "bid"
 msgstr ""
@@ -73,6 +76,9 @@ msgid "Bid on auction"
 msgstr ""
 
 msgid "Bid placed successfully!"
+msgstr ""
+
+msgid "Bids"
 msgstr ""
 
 msgid "Browse Auctions"
@@ -87,8 +93,8 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "Cancelled"
-msgstr ""
+#~ msgid "Cancelled"
+#~ msgstr ""
 
 #~ msgid "category"
 #~ msgstr ""
@@ -101,6 +107,12 @@ msgstr ""
 
 msgid "Choose a language"
 msgstr "Selectionner une langue"
+
+msgid "Click on Create Auction"
+msgstr ""
+
+msgid "Click on Update Auction"
+msgstr ""
 
 msgid "Click on Update your profile"
 msgstr ""
@@ -210,10 +222,13 @@ msgstr ""
 msgid "Enter your email and password to access."
 msgstr ""
 
-#~ msgid "Failed to upload avatar. Please try again."
+msgid "Failed to upload avatar. Please try again."
+msgstr ""
+
+#~ msgid "Failed to upload image. Please try again."
 #~ msgstr ""
 
-msgid "Failed to upload image. Please try again."
+msgid "Failed to upload one or more images. Please try again."
 msgstr ""
 
 msgid "Fashion"
@@ -264,10 +279,13 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-msgid "Image uploaded successfully!"
-msgstr ""
+#~ msgid "Image uploaded successfully!"
+#~ msgstr ""
 
 msgid "Images"
+msgstr ""
+
+msgid "Images uploaded successfully!"
 msgstr ""
 
 msgid "Join our community-driven platform to find exclusive deals and one-of-a-kind items."
@@ -336,8 +354,14 @@ msgstr ""
 msgid "No description provided."
 msgstr ""
 
-msgid "No notification"
+msgid "No new auction won"
 msgstr ""
+
+msgid "No new bid"
+msgstr ""
+
+#~ msgid "No notification"
+#~ msgstr ""
 
 msgid "No results."
 msgstr ""
@@ -346,6 +370,9 @@ msgid "Notification card with link"
 msgstr ""
 
 msgid "Notification marked as seen"
+msgstr ""
+
+msgid "Notifications"
 msgstr ""
 
 msgid "Open"
@@ -510,13 +537,22 @@ msgstr ""
 msgid "Updating your profile..."
 msgstr ""
 
+msgid "Upload images?"
+msgstr ""
+
+msgid "Upload up to 3 images"
+msgstr ""
+
 msgid "Upload your avatar"
 msgstr ""
 
 msgid "Upload your new avatar?"
 msgstr ""
 
-msgid "Uploading avatar..."
+#~ msgid "Uploading avatar..."
+#~ msgstr ""
+
+msgid "Uploading image..."
 msgstr ""
 
 msgid "user"
@@ -553,4 +589,7 @@ msgid "You successfully updated your profile!"
 msgstr ""
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
+msgstr ""
+
+msgid "Your images will be uploaded now, but it won't be saved until you create your auction."
 msgstr ""

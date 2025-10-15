@@ -1,10 +1,18 @@
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'notification_type') THEN
+        CREATE TYPE notification_type AS ENUM ('NEW_BID', 'NEW_AUCTION_WON');
+    END IF;
+END$$;
+
 CREATE TABLE IF NOT EXISTS public.notifications (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     auction_id UUID NOT NULL REFERENCES public.auctions(id) ON DELETE CASCADE,
     recipient_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ DEFAULT now(),
     updated_at TIMESTAMPTZ DEFAULT now(),
-    read BOOLEAN DEFAULT false
+    read BOOLEAN DEFAULT false,
+    type notification_type DEFAULT 'NEW_BID' NOT NULL
 );
 
 CREATE INDEX IF NOT EXISTS idx_notifications_recipient_id
@@ -56,14 +64,14 @@ BEGIN
 
     -- Notify the auction owner if not the bidder
     IF auction_owner <> bidder THEN
-        INSERT INTO public.notifications (auction_id, recipient_id)
-        VALUES (NEW.auction_id, auction_owner);
+        INSERT INTO public.notifications (auction_id, recipient_id, type)
+        VALUES (NEW.auction_id, auction_owner, 'NEW_BID');
     END IF;
 
     -- Notify all previous bidders
     IF previous_bidders IS NOT NULL THEN
-        INSERT INTO public.notifications (auction_id, recipient_id)
-        SELECT NEW.auction_id, UNNEST(previous_bidders);
+        INSERT INTO public.notifications (auction_id, recipient_id, type)
+        SELECT NEW.auction_id, UNNEST(previous_bidders), 'NEW_BID';
     END IF;
 
     RETURN NEW;
