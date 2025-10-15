@@ -62,14 +62,14 @@ export const useColumns = (params: Params = {}): ColumnDef<Auction>[] => {
         },
       },
       {
-        accessorKey: "currentBid",
+        accessorKey: "highestBid",
         header: () => (
           <div className="font-semibold">
-            <Trans>Current Bid</Trans>
+            <Trans>Highest Bid</Trans>
           </div>
         ),
         cell: ({ row }) => {
-          return <FormatCurrency value={row.original?.currentBid ?? null} />;
+          return <FormatCurrency value={row.original?.highestBid ?? null} />;
         },
       },
       {
