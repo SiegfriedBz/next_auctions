@@ -1,3 +1,5 @@
+"use client";
+
 import { useLingui } from "@lingui/react/macro";
 import Image from "next/image";
 import Link from "next/link";

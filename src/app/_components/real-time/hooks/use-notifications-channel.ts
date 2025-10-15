@@ -8,7 +8,7 @@ type Params = {
   onNewNotification: (notificationId: string) => Promise<void>;
 };
 
-export const useNotificationsOnBids = (params: Params) => {
+export const useNotificationsChannel = (params: Params) => {
   const { userId, onNewNotification } = params;
 
   useEffect(() => {
