@@ -42,7 +42,9 @@ export const UserAvatar: FC<Props> = ({
           avatarClassName,
         )}
       >
-        <AvatarImage src={`${user?.avatarUrl}?t=${Date.now()}`} />
+        {user?.avatarUrl && (
+          <AvatarImage src={`${user?.avatarUrl}?t=${Date.now()}`} />
+        )}
         <AvatarFallback className="rounded-md">
           {getInitials(user)}
         </AvatarFallback>

@@ -12,7 +12,7 @@ const Layout: FC<PropsWithChildren<Props>> = async (props) => {
   return (
     <div className="flex flex-col min-h-screen p-4 sm:p-16 sm:pt-8 gap-4">
       <header>{breadcrumbs}</header>
-      <section className="">{children}</section>
+      <section>{children}</section>
     </div>
   );
 };
