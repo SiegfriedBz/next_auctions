@@ -21,7 +21,8 @@ describe("auctionMapper", () => {
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.OPEN,
       starting_price: 100,
-      current_bid: 150,
+      highest_bidder_id: VALID_UUID,
+      highest_bid: 150,
       storage_id: VALID_UUID,
       images: ["https://github.com/shadcn.png"],
       started_at: "2025-08-12T12:00:00.000Z",
@@ -38,7 +39,8 @@ describe("auctionMapper", () => {
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.OPEN,
       startingPrice: 100,
-      currentBid: 150,
+      highestBidderId: VALID_UUID,
+      highestBid: 150,
       storageId: VALID_UUID,
       images: ["https://github.com/shadcn.png"],
       startedAt: new Date("2025-08-12T12:00:00.000Z"),
@@ -58,11 +60,15 @@ describe("auctionMapper", () => {
       description: "Classic 70s guitar",
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.DRAFT,
+      highest_bidder_id: null,
+      highest_bid: null,
       starting_price: 100,
-      storage_id: undefined,
+      storage_id: null,
       images: [],
       created_at: "2025-08-01T12:00:00.000Z",
       updated_at: "2025-08-05T12:00:00.000Z",
+      started_at: "2025-08-01T12:00:00.000Z",
+      end_at: null,
     };
 
     const expected: Auction = {
@@ -72,11 +78,15 @@ describe("auctionMapper", () => {
       description: "Classic 70s guitar",
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.DRAFT,
+      highestBidderId: undefined,
+      highestBid: undefined,
       startingPrice: 100,
       storageId: undefined,
       images: [],
       createdAt: new Date("2025-08-01T12:00:00.000Z"),
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+      startedAt: new Date("2025-08-01T12:00:00.000Z"),
+      endAt: undefined,
     };
 
     expect(auctionMapper(supabaseAuction)).toEqual(expected);

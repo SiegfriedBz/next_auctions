@@ -21,7 +21,8 @@ describe("auctionDetailsMapper", () => {
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.OPEN,
       starting_price: 100,
-      current_bid: 150,
+      highest_bidder_id: VALID_UUID,
+      highest_bid: 150,
       storage_id: VALID_UUID,
       images: ["https://github.com/shadcn.png"],
       started_at: "2025-08-12T12:00:00.000Z",
@@ -35,6 +36,13 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatar_url: "https://example.com/avatar.png",
       },
+      highest_bidder: {
+        id: VALID_UUID,
+        first_name: "Jane",
+        last_name: "DoeDoe",
+        email: "jane.doedoe@example.com",
+        avatar_url: null,
+      },
     };
 
     const expected: AuctionDetails = {
@@ -45,7 +53,8 @@ describe("auctionDetailsMapper", () => {
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.OPEN,
       startingPrice: 100,
-      currentBid: 150,
+      highestBidderId: VALID_UUID,
+      highestBid: 150,
       storageId: VALID_UUID,
       images: ["https://github.com/shadcn.png"],
       startedAt: new Date("2025-08-12T12:00:00.000Z"),
@@ -58,6 +67,13 @@ describe("auctionDetailsMapper", () => {
         lastName: "Doe",
         email: "john.doe@example.com",
         avatarUrl: "https://example.com/avatar.png",
+      },
+      highestBidder: {
+        id: VALID_UUID,
+        firstName: "Jane",
+        lastName: "DoeDoe",
+        email: "jane.doedoe@example.com",
+        avatarUrl: undefined,
       },
     };
 
@@ -73,10 +89,14 @@ describe("auctionDetailsMapper", () => {
       category: AuctionCategorySchema.enum.MUSIC,
       status: AuctionStatusSchema.enum.DRAFT,
       starting_price: 100,
-      storage_id: undefined,
+      storage_id: null,
+      highest_bidder_id: null,
+      highest_bid: null,
       images: [],
       created_at: "2025-08-01T12:00:00.000Z",
       updated_at: "2025-08-05T12:00:00.000Z",
+      started_at: "2025-08-01T12:00:00.000Z",
+      end_at: null,
       owner: {
         id: VALID_UUID,
         first_name: "John",
@@ -84,6 +104,7 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatar_url: "https://example.com/avatar.png",
       },
+      highest_bidder: null,
     };
 
     const expected: AuctionDetails = {
@@ -95,9 +116,13 @@ describe("auctionDetailsMapper", () => {
       status: AuctionStatusSchema.enum.DRAFT,
       startingPrice: 100,
       storageId: undefined,
+      highestBidderId: undefined,
+      highestBid: undefined,
       images: [],
       createdAt: new Date("2025-08-01T12:00:00.000Z"),
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+      startedAt: new Date("2025-08-01T12:00:00.000Z"),
+      endAt: undefined,
       owner: {
         id: VALID_UUID,
         firstName: "John",
@@ -105,6 +130,7 @@ describe("auctionDetailsMapper", () => {
         email: "john.doe@example.com",
         avatarUrl: "https://example.com/avatar.png",
       },
+      highestBidder: null,
     };
 
     expect(auctionDetailsMapper(supabaseAuctionDetails)).toEqual(expected);

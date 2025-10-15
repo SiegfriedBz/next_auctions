@@ -73,7 +73,7 @@ export class AuctionService {
     // only allow to set the correct status
     const excludedNextStatus = getForbiddenNextStatuses({
       status: auction.status,
-      currentBid: auction.currentBid,
+      highestBid: auction.highestBid,
     });
 
     if (excludedNextStatus.includes(params.status)) {

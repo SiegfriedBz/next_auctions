@@ -6,13 +6,14 @@ export type SupabaseAuction = Pick<
   "id" | "title" | "description" | "category" | "status" | "images"
 > & {
   owner_id: string;
+  highest_bidder_id: string | null;
   starting_price: number;
-  current_bid?: number;
-  started_at?: string;
-  end_at?: string;
+  highest_bid: number | null;
+  started_at: string | null;
+  end_at: string | null;
   created_at: string;
   updated_at: string;
-  storage_id?: string;
+  storage_id: string | null;
 };
 
 export const auctionMapper = (row: SupabaseAuction | null) => {
@@ -39,7 +40,8 @@ export const normalizeAuctionData = (row: SupabaseAuction) => {
     images: row.images ?? [],
     category: row.category,
     startingPrice: row.starting_price,
-    currentBid: row.current_bid ?? undefined,
+    highestBidderId: row.highest_bidder_id ?? undefined,
+    highestBid: row.highest_bid ?? undefined,
     status: row.status,
     startedAt: row.started_at ? new Date(row.started_at) : undefined,
     endAt: row.end_at ? new Date(row.end_at) : undefined,

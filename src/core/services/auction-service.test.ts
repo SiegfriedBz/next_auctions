@@ -44,7 +44,7 @@ describe("AuctionService", () => {
       images: ["https://github.com/shadcn.png"],
       category: AuctionCategorySchema.enum.MUSIC,
       startingPrice: 100,
-      currentBid: undefined,
+      highestBid: undefined,
       status: AuctionStatusSchema.enum.DRAFT,
       startedAt: undefined,
       endAt: undefined,
@@ -224,7 +224,7 @@ describe("AuctionService", () => {
       const blockedStatus = "OPEN" as const;
       auctionRepo.findById.mockResolvedValue({
         ...auctionDetails,
-        currentBid: 50,
+        highestBid: 50,
         status: AuctionStatusSchema.enum.CLOSED,
       });
 

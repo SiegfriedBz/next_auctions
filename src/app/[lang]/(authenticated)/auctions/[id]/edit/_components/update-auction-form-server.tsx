@@ -25,7 +25,7 @@ export const UpdateAuctionFormServer: FC<Props> = async (props) => {
   }
 
   const isMyAuction = auction.ownerId === meId;
-  const isAuctionWithBid = auction.currentBid && auction.currentBid > 0;
+  const isAuctionWithBid = auction.highestBid && auction.highestBid > 0;
 
   if (!isMyAuction) {
     redirect(`/${lang}`);
@@ -49,7 +49,7 @@ export const UpdateAuctionFormServer: FC<Props> = async (props) => {
 
   const excludedNextStatus = getForbiddenNextStatuses({
     status: auction.status,
-    currentBid: auction.currentBid,
+    highestBid: auction.highestBid,
   });
 
   return (

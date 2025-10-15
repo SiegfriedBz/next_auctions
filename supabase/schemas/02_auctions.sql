@@ -10,13 +10,14 @@ CREATE TABLE auctions (
   id UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
   storage_id UUID UNIQUE,-- used as pointer to images in Supabase storage
   owner_id UUID NOT NULL REFERENCES users(id),
+  highest_bidder_id UUID REFERENCES users(id) ON DELETE SET NULL,
   title TEXT NOT NULL,
   description TEXT NOT NULL,
   images JSONB NOT NULL DEFAULT '[]',  -- array of AuctionImage objects
   category auction_category NOT NULL DEFAULT 'MUSIC',
   status auction_status NOT NULL DEFAULT 'DRAFT',
   starting_price NUMERIC NOT NULL CHECK (starting_price > 0),
-  current_bid NUMERIC CHECK (current_bid >= starting_price OR current_bid IS NULL),
+  highest_bid NUMERIC CHECK (highest_bid >= starting_price OR highest_bid IS NULL),
   started_at TIMESTAMPTZ,
   end_at TIMESTAMPTZ CHECK (end_at > started_at OR started_at IS NULL),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),

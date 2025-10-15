@@ -123,9 +123,10 @@ export class SupabaseAuctionRepository implements AuctionRepository {
 
     const { data, error } = await client
       .from("auctions")
-      .select(
-        "*, owner:users_public(id, first_name, last_name, email, avatar_url)",
-      )
+      .select(`*,
+        owner:users_public!auctions_owner_id_fkey(id, first_name, last_name, email, avatar_url),
+        highest_bidder:users_public!auctions_highest_bidder_id_fkey(id, first_name, last_name, email, avatar_url)
+        `)
       .eq("id", id)
       .single();
 

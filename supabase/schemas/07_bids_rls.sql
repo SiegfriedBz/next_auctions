@@ -60,19 +60,26 @@ USING (
   )
 );
 
--- FUNCTIONS TO UPDATE current_bid IN AUCTIONS
+-- FUNCTIONS TO UPDATE highest_bidder_id & highest_bid IN AUCTIONS
 -- 1. AFTER INSERT OR UPDATE ON BIDS
-CREATE FUNCTION update_auction_current_bid()
+CREATE OR REPLACE FUNCTION update_auction_highest_bid()
 RETURNS TRIGGER AS $$
 DECLARE
   max_bid NUMERIC;
+  max_bidder UUID;
 BEGIN
-  SELECT MAX(amount) INTO max_bid
+  -- Find the max bid and the corresponding bidder
+  SELECT amount, bidder_id
+  INTO max_bid, max_bidder
   FROM bids
-  WHERE auction_id = NEW.auction_id;
+  WHERE auction_id = NEW.auction_id
+  ORDER BY amount DESC, created_at ASC
+  LIMIT 1;
 
+  -- Update auction with highest_bid and highest_bidder_id
   UPDATE auctions
-  SET current_bid = max_bid,
+  SET highest_bid = max_bid,
+      highest_bidder_id = max_bidder,
       updated_at = NOW()
   WHERE id = NEW.auction_id;
 
@@ -81,23 +88,31 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- TRIGGER AFTER INSERT OR UPDATE
-CREATE TRIGGER trigger_update_current_bid_after_insert_update
+DROP TRIGGER IF EXISTS trigger_update_current_bid_after_insert_update ON bids;
+CREATE TRIGGER trigger_update_highest_bid_after_insert_update
 AFTER INSERT OR UPDATE ON bids
 FOR EACH ROW
-EXECUTE FUNCTION update_auction_current_bid();
+EXECUTE FUNCTION update_auction_highest_bid();
 
 -- 2. AFTER DELETE ON BIDS
-CREATE FUNCTION update_current_bid_after_delete()
+CREATE OR REPLACE FUNCTION update_auction_highest_bid_after_delete()
 RETURNS TRIGGER AS $$
 DECLARE
   max_bid NUMERIC;
+  max_bidder UUID;
 BEGIN
-  SELECT MAX(amount) INTO max_bid
+  -- Find the new max bid and bidder after deletion
+  SELECT amount, bidder_id
+  INTO max_bid, max_bidder
   FROM bids
-  WHERE auction_id = OLD.auction_id;
+  WHERE auction_id = OLD.auction_id
+  ORDER BY amount DESC, created_at ASC
+  LIMIT 1;
 
+  -- Update auction
   UPDATE auctions
-  SET current_bid = max_bid,
+  SET highest_bid = max_bid,
+      highest_bidder_id = max_bidder,
       updated_at = NOW()
   WHERE id = OLD.auction_id;
 
@@ -106,7 +121,8 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- TRIGGER AFTER DELETE
-CREATE TRIGGER trigger_update_current_bid_after_delete
+DROP TRIGGER IF EXISTS trigger_update_current_bid_after_delete ON bids;
+CREATE TRIGGER trigger_update_highest_bid_after_delete
 AFTER DELETE ON bids
 FOR EACH ROW
-EXECUTE FUNCTION update_current_bid_after_delete();
+EXECUTE FUNCTION update_auction_highest_bid_after_delete();
