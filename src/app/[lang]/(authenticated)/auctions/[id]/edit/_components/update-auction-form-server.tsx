@@ -25,9 +25,14 @@ export const UpdateAuctionFormServer: FC<Props> = async (props) => {
   }
 
   const isMyAuction = auction.ownerId === meId;
+  const isAuctionWithBid = auction.currentBid && auction.currentBid > 0;
 
   if (!isMyAuction) {
     redirect(`/${lang}`);
+  }
+
+  if (isAuctionWithBid) {
+    redirect(`/${lang}/auctions/${auction.id}`);
   }
 
   const defaultValues = {
