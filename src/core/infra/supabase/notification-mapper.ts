@@ -2,10 +2,14 @@ import z from "zod";
 import {
   type Notification,
   NotificationSchema,
+  NotificationTypeSchema,
 } from "@/core/domains/notifications";
 import type { SupabaseAuction } from "./auction-mapper";
 
-export type SupabaseNotification = Pick<Notification, "id" | "read"> & {
+export type SupabaseNotification = Pick<
+  Notification,
+  "id" | "read" | "type"
+> & {
   recipient_id: string;
   auction_id: string;
   bidder_id: string;
@@ -34,6 +38,7 @@ export const normalizeNotificationData = (row: SupabaseNotification) => {
     recipientId: row.recipient_id,
     auctionId: row.auction_id,
     read: row.read,
+    type: row?.type ?? NotificationTypeSchema.enum.NEW_BID,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
     auction: {
