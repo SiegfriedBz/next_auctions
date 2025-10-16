@@ -594,6 +594,9 @@ msgstr "You successfully updated your auction!"
 msgid "You successfully updated your profile!"
 msgstr "You successfully updated your profile!"
 
+msgid "You won this auction"
+msgstr "You won this auction"
+
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
 msgstr "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
 
