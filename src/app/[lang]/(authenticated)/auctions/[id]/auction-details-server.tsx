@@ -28,6 +28,7 @@ import {
 import { auctions } from "@/core/instances/auctions";
 import { users } from "@/core/instances/users";
 import type { LangParam } from "@/i18n";
+import { InitiatePaymentButton } from "../_components/initiate-payment.button";
 
 type Props = {
   params: Promise<Pick<Auction, "id">> & Promise<LangParam>;
@@ -86,6 +87,8 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
     meIsHighestBidder = false,
   } = props;
 
+  const isClosed = status === AuctionStatusSchema.enum.CLOSED;
+
   return (
     <Card>
       <CardHeader>
@@ -108,7 +111,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               <div className="flex flex-wrap items-center gap-2">
                 <CoinsIcon className="size-4 text-amber-500" />
                 <span className="whitespace-nowrap">
-                  <Trans>Current Bid</Trans>
+                  <Trans>Highest Bid</Trans>
                 </span>
 
                 <span className="font-bold text-primary">
@@ -119,7 +122,11 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               {meIsHighestBidder && (
                 <div className="flex items-center gap-2">
                   <TrophyIcon className="size-4 text-amber-500" />
-                  <Trans>You are the Highest Bidder</Trans>
+                  {isClosed ? (
+                    <InitiatePaymentButton />
+                  ) : (
+                    <Trans>You are the Highest Bidder</Trans>
+                  )}
                 </div>
               )}
             </div>
@@ -130,7 +137,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               <div className="flex flex-wrap items-center gap-2">
                 <CoinsIcon className="size-5 text-amber-500" />
                 <span className="whitespace-nowrap">
-                  <Trans>Current Bid</Trans>:
+                  <Trans>Highest Bid</Trans>:
                 </span>
 
                 <span className="font-bold text-primary">
@@ -140,7 +147,11 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               {meIsHighestBidder && (
                 <div className="flex items-center gap-2">
                   <TrophyIcon className="size-4 text-amber-500" />
-                  <Trans>You are the Highest Bidder</Trans>
+                  {isClosed ? (
+                    <InitiatePaymentButton />
+                  ) : (
+                    <Trans>You are the Highest Bidder</Trans>
+                  )}
                 </div>
               )}
             </div>
@@ -187,7 +198,7 @@ const AuctionDetailsList: FC<{ auction: AuctionDetails }> = ({ auction }) => (
     <div className="flex items-center gap-2">
       <CoinsIcon className="size-4 text-amber-500" />
       <span className="font-medium">
-        <Trans>Current Bid</Trans>:
+        <Trans>Highest Bid</Trans>:
       </span>
       <span className="text-lg font-bold text-primary">
         <FormatCurrency value={auction.highestBid ?? null} />

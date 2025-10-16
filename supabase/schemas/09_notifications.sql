@@ -24,6 +24,7 @@ CREATE INDEX IF NOT EXISTS idx_notifications_auction_id
 CREATE INDEX IF NOT EXISTS idx_notifications_created_at
     ON public.notifications (created_at DESC);
 
+-- 
 -- TRIGGER FUNCTION TO UPDATE updated_at
 CREATE FUNCTION update_notifications_updated_at()
 RETURNS TRIGGER AS $$
@@ -39,7 +40,8 @@ BEFORE UPDATE ON notifications
 FOR EACH ROW
 EXECUTE FUNCTION update_notifications_updated_at();
 
--- TRIGGER FUNCTION to notify auction owner & previous bidders
+-- 
+-- TRIGGER FUNCTION to notify auction owner & previous bidders of a new bid => NEW_BID
 CREATE OR REPLACE FUNCTION handle_new_bid()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -85,3 +87,56 @@ CREATE TRIGGER on_bid_insert
 AFTER INSERT ON public.bids
 FOR EACH ROW
 EXECUTE FUNCTION handle_new_bid();
+
+-- 
+-- TRIGGER FUNCTION to notify auction owner & highest bidder of a new auction won => NEW_AUCTION_WON
+CREATE OR REPLACE FUNCTION handle_close_auction_with_bid()
+RETURNS TRIGGER AS $$
+DECLARE
+    auction_owner UUID;
+    highest_bidder UUID;
+    previous_bidders UUID[];
+BEGIN
+    IF (OLD.status IS DISTINCT FROM NEW.status)
+        AND NEW.status = 'CLOSED'
+        AND NEW.highest_bidder_id IS NOT NULL
+    THEN
+        -- Who is the auction owner
+        auction_owner := NEW.owner_id;
+
+        -- Who placed the highest bidder
+        highest_bidder := NEW.highest_bidder_id;
+
+        -- Notify the auction owner 
+        INSERT INTO public.notifications (auction_id, recipient_id, type)
+        VALUES (NEW.id, auction_owner, 'NEW_AUCTION_WON');
+
+        -- Notify the highest bidder
+        INSERT INTO public.notifications (auction_id, recipient_id, type)
+        VALUES (NEW.id, highest_bidder, 'NEW_AUCTION_WON');
+
+        -- OPTION - IF WE HAD A 'AUCTION_CLOSED' - LATER
+        -- Find all previous bidders (excluding the highest_bidder)
+        -- SELECT ARRAY_AGG(DISTINCT bidder_id)
+        -- INTO previous_bidders
+        -- FROM public.bids
+        -- WHERE auction_id = NEW.id
+        --     AND bidder_id <> highest_bidder;
+        -- Notify all previous bidders
+        -- IF previous_bidders IS NOT NULL THEN
+        --     INSERT INTO public.notifications (auction_id, recipient_id, type)
+        --     SELECT NEW.id, UNNEST(previous_bidders), 'AUCTION_CLOSED';
+        -- END IF;
+
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create trigger for AFTER UPDATE on auctions
+DROP TRIGGER IF EXISTS on_close_auction_with_bid ON public.auctions;
+
+CREATE TRIGGER on_close_auction_with_bid
+AFTER UPDATE ON public.auctions
+FOR EACH ROW
+EXECUTE FUNCTION handle_close_auction_with_bid();

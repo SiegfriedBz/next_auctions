@@ -276,6 +276,9 @@ msgstr ""
 msgid "Give a title to your auction"
 msgstr ""
 
+msgid "Highest Bid"
+msgstr ""
+
 msgid "Home"
 msgstr ""
 
@@ -570,6 +573,9 @@ msgstr ""
 msgid "Welcome back!"
 msgstr ""
 
+msgid "You are the Highest Bidder"
+msgstr ""
+
 msgid "You logged out successfully"
 msgstr ""
 
@@ -586,6 +592,9 @@ msgid "You successfully updated your auction!"
 msgstr ""
 
 msgid "You successfully updated your profile!"
+msgstr ""
+
+msgid "You won this auction"
 msgstr ""
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
