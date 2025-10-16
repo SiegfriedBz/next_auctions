@@ -276,6 +276,9 @@ msgstr "Give a Starting Price to your auction"
 msgid "Give a title to your auction"
 msgstr "Give a title to your auction"
 
+msgid "Highest Bid"
+msgstr "Highest Bid"
+
 msgid "Home"
 msgstr "Home"
 
@@ -570,6 +573,9 @@ msgstr "View auction"
 msgid "Welcome back!"
 msgstr "Welcome back!"
 
+msgid "You are the Highest Bidder"
+msgstr "You are the Highest Bidder"
+
 msgid "You logged out successfully"
 msgstr "You logged out successfully"
 
@@ -587,6 +593,9 @@ msgstr "You successfully updated your auction!"
 
 msgid "You successfully updated your profile!"
 msgstr "You successfully updated your profile!"
+
+msgid "You won this auction"
+msgstr "You won this auction"
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
 msgstr "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
