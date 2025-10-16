@@ -276,6 +276,9 @@ msgstr ""
 msgid "Give a title to your auction"
 msgstr ""
 
+msgid "Highest Bid"
+msgstr ""
+
 msgid "Home"
 msgstr ""
 
@@ -568,6 +571,9 @@ msgid "View auction"
 msgstr ""
 
 msgid "Welcome back!"
+msgstr ""
+
+msgid "You are the Highest Bidder"
 msgstr ""
 
 msgid "You logged out successfully"
