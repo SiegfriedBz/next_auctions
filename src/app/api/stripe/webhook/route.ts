@@ -5,14 +5,10 @@ import Stripe from "stripe";
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY ?? "";
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET ?? "";
 
-const stripe = new Stripe(STRIPE_SECRET_KEY);
-
 export async function POST(req: NextRequest) {
   const body = await req.text();
-
   const headersList = await headers();
   const sig = headersList.get("stripe-signature");
-  const endpointSecret = STRIPE_WEBHOOK_SECRET;
 
   if (!sig) {
     return new Response(`Webhook Error: wrong stripe-signature`, {
@@ -22,7 +18,13 @@ export async function POST(req: NextRequest) {
 
   let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+    if (!STRIPE_SECRET_KEY || !STRIPE_WEBHOOK_SECRET) {
+      return new Response("Missing Stripe key", { status: 500 });
+    }
+
+    const stripe = new Stripe(STRIPE_SECRET_KEY);
+
+    event = stripe.webhooks.constructEvent(body, sig, STRIPE_WEBHOOK_SECRET);
   } catch (err) {
     return new Response(`Webhook Error: ${(err as Error).message}`, {
       status: 400,
