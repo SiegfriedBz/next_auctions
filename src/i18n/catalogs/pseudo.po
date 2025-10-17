@@ -45,6 +45,9 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
+msgid "Amout paid"
+msgstr ""
+
 msgid "Art"
 msgstr ""
 
@@ -64,6 +67,9 @@ msgid "Automotive"
 msgstr ""
 
 msgid "Avatar uploaded successfully!"
+msgstr ""
+
+msgid "Back to auctions"
 msgstr ""
 
 msgid "bid"
@@ -121,6 +127,9 @@ msgid "Closed"
 msgstr ""
 
 msgid "Collectibles"
+msgstr ""
+
+msgid "Contact owner"
 msgstr ""
 
 msgid "Continue"
@@ -212,6 +221,9 @@ msgstr ""
 
 #~ msgid "End Date"
 #~ msgstr ""
+
+msgid "Ended"
+msgstr ""
 
 msgid "Ends"
 msgstr ""
@@ -387,6 +399,9 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
+msgid "Payment Cancelled."
+msgstr ""
+
 msgid "Place your bid"
 msgstr ""
 
@@ -398,6 +413,9 @@ msgstr ""
 
 #~ msgid "Profile"
 #~ msgstr ""
+
+msgid "Retry the payment here"
+msgstr ""
 
 msgid "Select a category"
 msgstr ""
@@ -473,6 +491,9 @@ msgstr ""
 
 msgid "Status"
 msgstr ""
+
+#~ msgid "Success"
+#~ msgstr ""
 
 msgid "Switch login/signup forms"
 msgstr ""
@@ -576,10 +597,16 @@ msgstr ""
 msgid "You are the Highest Bidder"
 msgstr ""
 
+msgid "You did not pay this auction yet. Contact us for more information."
+msgstr ""
+
 msgid "You logged out successfully"
 msgstr ""
 
 msgid "You successfully created your auction!"
+msgstr ""
+
+msgid "You successfully paid this auction."
 msgstr ""
 
 msgid "You successfully signed in!"
@@ -601,4 +628,7 @@ msgid "Your image will be uploaded now, but it won't update your profile until y
 msgstr ""
 
 msgid "Your images will be uploaded now, but it won't be saved until you create your auction."
+msgstr ""
+
+msgid "Your transaction was not completed."
 msgstr ""

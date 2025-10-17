@@ -1,12 +1,5 @@
 import { Trans } from "@lingui/react/macro";
-import {
-  CalendarCheck2Icon,
-  CalendarClockIcon,
-  CoinsIcon,
-  GemIcon,
-  NotebookTextIcon,
-  TrophyIcon,
-} from "lucide-react";
+import { CoinsIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import type { FC } from "react";
@@ -15,7 +8,6 @@ import { AuctionCategoryBadge } from "@/app/_components/auctions/auction-categor
 import { AuctionStatusBadge } from "@/app/_components/auctions/auction-status-badge";
 import { BidDialog } from "@/app/_components/bids/bid-dialog";
 import { FormatCurrency } from "@/app/_components/format-currency";
-import { FormatDate } from "@/app/_components/format-date";
 import { UserAvatar } from "@/app/_components/user-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,10 +17,13 @@ import {
   type AuctionDetails,
   AuctionStatusSchema,
 } from "@/core/domains/auction";
+import type { User } from "@/core/domains/user";
 import { auctions } from "@/core/instances/auctions";
 import { users } from "@/core/instances/users";
 import type { LangParam } from "@/i18n";
-import { InitiatePaymentButton } from "../_components/initiate-payment.button";
+import { AuctionDescription } from "./auction-description";
+import { AuctionDetailsList } from "./auction-details.list";
+import { InitiatePaymentButton } from "./initiate-payment.button";
 
 type Props = {
   params: Promise<Pick<Auction, "id">> & Promise<LangParam>;
@@ -57,21 +52,10 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
       <AuctionHeaderCard
         auction={auction}
         meIsHighestBidder={meIsHighestBidder}
+        lang={lang}
       />
 
-      <Card>
-        <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <AuctionCarousel urls={auction.images} />
-          </div>
-
-          <div className="flex flex-col space-y-6">
-            <AuctionDescription description={auction.description} />
-            <AuctionDetailsList auction={auction} />
-            <AuctionActions auction={auction} me={me} lang={lang} />
-          </div>
-        </CardContent>
-      </Card>
+      <AuctionDetailsCard me={me} auction={auction} lang={lang} />
     </>
   );
 };
@@ -80,11 +64,12 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
 type AuctionHeaderCardProps = {
   auction: AuctionDetails;
   meIsHighestBidder: boolean;
-};
+} & LangParam;
 const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
   const {
-    auction: { title, category, owner, highestBid, status },
+    auction: { id: auctionId, title, category, owner, highestBid, status },
     meIsHighestBidder = false,
+    lang,
   } = props;
 
   const isClosed = status === AuctionStatusSchema.enum.CLOSED;
@@ -123,7 +108,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
                 <div className="flex items-center gap-2">
                   <TrophyIcon className="size-4 text-amber-500" />
                   {isClosed ? (
-                    <InitiatePaymentButton />
+                    <InitiatePaymentButton auctionId={auctionId} lang={lang} />
                   ) : (
                     <Trans>You are the Highest Bidder</Trans>
                   )}
@@ -148,7 +133,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
                 <div className="flex items-center gap-2">
                   <TrophyIcon className="size-4 text-amber-500" />
                   {isClosed ? (
-                    <InitiatePaymentButton />
+                    <InitiatePaymentButton auctionId={auctionId} lang={lang} />
                   ) : (
                     <Trans>You are the Highest Bidder</Trans>
                   )}
@@ -163,72 +148,42 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
   );
 };
 
-// ---------- AuctionDescription ----------
-const AuctionDescription: FC<{ description: string | null }> = ({
-  description,
-}) => (
-  <div className="flex flex-col gap-2">
-    <div className="flex items-center gap-x-2">
-      <NotebookTextIcon className="size-5" />
-      <Trans>Description</Trans>
-    </div>
-    {description ? (
-      <p className="max-w-full h-16 sm:h-20 overflow-x-auto overflow-y-auto text-sm leading-relaxed text-muted-foreground pr-2 scrollbar-thin">
-        {description}
-      </p>
-    ) : (
-      <p className="italic text-muted-foreground">
-        <Trans>No description provided.</Trans>
-      </p>
-    )}
-  </div>
-);
+// ---------- AuctionDetailsCard ----------
+type AuctionDetailsCardProps = {
+  me: User;
+  auction: AuctionDetails;
+} & LangParam;
 
-// ---------- AuctionDetailsList ----------
-const AuctionDetailsList: FC<{ auction: AuctionDetails }> = ({ auction }) => (
-  <div className="space-y-4">
-    <div className="flex items-center gap-2">
-      <GemIcon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
-        <Trans>Starting Price</Trans>:
-      </span>
-      <FormatCurrency value={auction.startingPrice} />
-    </div>
+const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
+  const { me, auction, lang } = props;
 
-    <div className="flex items-center gap-2">
-      <CoinsIcon className="size-4 text-amber-500" />
-      <span className="font-medium">
-        <Trans>Highest Bid</Trans>:
-      </span>
-      <span className="text-lg font-bold text-primary">
-        <FormatCurrency value={auction.highestBid ?? null} />
-      </span>
-    </div>
+  return (
+    <Card>
+      <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <AuctionCarousel urls={auction.images} />
+        </div>
 
-    <div className="flex items-center gap-2">
-      <CalendarCheck2Icon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
-        <Trans>Started</Trans>:
-      </span>
-      <FormatDate value={(auction.startedAt || auction.createdAt) ?? null} />
-    </div>
-
-    <div className="flex items-center gap-2">
-      <CalendarClockIcon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
-        <Trans>Ends</Trans>:
-      </span>
-      <FormatDate value={auction.endAt ?? null} />
-    </div>
-  </div>
-);
+        <div className="flex flex-col space-y-6">
+          <AuctionDescription description={auction.description} />
+          <AuctionDetailsList auction={auction} />
+          <AuctionActions auction={auction} me={me} lang={lang} />
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 // ---------- AuctionActions ----------
-const AuctionActions: FC<{
+type AuctionActionsProps = {
   auction: AuctionDetails;
   me: { id: string };
   lang: string;
-}> = ({ auction, me, lang }) => {
+};
+
+const AuctionActions: FC<AuctionActionsProps> = (props) => {
+  const { auction, me, lang } = props;
+
   const isMyAuction = auction.ownerId === me.id;
   const isOpenedAuction = auction.status === AuctionStatusSchema.enum.OPEN;
   const isAuctionWithBid = auction.highestBid && auction.highestBid > 0;
