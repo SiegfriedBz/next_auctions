@@ -45,6 +45,9 @@ msgstr "Already have an account ?"
 msgid "Amount"
 msgstr "Amount"
 
+msgid "Amout paid"
+msgstr "Amout paid"
+
 msgid "Art"
 msgstr "Art"
 
@@ -65,6 +68,9 @@ msgstr "Automotive"
 
 msgid "Avatar uploaded successfully!"
 msgstr "Avatar uploaded successfully!"
+
+msgid "Back to auctions"
+msgstr "Back to auctions"
 
 msgid "bid"
 msgstr "bid"
@@ -122,6 +128,9 @@ msgstr "Closed"
 
 msgid "Collectibles"
 msgstr "Collectibles"
+
+msgid "Contact owner"
+msgstr "Contact owner"
 
 msgid "Continue"
 msgstr "Continue"
@@ -212,6 +221,9 @@ msgstr "End at"
 
 #~ msgid "End Date"
 #~ msgstr "End Date"
+
+msgid "Ended"
+msgstr "Ended"
 
 msgid "Ends"
 msgstr "Ends"
@@ -387,6 +399,9 @@ msgstr "Open menu"
 msgid "Password"
 msgstr "Password"
 
+msgid "Payment Cancelled."
+msgstr "Payment Cancelled."
+
 msgid "Place your bid"
 msgstr "Place your bid"
 
@@ -398,6 +413,9 @@ msgstr "Product image"
 
 #~ msgid "Profile"
 #~ msgstr "Profile"
+
+msgid "Retry the payment here"
+msgstr "Retry the payment here"
 
 msgid "Select a category"
 msgstr "Select a category"
@@ -473,6 +491,9 @@ msgstr "Starting Price *"
 
 msgid "Status"
 msgstr "Status"
+
+#~ msgid "Success"
+#~ msgstr "Success"
 
 msgid "Switch login/signup forms"
 msgstr "Switch login/signup forms"
@@ -576,11 +597,17 @@ msgstr "Welcome back!"
 msgid "You are the Highest Bidder"
 msgstr "You are the Highest Bidder"
 
+msgid "You did not pay this auction yet. Contact us for more information."
+msgstr "You did not pay this auction yet. Contact us for more information."
+
 msgid "You logged out successfully"
 msgstr "You logged out successfully"
 
 msgid "You successfully created your auction!"
 msgstr "You successfully created your auction!"
+
+msgid "You successfully paid this auction."
+msgstr "You successfully paid this auction."
 
 msgid "You successfully signed in!"
 msgstr "You successfully signed in!"
@@ -602,3 +629,6 @@ msgstr "Your image will be uploaded now, but it won't update your profile until 
 
 msgid "Your images will be uploaded now, but it won't be saved until you create your auction."
 msgstr "Your images will be uploaded now, but it won't be saved until you create your auction."
+
+msgid "Your transaction was not completed."
+msgstr "Your transaction was not completed."

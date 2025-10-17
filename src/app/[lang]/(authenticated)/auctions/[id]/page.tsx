@@ -2,7 +2,7 @@ import { type FC, Suspense } from "react";
 import { SkeletonAuctionDetails } from "@/app/_components/skeletons/skeleton-auction-details";
 import type { Auction } from "@/core/domains/auction";
 import { type LangParam, withI18n } from "@/i18n";
-import { AuctionDetailsServer } from "./auction-details-server";
+import { AuctionDetailsServer } from "../_components/auction-details-server";
 
 type Props = {
   params: Promise<Pick<Auction, "id">> & Promise<LangParam>;
