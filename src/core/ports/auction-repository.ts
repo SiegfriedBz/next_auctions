@@ -4,6 +4,7 @@ import type {
   AuctionsCountParams,
   AuctionsListingParams,
   CreateAuctionParams as CreateParams,
+  UpdateAuctionPaidAtParams,
   UpdateAuctionParams as UpdateParams,
 } from "../domains/auction";
 
@@ -16,4 +17,9 @@ export interface AuctionRepository {
   findById(id: string): Promise<AuctionDetails | null>;
   create(params: RepoCreateAuctionParams): Promise<Auction>;
   update(params: RepoUpdateAuctionParams): Promise<Auction>;
+  /**
+    - Called from stripe-webhook -> auctions-service to mark auction as paid
+    - Uses supabase SERVICE ROLE KEY
+  */
+  updatePaidAt(params: UpdateAuctionPaidAtParams): Promise<Auction>;
 }
