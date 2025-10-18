@@ -36,6 +36,7 @@ export const AuctionSchema = z.object({
   status: AuctionStatusSchema,
   startedAt: z.date().optional(),
   endAt: z.date().optional(),
+  paidAt: z.date().optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -109,9 +110,19 @@ export type CreateAuctionParams = z.infer<typeof CreateAuctionParamsSchema>;
 export const UpdateAuctionStatusSchema = AuctionStatusSchema;
 export const UpdateAuctionParamsSchema = BaseAuctionUpdateFields.extend({
   endAt: AuctionSchema.shape.endAt.optional(),
+  paidAt: AuctionSchema.shape.paidAt.optional(),
   status: UpdateAuctionStatusSchema,
 });
 export type UpdateAuctionParams = z.infer<typeof UpdateAuctionParamsSchema>;
+
+// update auction paidAt - stripe webhook params
+export const UpdateAuctionPaidAtParamsSchema = AuctionSchema.pick({
+  id: true,
+  paidAt: true,
+});
+export type UpdateAuctionPaidAtParams = z.infer<
+  typeof UpdateAuctionPaidAtParamsSchema
+>;
 
 // Sorting
 export const SORTABLE_KEYS = [

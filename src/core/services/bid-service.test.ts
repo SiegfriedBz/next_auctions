@@ -76,6 +76,7 @@ describe("BidService", () => {
         email: owner.email,
         avatarUrl: owner.avatarUrl,
       },
+      highestBidder: null,
     };
 
     bid = {

@@ -21,7 +21,8 @@ CREATE TABLE auctions (
   started_at TIMESTAMPTZ,
   end_at TIMESTAMPTZ CHECK (end_at > started_at OR started_at IS NULL),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  paid_at TIMESTAMPTZ
 );
 
 CREATE FUNCTION before_update_auction()

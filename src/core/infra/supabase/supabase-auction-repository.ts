@@ -189,6 +189,7 @@ export class SupabaseAuctionRepository implements AuctionRepository {
       category,
       status,
       endAt,
+      paidAt,
       images,
       storageId,
     } = params;
@@ -200,6 +201,7 @@ export class SupabaseAuctionRepository implements AuctionRepository {
       .update({
         starting_price: startingPrice,
         end_at: endAt,
+        paid_at: paidAt,
         title,
         description,
         category,

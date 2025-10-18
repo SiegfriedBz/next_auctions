@@ -8,6 +8,7 @@ import {
   AuctionsSortKeySchema,
   AuctionsSortOrderSchema,
   type CreateAuctionParams,
+  type UpdateAuctionPaidAtParams,
   type UpdateAuctionParams,
 } from "../domains/auction";
 import type { AuctionRepository } from "../ports/auction-repository";
@@ -48,6 +49,7 @@ describe("AuctionService", () => {
       status: AuctionStatusSchema.enum.DRAFT,
       startedAt: undefined,
       endAt: undefined,
+      paidAt: undefined,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -61,6 +63,7 @@ describe("AuctionService", () => {
         email: user.email,
         avatarUrl: user.avatarUrl,
       },
+      highestBidder: null,
     };
 
     userRepo = {
@@ -231,6 +234,30 @@ describe("AuctionService", () => {
       await expect(
         service.update({ ...updateParams, status: blockedStatus }),
       ).rejects.toThrow("Can not set this status");
+    });
+  });
+
+  describe("updatePaidAt", () => {
+    const updateParams: UpdateAuctionPaidAtParams = {
+      id: VALID_UUID,
+      paidAt: new Date("2025-10-18"),
+    };
+
+    it("updates the auction paid at", async () => {
+      auctionRepo.findById.mockResolvedValue(auctionDetails);
+
+      const expectedAuction = {
+        ...auctionDetails,
+        paidAt: updateParams.paidAt,
+      };
+      auctionRepo.update.mockResolvedValue(expectedAuction);
+
+      const result = await service.updatePaidAt(updateParams);
+
+      expect(result).toEqual(expectedAuction);
+
+      expect(auctionRepo.findById).toHaveBeenCalledWith(updateParams.id);
+      expect(auctionRepo.update).toHaveBeenCalledWith(expectedAuction);
     });
   });
 
