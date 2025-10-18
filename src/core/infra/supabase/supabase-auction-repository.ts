@@ -4,6 +4,7 @@ import {
   type AuctionsCountParams,
   type AuctionsListingParams,
   ORDER_COLUMN_MAP,
+  type UpdateAuctionPaidAtParams,
 } from "@/core/domains/auction";
 import type {
   AuctionRepository,
@@ -11,6 +12,7 @@ import type {
   RepoUpdateAuctionParams,
 } from "@/core/ports/auction-repository";
 import { createClient } from "@/utils/supabase/server";
+import { createWithServiceRoleSupabaseClient } from "@/utils/supabase/with-service-role-client";
 import { auctionDetailsMapper } from "./auction-details-mapper";
 import { auctionMapper } from "./auction-mapper";
 
@@ -189,7 +191,6 @@ export class SupabaseAuctionRepository implements AuctionRepository {
       category,
       status,
       endAt,
-      paidAt,
       images,
       storageId,
     } = params;
@@ -201,7 +202,6 @@ export class SupabaseAuctionRepository implements AuctionRepository {
       .update({
         starting_price: startingPrice,
         end_at: endAt,
-        paid_at: paidAt,
         title,
         description,
         category,
@@ -219,6 +219,47 @@ export class SupabaseAuctionRepository implements AuctionRepository {
 
     const mapped = auctionMapper(auction);
     if (!mapped) throw new Error("Updated auction is invalid");
+
+    return mapped;
+  }
+
+  /** 
+    - Called from Stripe Webhook 
+    - Uses SERVICE ROLE SUPABASE CLIENT
+    - required to by pass RLS on auctions table
+   * */
+  async updatePaidAt(params: UpdateAuctionPaidAtParams): Promise<Auction> {
+    const { id, paidAt } = params;
+
+    const client = createWithServiceRoleSupabaseClient();
+
+    const { data, error } = await client
+      .from("auctions")
+      .select(`id`)
+      .eq("id", id)
+      .single();
+
+    if (error || !data) {
+      throw new Error(`DB updatePaidAt failed: auction not found`);
+    }
+
+    const { data: auction, error: updateError } = await client
+      .from("auctions")
+      .update({
+        paid_at: paidAt,
+      })
+      .eq("id", id)
+      .select()
+      .maybeSingle();
+
+    if (updateError || !auction) {
+      throw new Error(`DB updatePaidAt failed: ${updateError?.message}`);
+    }
+
+    const mapped = auctionMapper(auction);
+    if (!mapped) {
+      throw new Error("updatePaidAt auction is invalid");
+    }
 
     return mapped;
   }
