@@ -1,7 +1,12 @@
 import z from "zod";
 import { AuctionSchema } from "./auction";
 
-export const NotificationTypeSchema = z.enum(["NEW_BID", "NEW_AUCTION_WON"]);
+export const NotificationTypeSchema = z.enum([
+  "NEW_BID",
+  "NEW_AUCTION_WON",
+  "NEW_PAYMENT",
+]);
+export type NotificationTypeSchemaT = z.infer<typeof NotificationTypeSchema>;
 
 export const NotificationSchema = z.object({
   id: z.uuid(),

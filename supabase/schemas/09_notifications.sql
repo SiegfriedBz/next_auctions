@@ -1,7 +1,7 @@
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'notification_type') THEN
-        CREATE TYPE notification_type AS ENUM ('NEW_BID', 'NEW_AUCTION_WON');
+        CREATE TYPE notification_type AS ENUM ('NEW_BID', 'NEW_AUCTION_WON', 'NEW_PAYMENT');
     END IF;
 END$$;
 
@@ -140,3 +140,31 @@ CREATE TRIGGER on_close_auction_with_bid
 AFTER UPDATE ON public.auctions
 FOR EACH ROW
 EXECUTE FUNCTION handle_close_auction_with_bid();
+
+-- 
+-- TRIGGER FUNCTION to notify auction owner of a new payment => NEW_PAYMENT
+CREATE OR REPLACE FUNCTION handle_auction_paid()
+RETURNS TRIGGER AS $$
+DECLARE
+    auction_owner UUID;
+BEGIN
+    IF  OLD.paid_at IS NULL
+        AND NEW.paid_at IS NOT NULL
+    THEN
+        auction_owner := NEW.owner_id;
+
+        INSERT INTO public.notifications (auction_id, recipient_id, type)
+        VALUES (NEW.id, auction_owner, 'NEW_PAYMENT');
+
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create trigger for AFTER UPDATE on auctions
+DROP TRIGGER IF EXISTS on_auction_is_paid ON public.auctions;
+
+CREATE TRIGGER on_auction_is_paid
+AFTER UPDATE ON public.auctions
+FOR EACH ROW
+EXECUTE FUNCTION handle_auction_paid();

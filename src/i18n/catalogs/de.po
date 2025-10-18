@@ -366,17 +366,29 @@ msgstr ""
 #~ msgid "Next"
 #~ msgstr ""
 
+msgid "No auction won"
+msgstr ""
+
+msgid "No bid"
+msgstr ""
+
 msgid "No description provided."
 msgstr ""
 
-msgid "No new auction won"
-msgstr ""
+#~ msgid "No new auction won"
+#~ msgstr ""
 
-msgid "No new bid"
-msgstr ""
+#~ msgid "No new bid"
+#~ msgstr ""
+
+#~ msgid "No new payment"
+#~ msgstr ""
 
 #~ msgid "No notification"
 #~ msgstr ""
+
+msgid "No payment"
+msgstr ""
 
 msgid "No results."
 msgstr ""
@@ -400,6 +412,9 @@ msgid "Password"
 msgstr ""
 
 msgid "Payment Cancelled."
+msgstr ""
+
+msgid "Payments"
 msgstr ""
 
 msgid "Place your bid"
