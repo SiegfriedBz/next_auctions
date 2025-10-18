@@ -80,6 +80,7 @@ describe("AuctionService", () => {
       findById: jest.fn(),
       create: jest.fn(),
       update: jest.fn(),
+      updatePaidAt: jest.fn(),
     };
 
     service = new AuctionService(userRepo, auctionRepo);
@@ -244,20 +245,26 @@ describe("AuctionService", () => {
     };
 
     it("updates the auction paid at", async () => {
-      auctionRepo.findById.mockResolvedValue(auctionDetails);
-
       const expectedAuction = {
         ...auctionDetails,
         paidAt: updateParams.paidAt,
       };
-      auctionRepo.update.mockResolvedValue(expectedAuction);
+      auctionRepo.updatePaidAt.mockResolvedValue(expectedAuction);
 
       const result = await service.updatePaidAt(updateParams);
 
       expect(result).toEqual(expectedAuction);
+    });
 
-      expect(auctionRepo.findById).toHaveBeenCalledWith(updateParams.id);
-      expect(auctionRepo.update).toHaveBeenCalledWith(expectedAuction);
+    it("throws an error if paidAt undefined", async () => {
+      const invalidParams: UpdateAuctionPaidAtParams = {
+        id: VALID_UUID,
+        paidAt: undefined,
+      };
+
+      await expect(service.updatePaidAt(invalidParams)).rejects.toThrow(
+        "paidAt must be a date",
+      );
     });
   });
 

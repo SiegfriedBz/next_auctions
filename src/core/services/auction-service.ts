@@ -88,19 +88,12 @@ export class AuctionService {
     return await this.auctionRepo.count(params);
   }
 
+  /** Called from stripe webhook to mark auction as paid */
   async updatePaidAt(params: UpdateAuctionPaidAtParams) {
-    const { id: auctionId, paidAt } = params;
-
-    if (!paidAt) {
-      throw new Error("Paid At must be a date");
+    if (!params?.paidAt) {
+      throw new Error("paidAt must be a date");
     }
 
-    const auction = await this.auctionRepo.findById(auctionId);
-
-    if (!auction || !auction.id) {
-      throw new Error("Auction not found");
-    }
-
-    return await this.auctionRepo.update({ ...auction, paidAt: params.paidAt });
+    return await this.auctionRepo.updatePaidAt(params);
   }
 }

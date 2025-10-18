@@ -46,7 +46,7 @@ export const createCheckoutSession = async (params: Params): Promise<void> => {
     success_url: `${NEXT_PUBLIC_APP_URL}/${lang}/auctions/${auctionId}/stripe/success?sessionId={CHECKOUT_SESSION_ID}`,
     cancel_url: `${NEXT_PUBLIC_APP_URL}/${lang}/auctions/${auctionId}/stripe/cancel`,
 
-    metadata: { auctionId: auction.id },
+    metadata: { auctionId: auction.id }, // available in webhook
   });
 
   const sessionUrl = session.url;
