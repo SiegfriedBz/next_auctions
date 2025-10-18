@@ -11,6 +11,7 @@ export type SupabaseAuction = Pick<
   highest_bid: number | null;
   started_at: string | null;
   end_at: string | null;
+  paid_at: string | null;
   created_at: string;
   updated_at: string;
   storage_id: string | null;
@@ -45,6 +46,7 @@ export const normalizeAuctionData = (row: SupabaseAuction) => {
     status: row.status,
     startedAt: row.started_at ? new Date(row.started_at) : undefined,
     endAt: row.end_at ? new Date(row.end_at) : undefined,
+    paidAt: row.paid_at ? new Date(row.paid_at) : undefined,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   };

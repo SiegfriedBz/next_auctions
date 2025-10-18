@@ -6,6 +6,7 @@ import type {
   AuctionsListingParams,
   CreateAuctionParams,
   ListingReturn,
+  UpdateAuctionPaidAtParams,
   UpdateAuctionParams,
 } from "../domains/auction";
 import type { AuctionRepository } from "../ports/auction-repository";
@@ -85,5 +86,21 @@ export class AuctionService {
 
   async count(params: AuctionsCountParams = {}): Promise<number> {
     return await this.auctionRepo.count(params);
+  }
+
+  async updatePaidAt(params: UpdateAuctionPaidAtParams) {
+    const { id: auctionId, paidAt } = params;
+
+    if (!paidAt) {
+      throw new Error("Paid At must be a date");
+    }
+
+    const auction = await this.auctionRepo.findById(auctionId);
+
+    if (!auction || !auction.id) {
+      throw new Error("Auction not found");
+    }
+
+    return await this.auctionRepo.update({ ...auction, paidAt: params.paidAt });
   }
 }

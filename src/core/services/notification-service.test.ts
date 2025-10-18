@@ -1,10 +1,11 @@
 import type { User } from "@/core/domains/user";
 import { UserRoleSchema } from "@/core/domains/user";
-import type {
-  Notification,
-  NotificationsCountParams,
-  NotificationsListingParams,
-  UpdateNotificationParams,
+import {
+  type Notification,
+  type NotificationsCountParams,
+  type NotificationsListingParams,
+  NotificationTypeSchema,
+  type UpdateNotificationParams,
 } from "../domains/notifications";
 import type { NotificationRepository } from "../ports/notification-repository";
 import type { UserRepository } from "../ports/user-repository";
@@ -45,6 +46,7 @@ describe("NotificationService", () => {
         title: "Test Auction",
         images: ["https://github.com/shadcn.png"],
       },
+      type: NotificationTypeSchema.enum.NEW_BID,
     };
 
     userRepo = {
