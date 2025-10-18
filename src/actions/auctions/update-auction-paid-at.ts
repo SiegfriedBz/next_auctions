@@ -7,6 +7,7 @@ import type {
 import { auctions } from "@/core/instances/auctions";
 import type { ServerActionResult } from "../types/server-actions";
 
+/** called from stripe webhook */
 export const updateAuctionPaidAt = async (
   params: UpdateAuctionPaidAtParams,
 ): Promise<ServerActionResult<Auction>> => {
