@@ -43,9 +43,10 @@ export const createCheckoutSession = async (params: Params): Promise<void> => {
         quantity: 1,
       },
     ],
-
     success_url: `${NEXT_PUBLIC_APP_URL}/${lang}/auctions/${auctionId}/stripe/success?sessionId={CHECKOUT_SESSION_ID}`,
     cancel_url: `${NEXT_PUBLIC_APP_URL}/${lang}/auctions/${auctionId}/stripe/cancel`,
+
+    metadata: { auctionId: auction.id },
   });
 
   const sessionUrl = session.url;
