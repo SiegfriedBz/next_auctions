@@ -1,6 +1,7 @@
 "use client";
 
 import { useLingui } from "@lingui/react/macro";
+import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -69,10 +70,11 @@ export const NotificationItem: FC<Props> = (props) => {
             <div className="object-cover size-10 rounded-lg bg-primary/25 dark:bg-secondary dark:group-hover:bg-primary/40" />
           )}
         </div>
-        <span className="text-sm opacity-80 group-hover:opacity-100">
+        <span className="text-sm opacity-80 group-hover:opacity-100 overflow-hidden">
           {title}
         </span>
       </div>
+      <EyeIcon className="size-4 text-primary/75 dark:text-secondary dark:group-hover:text-primary/75" />
     </Link>
   );
 };
