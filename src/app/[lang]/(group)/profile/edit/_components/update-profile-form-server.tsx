@@ -1,0 +1,24 @@
+import { useLingui } from "@lingui/react/macro";
+import { redirect } from "next/navigation";
+import type { FC } from "react";
+import { users } from "@/core/instances/users";
+import { UpdateProfileForm } from "./update-profile-form";
+
+export const UpdateUserFormServer: FC = async () => {
+  const { i18n } = useLingui();
+  const { locale: lang } = i18n;
+
+  const me = await users().me();
+
+  if (!me) {
+    redirect(`/${lang}`);
+  }
+
+  const defaultValues = {
+    firstName: me.firstName,
+    lastName: me.lastName,
+    avatarUrl: me.avatarUrl,
+  };
+
+  return <UpdateProfileForm defaultValues={defaultValues} userId={me.id} />;
+};
