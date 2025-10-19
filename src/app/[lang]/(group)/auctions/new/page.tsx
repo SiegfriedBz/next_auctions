@@ -1,6 +1,8 @@
 import { Trans } from "@lingui/react/macro";
 import { redirect } from "next/navigation";
 import type { FC } from "react";
+import { TypographyH2 } from "@/app/_components/typography/h2";
+import { TypographyLead } from "@/app/_components/typography/lead";
 import {
   Card,
   CardContent,
@@ -28,11 +30,15 @@ const Page: FC<Props> = async (props) => {
     <div className="max-w-5xl flex flex-col gap-4 mx-auto pb-4">
       <Card>
         <CardHeader>
-          <CardTitle className="h2">
-            <Trans>Create your auction</Trans>
+          <CardTitle>
+            <TypographyH2>
+              <Trans>Create your auction</Trans>
+            </TypographyH2>
           </CardTitle>
           <CardDescription>
-            <Trans>Fill the form below to create a new auction</Trans>
+            <TypographyLead>
+              <Trans>Fill the form below to create a new auction</Trans>
+            </TypographyLead>
           </CardDescription>
         </CardHeader>
         <CardContent>

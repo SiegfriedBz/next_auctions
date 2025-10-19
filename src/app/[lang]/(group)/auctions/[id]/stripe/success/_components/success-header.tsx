@@ -3,6 +3,8 @@ import { CoinsIcon, TrophyIcon } from "lucide-react";
 import type { FC } from "react";
 import Stripe from "stripe";
 import { FormatCurrency } from "@/app/_components/format-currency";
+import { TypographyH4 } from "@/app/_components/typography/h4";
+import { TypographyH5 } from "@/app/_components/typography/h5";
 import type { AuctionDetails } from "@/core/domains/auction";
 import { HeaderCard } from "../../_components/header-card";
 
@@ -21,55 +23,33 @@ export const SuccessHeaderCard: FC<Props> = async (props) => {
   const isPaid =
     session.payment_status === "paid" || session.status === "complete";
 
-  const mobileHeader = isPaid ? (
+  const header = isPaid ? (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
         <TrophyIcon className="size-4 text-amber-500" />
-        <Trans>You successfully paid this auction.</Trans>
+        <TypographyH4 className="whitespace-nowrap">
+          <Trans>You successfully paid this auction.</Trans>
+        </TypographyH4>
       </div>
       <div className="flex items-center gap-2">
         <CoinsIcon className="size-4 text-amber-500" />
-        <Trans>Amout paid</Trans>:
-        <FormatCurrency value={auction.highestBid ?? null} />
+        <TypographyH4 className="whitespace-nowrap">
+          <Trans>Amout paid</Trans>:
+        </TypographyH4>
+        <TypographyH5>
+          <FormatCurrency value={auction.highestBid ?? null} />
+        </TypographyH5>
       </div>
     </div>
   ) : (
     <div className="flex items-center gap-2">
-      <Trans>
-        You did not pay this auction yet. Contact us for more information.
-      </Trans>
+      <TypographyH5>
+        <Trans>
+          You did not pay this auction yet. Contact us for more information.
+        </Trans>
+      </TypographyH5>
     </div>
   );
 
-  const tabletHeader = (
-    <div className="flex flex-col gap-4 text-lg">
-      {isPaid ? (
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <TrophyIcon className="size-6 text-amber-500" />
-            <Trans>You successfully paid this auction.</Trans>
-          </div>
-          <div className="flex items-center gap-2">
-            <CoinsIcon className="size-6 text-amber-500" />
-            <Trans>Amout paid</Trans>:
-            <FormatCurrency value={auction.highestBid ?? null} />
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center gap-2">
-          <Trans>
-            You did not pay this auction yet. Contact us for more information.
-          </Trans>
-        </div>
-      )}
-    </div>
-  );
-
-  return (
-    <HeaderCard
-      auction={auction}
-      mobileHeader={mobileHeader}
-      tabletHeader={tabletHeader}
-    />
-  );
+  return <HeaderCard auction={auction} header={header} />;
 };
