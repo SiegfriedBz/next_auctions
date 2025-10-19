@@ -17,7 +17,7 @@ type Props = {
 export const AuctionCategoryBadge: FC<Props> = (props) => {
   const {
     category,
-    className = "px-3 py-1 font-bold text-md text-foreground",
+    className = "px-2 py-0.5 sm:px-3 sm:py-1 font-bold text-foreground text-sm sm:text-base",
   } = props;
   const { i18n } = useLingui();
 
