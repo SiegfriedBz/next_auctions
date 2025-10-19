@@ -37,7 +37,7 @@ export const RealTimeNotificationsMenu: FC<Props> = (props) => {
         </Badge>
       </NavigationMenuTrigger>
 
-      <NavigationMenuContent asChild>
+      <NavigationMenuContent>
         <NotificationMenuContent
           notifications={notifications}
           onMarkNotificationAsSeen={onMarkNotificationAsSeen}

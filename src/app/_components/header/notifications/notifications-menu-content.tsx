@@ -3,6 +3,7 @@
 import { Trans, useLingui } from "@lingui/react/macro";
 import { BellIcon, BellRingIcon } from "lucide-react";
 import { type FC, memo, useMemo } from "react";
+import { Badge } from "@/components/ui/badge";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -42,21 +43,21 @@ export const NotificationMenuContent: FC<Props> = (props) => {
       {
         value: "payments",
         label: t`Payments`,
-        defaultLabel: t`No payment`,
+        defaultLabel: t`No new payment`,
         notifications:
           notificationsByType[NotificationTypeSchema.enum.NEW_PAYMENT] || [],
       },
       {
         value: "bids",
         label: t`Bids`,
-        defaultLabel: t`No bid`,
+        defaultLabel: t`No new bid`,
         notifications:
           notificationsByType[NotificationTypeSchema.enum.NEW_BID] || [],
       },
       {
-        value: "auctions-won",
-        label: t`Auctions won`,
-        defaultLabel: t`No auction won`,
+        value: "won-auctions",
+        label: t`Won auctions`,
+        defaultLabel: t`No new won auction`,
         notifications:
           notificationsByType[NotificationTypeSchema.enum.NEW_AUCTION_WON] ||
           [],
@@ -66,7 +67,7 @@ export const NotificationMenuContent: FC<Props> = (props) => {
 
   return (
     <Tabs defaultValue="payments" className="w-full px-1">
-      <div className="flex justify-center items-center gap-x-2 mt-2 mb-1">
+      <div className="flex justify-center items-center gap-x-2 mt-2">
         {count > 0 ? (
           <BellRingIcon className="size-4 opacity-90" />
         ) : (
@@ -77,16 +78,22 @@ export const NotificationMenuContent: FC<Props> = (props) => {
 
       <TabsList className="w-full">
         {tabsList.map((tab) => {
+          const count = tab.notifications.length;
           return (
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className={cn("cursor-pointer opacity-80", {
-                "opacity-100": tab.notifications.length > 0,
-              })}
-              aria-selected={tab.notifications.length > 0}
+              className="cursor-pointer opacity-80"
             >
               {tab.label}
+              <Badge
+                className={cn(
+                  "size-4 text-xs",
+                  count > 0 ? "opacity-100" : "opacity-50",
+                )}
+              >
+                {count}
+              </Badge>
             </TabsTrigger>
           );
         })}
@@ -118,15 +125,18 @@ const TabContentInner: FC<TabContentInnerProps> = (props) => {
   const count = notifications.length;
 
   return (
-    <ul className="grid w-54 gap-2">
+    <ul className="grid gap-2 w-full px-0.5 pb-2">
       {count === 0 ? (
-        <li className="text-sm whitespace-nowrap text-center py-2 text-shadow-muted-foreground">
+        <li className="text-sm h-12 whitespace-nowrap flex justify-center items-center text-shadow-muted-foreground">
           {label}
         </li>
       ) : (
         notifications.map((notification) => {
           return (
-            <li key={notification.id}>
+            <li
+              key={notification.id}
+              className="text-sm h-12 whitespace-nowrap flex justify-center items-center "
+            >
               <NavigationMenuLink asChild>
                 <NotificationItem
                   notification={notification}

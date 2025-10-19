@@ -51,12 +51,12 @@ export const NotificationItem: FC<Props> = (props) => {
       onClick={markAsSeen}
       className={cn(
         className,
-        "cursor-pointer group text-sm h-12 leading-none font-medium flex flex-row items-center gap-x-2 overflow-hidden",
+        "cursor-pointer group text-sm min-w-full leading-none font-medium flex flex-row items-center gap-x-2 overflow-hidden",
       )}
       href={`/${lang}/auctions/${auctionId}`}
     >
       <span className="sr-only">{t`Notification card with link`}</span>
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-4 w-full">
         <div className="relative size-10 aspect-square rounded-lg overflow-hidden flex items-center justify-center">
           {img ? (
             <Image
