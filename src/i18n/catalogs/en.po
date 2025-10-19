@@ -228,6 +228,9 @@ msgstr "Ended"
 msgid "Ends"
 msgstr "Ends"
 
+msgid "Ends in"
+msgstr "Ends in"
+
 msgid "English"
 msgstr "English"
 
@@ -326,6 +329,9 @@ msgstr "Light"
 
 #~ msgid "Loading uploader..."
 #~ msgstr "Loading uploader..."
+
+msgid "Log in to access more features."
+msgstr "Log in to access more features."
 
 msgid "Log out"
 msgstr "Log out"
