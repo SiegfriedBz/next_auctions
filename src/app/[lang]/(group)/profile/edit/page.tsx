@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/react/macro";
 import { redirect } from "next/navigation";
 import { type FC, Suspense } from "react";
-import { SkeletonProfileForm } from "@/app/[lang]/(authenticated)/profile/edit/_components/skeleton-profile-form";
+import { SkeletonProfileForm } from "@/app/[lang]/(group)/profile/edit/_components/skeleton-profile-form";
 import {
   Card,
   CardContent,

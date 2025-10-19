@@ -121,24 +121,13 @@ describe("AuctionService", () => {
   });
 
   describe("detailsById", () => {
-    it("returns auction details when user is authenticated", async () => {
-      userRepo.me.mockResolvedValue(user);
+    it("returns auction details", async () => {
       auctionRepo.findById.mockResolvedValue(auctionDetails);
 
       const result = await service.detailsById(VALID_UUID);
 
       expect(result).toEqual(auctionDetails);
-      expect(userRepo.me).toHaveBeenCalled();
       expect(auctionRepo.findById).toHaveBeenCalledWith(VALID_UUID);
-    });
-
-    it("throws error if user is not authenticated", async () => {
-      userRepo.me.mockResolvedValue(null);
-
-      await expect(service.detailsById(VALID_UUID)).rejects.toThrow(
-        "Only authenticated user allowed",
-      );
-      expect(auctionRepo.findById).not.toHaveBeenCalled();
     });
 
     it("returns null if auction not found", async () => {

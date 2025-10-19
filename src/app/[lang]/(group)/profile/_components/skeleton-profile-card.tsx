@@ -19,7 +19,7 @@ export const SkeletonProfileCard: FC = () => {
           <SkeletonAvatar className="size-24 sm:size-26 md:size-32 rounded-md" />
 
           <SkeletonAuctionsStats
-            isMe
+            isMyAuctionsPage
             className="grid md:grid-cols-2 items-center"
           />
         </CardContent>

@@ -38,9 +38,9 @@ export const ProfileServer: FC<Props> = async (props) => {
             avatarClassName="-ms-3 size-24 sm:size-26 md:size-32 rounded-md"
           />
 
-          <Suspense fallback={<SkeletonAuctionsStats isMe />}>
+          <Suspense fallback={<SkeletonAuctionsStats isMyAuctionsPage />}>
             <AuctionsStatsServer
-              isMe
+              isMyAuctionsPage
               className="grid md:grid-cols-2 items-center"
             />
           </Suspense>

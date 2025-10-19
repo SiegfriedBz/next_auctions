@@ -8,30 +8,29 @@ import {
 } from "@/app/_components/auctions/table";
 import { searchParamsCache } from "@/app/[lang]/search.params";
 import { Table } from "@/components/ui/table";
-import type { User } from "@/core/domains/user";
 import { auctions } from "@/core/instances/auctions";
 import { users } from "@/core/instances/users";
 
 type Props = {
-  isMe?: boolean;
+  isMyAuctionsPage?: boolean;
 };
 
 export const AuctionsTableServer: FC<Props> = async (props) => {
-  const { isMe = false } = props;
+  const { isMyAuctionsPage = false } = props;
 
   const { pageIndex, pageSize, ...rest } = searchParamsCache.all();
 
-  let me: User | null = null;
-  if (isMe) {
-    me = await users().me();
-  }
+  const me = await users().me();
 
-  const filterBy = {
-    ownerId: me?.id ?? undefined,
-    title: rest.title ?? undefined,
-    category: rest.category ?? undefined,
-    status: rest.status ?? undefined,
-  };
+  // display current user' auctions if isMyAuctionsPage
+  const filterBy = isMyAuctionsPage
+    ? {
+        ownerId: me?.id ?? undefined,
+        title: rest.title ?? undefined,
+        category: rest.category ?? undefined,
+        status: rest.status ?? undefined,
+      }
+    : {};
 
   const orderBy =
     rest.key && rest.order ? { key: rest.key, order: rest.order } : undefined;
@@ -53,7 +52,8 @@ export const AuctionsTableServer: FC<Props> = async (props) => {
       <AuctionsTableProvider
         data={list}
         count={total}
-        withRowActions={!isMe}
+        withRowActions={!isMyAuctionsPage} // row actions not displayed if not MyAuctionsPage
+        meId={me?.id}
         className="space-y-4"
       >
         <Table className="rounded-md border">

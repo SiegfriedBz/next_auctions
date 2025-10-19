@@ -25,6 +25,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  domains: [
+    "api.microlink.io", // Microlink Image Preview
+  ],
 };
 
 export default nextConfig;

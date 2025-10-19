@@ -1,7 +1,7 @@
 import { useLingui } from "@lingui/react/macro";
 import { notFound, redirect } from "next/navigation";
 import type { FC } from "react";
-import { UpdateAuctionForm } from "@/app/[lang]/(authenticated)/auctions/[id]/edit/_components/update-auction-form";
+import { UpdateAuctionForm } from "@/app/[lang]/(group)/auctions/[id]/edit/_components/update-auction-form";
 import type { AuctionDetails } from "@/core/domains/auction";
 import { auctions } from "@/core/instances/auctions";
 import { getForbiddenNextStatuses } from "@/lib/get-forbidden-next-statuses";

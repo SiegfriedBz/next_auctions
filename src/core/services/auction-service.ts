@@ -36,11 +36,6 @@ export class AuctionService {
   }
 
   async detailsById(id: string): Promise<AuctionDetails | null> {
-    const me = await this.userRepo.me();
-    if (!me) {
-      throw new Error("Only authenticated user allowed");
-    }
-
     return await this.auctionRepo.findById(id);
   }
 
