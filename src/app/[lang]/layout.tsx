@@ -30,7 +30,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GravL",
+  title: "GavL",
   description: "Track Auctions Effortlessly",
 };
 
