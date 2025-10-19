@@ -3,6 +3,10 @@ import type { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
+import { TypographyH3 } from "./typography/h3";
+import { TypographyH4 } from "./typography/h4";
+import { TypographyLead } from "./typography/lead";
+import { TypographySmall } from "./typography/small";
 
 const userAvatarVariants = cva(
   "flex items-center gap-x-2 px-3 py-2 rounded-md overflow-hidden truncate text-ellipsis",
@@ -51,10 +55,12 @@ export const UserAvatar: FC<Props> = ({
       </Avatar>
       {!onlyAvatar && (
         <div className="flex flex-col">
-          <span className="font-medium capitalize">{getFullName(user)}</span>
-          <span className="max-[480px]:hidden sm:text-base text-muted-foreground dark:text-muted-foreground">
+          <TypographyH4 className="font-medium capitalize">
+            {getFullName(user)}
+          </TypographyH4>
+          <TypographySmall className="max-[480px]:hidden mt-1">
             {user.email}
-          </span>
+          </TypographySmall>
         </div>
       )}
     </div>

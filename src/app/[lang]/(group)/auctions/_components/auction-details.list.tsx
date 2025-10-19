@@ -9,6 +9,8 @@ import type { FC } from "react";
 import { Countdown } from "@/app/_components/auctions/count-down";
 import { FormatCurrency } from "@/app/_components/format-currency";
 import { FormatDate } from "@/app/_components/format-date";
+import { TypographyH4 } from "@/app/_components/typography/h4";
+import { TypographyH5 } from "@/app/_components/typography/h5";
 import {
   type AuctionDetails,
   AuctionStatusSchema,
@@ -25,45 +27,58 @@ export const AuctionDetailsList: FC<Props> = (props) => {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <GemIcon className="size-4 text-muted-foreground" />
-        <span className="font-medium">
+        <TypographyH4 className="whitespace-nowrap">
           <Trans>Starting Price</Trans>:
-        </span>
-        <FormatCurrency value={auction.startingPrice} />
+        </TypographyH4>
+        <TypographyH5>
+          <FormatCurrency value={auction.startingPrice} />
+        </TypographyH5>
       </div>
 
       <div className="flex items-center gap-2">
         <CoinsIcon className="size-4 text-amber-500" />
-        <span className="font-medium">
+        <TypographyH4 className="whitespace-nowrap">
           <Trans>Highest Bid</Trans>:
-        </span>
-        <span className="text-lg font-bold text-primary">
+        </TypographyH4>
+        <TypographyH5>
           <FormatCurrency value={auction.highestBid ?? null} />
-        </span>
+        </TypographyH5>
       </div>
 
       <div className="flex items-center gap-2">
         <CalendarCheck2Icon className="size-4 text-muted-foreground" />
-        <span className="font-medium">
+        <TypographyH4 className="whitespace-nowrap">
           <Trans>Started</Trans>:
-        </span>
-        <FormatDate value={(auction.startedAt || auction.createdAt) ?? null} />
+        </TypographyH4>
+        <TypographyH5>
+          <FormatDate
+            value={(auction.startedAt || auction.createdAt) ?? null}
+          />
+        </TypographyH5>
       </div>
 
       {!isClosed && (
         <div className="flex items-center gap-2">
           <CalendarClockIcon className="size-4 text-muted-foreground" />
-          <span className="font-medium">
-            {auction.endAt && auction.endAt.getTime() < Date.now() ? (
-              <>
+          {auction.endAt && auction.endAt.getTime() < Date.now() ? (
+            <>
+              <TypographyH4>
                 <Trans>Ended</Trans>:{" "}
+              </TypographyH4>
+              <TypographyH5>
                 <FormatDate value={auction.endAt ?? null} />
-              </>
-            ) : (
-              <>
-                <Trans>Ends in</Trans>: <Countdown endDate={auction.endAt} />
-              </>
-            )}
-          </span>
+              </TypographyH5>
+            </>
+          ) : (
+            <>
+              <TypographyH4>
+                <Trans>Ends in</Trans>:{" "}
+              </TypographyH4>
+              <TypographyH5>
+                <Countdown endDate={auction.endAt} />
+              </TypographyH5>
+            </>
+          )}
         </div>
       )}
     </div>

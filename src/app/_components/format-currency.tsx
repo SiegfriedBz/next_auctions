@@ -23,7 +23,7 @@ export const FormatCurrency: FC<Props> = (props) => {
   }, [value, locale]);
 
   return formatted ? (
-    <div className={cn("font-medium", className)}>{formatted}</div>
+    <span className={cn("font-medium", className)}>{formatted}</span>
   ) : (
     <CircleOffIcon size={16} className="text-muted-foreground" />
   );

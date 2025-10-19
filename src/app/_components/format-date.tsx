@@ -30,7 +30,7 @@ export const FormatDate: FC<Props> = (props) => {
   }
 
   return formatted ? (
-    <div className={cn("font-medium", className)}>{formatted}</div>
+    <span className={cn("font-medium", className)}>{formatted}</span>
   ) : (
     <span className="text-muted-foreground">{i18n._(label)}</span>
   );
