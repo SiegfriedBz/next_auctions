@@ -16,13 +16,14 @@ type Props = {
   data: Auction[];
   count: number;
   className?: string;
+  meId?: string;
   withRowActions?: boolean;
 };
 
 export const AuctionsTableProvider: FC<PropsWithChildren<Props>> = (props) => {
-  const { data, count, withRowActions = true, className, children } = props;
+  const { data, count, withRowActions, meId, className, children } = props;
 
-  const columns = useColumns({ withRowActions });
+  const columns = useColumns({ withRowActions, meId });
   const { pagination, onPaginationChange } = usePagination();
 
   const table = useReactTable({

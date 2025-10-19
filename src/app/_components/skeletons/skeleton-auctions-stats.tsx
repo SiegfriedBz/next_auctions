@@ -1,20 +1,20 @@
 import { msg } from "@lingui/core/macro";
-import { CoinsIcon, PickaxeIcon, UsersIcon } from "lucide-react";
+import { CoinsIcon, GavelIcon, UsersIcon } from "lucide-react";
 import type { FC, PropsWithChildren } from "react";
 import { SkeletonStats } from "@/app/_components/skeletons/skeleton-stats";
 
 type Props = {
-  isMe?: boolean;
+  isMyAuctionsPage?: boolean;
   className?: string;
 };
 
 export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
-  const { isMe = false, className } = props;
+  const { isMyAuctionsPage = false, className } = props;
 
   const items = [
     {
       title: msg`auction`,
-      icon: PickaxeIcon,
+      icon: GavelIcon,
     },
     {
       title: msg`bid`,
@@ -22,12 +22,18 @@ export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
     },
   ];
 
-  if (!isMe) {
+  if (!isMyAuctionsPage) {
     items.push({
       title: msg`user`,
       icon: UsersIcon,
     });
   }
 
-  return <SkeletonStats items={items} isMe={isMe} className={className} />;
+  return (
+    <SkeletonStats
+      items={items}
+      isMyAuctionsPage={isMyAuctionsPage}
+      className={className}
+    />
+  );
 };
