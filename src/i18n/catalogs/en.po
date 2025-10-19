@@ -60,8 +60,8 @@ msgstr "auction"
 msgid "Auctions"
 msgstr "Auctions"
 
-msgid "Auctions won"
-msgstr "Auctions won"
+#~ msgid "Auctions won"
+#~ msgstr "Auctions won"
 
 msgid "Automotive"
 msgstr "Automotive"
@@ -366,11 +366,11 @@ msgstr "New"
 #~ msgid "Next"
 #~ msgstr "Next"
 
-msgid "No auction won"
-msgstr "No auction won"
+#~ msgid "No auction won"
+#~ msgstr "No auction won"
 
-msgid "No bid"
-msgstr "No bid"
+#~ msgid "No bid"
+#~ msgstr "No bid"
 
 msgid "No description provided."
 msgstr "No description provided."
@@ -378,17 +378,20 @@ msgstr "No description provided."
 #~ msgid "No new auction won"
 #~ msgstr "No new auction won"
 
-#~ msgid "No new bid"
-#~ msgstr "No new bid"
+msgid "No new bid"
+msgstr "No new bid"
 
-#~ msgid "No new payment"
-#~ msgstr "No new payment"
+msgid "No new payment"
+msgstr "No new payment"
+
+msgid "No new won auction"
+msgstr "No new won auction"
 
 #~ msgid "No notification"
 #~ msgstr "No notification"
 
-msgid "No payment"
-msgstr "No payment"
+#~ msgid "No payment"
+#~ msgstr "No payment"
 
 msgid "No results."
 msgstr "No results."
@@ -608,6 +611,9 @@ msgstr "View auction"
 
 msgid "Welcome back!"
 msgstr "Welcome back!"
+
+msgid "Won auctions"
+msgstr "Won auctions"
 
 msgid "You are the Highest Bidder"
 msgstr "You are the Highest Bidder"
