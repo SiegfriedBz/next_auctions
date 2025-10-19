@@ -1,12 +1,11 @@
 import { Trans } from "@lingui/react/macro";
 import { CoinsIcon, TrophyIcon } from "lucide-react";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { FC } from "react";
 import { AuctionCarousel } from "@/app/_components/auctions/auction-carousel";
 import { AuctionCategoryBadge } from "@/app/_components/auctions/auction-category-badge";
 import { AuctionStatusBadge } from "@/app/_components/auctions/auction-status-badge";
-import { Countdown } from "@/app/_components/auctions/count-down";
 import { BidDialog } from "@/app/_components/bids/bid-dialog";
 import { FormatCurrency } from "@/app/_components/format-currency";
 import { UserAvatar } from "@/app/_components/user-avatar";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLingui } from "@lingui/react/macro";
-import { GavelIcon, Grid3x3Icon } from "lucide-react";
+import { GavelIcon } from "lucide-react";
 import type { FC } from "react";
 import {
   NavigationMenuContent,
