@@ -519,6 +519,15 @@ msgstr ""
 msgid "System"
 msgstr ""
 
+msgid "This auction has been won and paid for."
+msgstr ""
+
+msgid "This auction has ended."
+msgstr ""
+
+msgid "This auction is ongoing."
+msgstr ""
+
 msgid "This is your auction"
 msgstr ""
 
@@ -615,8 +624,8 @@ msgstr ""
 msgid "Won auctions"
 msgstr ""
 
-msgid "You are the Highest Bidder"
-msgstr ""
+#~ msgid "You are the Highest Bidder"
+#~ msgstr ""
 
 msgid "You did not pay this auction yet. Contact us for more information."
 msgstr ""
@@ -642,7 +651,13 @@ msgstr ""
 msgid "You successfully updated your profile!"
 msgstr ""
 
+msgid "You won and paid for this auction."
+msgstr ""
+
 msgid "You won this auction"
+msgstr ""
+
+msgid "You're currently the highest bidder!"
 msgstr ""
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."

@@ -519,6 +519,15 @@ msgstr "Switch login/signup forms"
 msgid "System"
 msgstr "System"
 
+msgid "This auction has been won and paid for."
+msgstr "This auction has been won and paid for."
+
+msgid "This auction has ended."
+msgstr "This auction has ended."
+
+msgid "This auction is ongoing."
+msgstr "This auction is ongoing."
+
 msgid "This is your auction"
 msgstr "This is your auction"
 
@@ -615,8 +624,8 @@ msgstr "Welcome back!"
 msgid "Won auctions"
 msgstr "Won auctions"
 
-msgid "You are the Highest Bidder"
-msgstr "You are the Highest Bidder"
+#~ msgid "You are the Highest Bidder"
+#~ msgstr "You are the Highest Bidder"
 
 msgid "You did not pay this auction yet. Contact us for more information."
 msgstr "You did not pay this auction yet. Contact us for more information."
@@ -642,8 +651,14 @@ msgstr "You successfully updated your auction!"
 msgid "You successfully updated your profile!"
 msgstr "You successfully updated your profile!"
 
+msgid "You won and paid for this auction."
+msgstr "You won and paid for this auction."
+
 msgid "You won this auction"
 msgstr "You won this auction"
+
+msgid "You're currently the highest bidder!"
+msgstr "You're currently the highest bidder!"
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
 msgstr "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
