@@ -12,11 +12,12 @@ import { RowAction } from "../row-actions";
 import { AuctionTableImage } from "../table-image";
 
 type Params = {
+  meId?: string;
   withRowActions?: boolean;
 };
 
-export const useColumns = (params: Params = {}): ColumnDef<Auction>[] => {
-  const { withRowActions = true } = params;
+export const useColumns = (params: Params): ColumnDef<Auction>[] => {
+  const { withRowActions = true, meId } = params;
 
   return useMemo(() => {
     const columns: ColumnDef<Auction>[] = [
@@ -99,10 +100,10 @@ export const useColumns = (params: Params = {}): ColumnDef<Auction>[] => {
     if (withRowActions) {
       columns.push({
         id: "actions",
-        cell: ({ row }) => <RowAction auction={row.original} />,
+        cell: ({ row }) => <RowAction meId={meId} auction={row.original} />,
       });
     }
 
     return columns;
-  }, [withRowActions]);
+  }, [withRowActions, meId]);
 };
