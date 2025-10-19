@@ -1,5 +1,5 @@
 import { Plural } from "@lingui/react/macro";
-import { CoinsIcon, PickaxeIcon, UsersIcon } from "lucide-react";
+import { CoinsIcon, GavelIcon, UsersIcon } from "lucide-react";
 import type { FC } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import type { User } from "@/core/domains/user";
@@ -9,17 +9,17 @@ import { users } from "@/core/instances/users";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  isMe?: boolean;
+  isMyAuctionsPage?: boolean;
   className?: string;
 };
 
 export const AuctionsStatsServer: FC<Props> = async (props) => {
-  const { isMe = false, className } = props;
+  const { isMyAuctionsPage = false, className } = props;
 
   let me: User | null = null;
   let totalUsers: number = 0;
 
-  if (isMe) {
+  if (isMyAuctionsPage) {
     me = await users().me();
   } else {
     totalUsers = await users().count();
@@ -43,7 +43,7 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
       className={cn(
         "grid grid-cols-1 sm:grid-cols-2 gap-4",
         {
-          "lg:grid-cols-3": !isMe,
+          "lg:grid-cols-3": !isMyAuctionsPage,
         },
         className,
       )}
@@ -61,7 +61,7 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
               value={totalAuctions}
             />
           </div>
-          <PickaxeIcon size={32} />
+          <GavelIcon size={32} />
         </CardContent>
       </Card>
 
@@ -75,7 +75,7 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
         </CardContent>
       </Card>
 
-      {!isMe && (
+      {!isMyAuctionsPage && (
         <Card>
           <CardContent className="flex-1 flex items-center justify-between gap-4">
             <div>

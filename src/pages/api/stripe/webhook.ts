@@ -45,8 +45,7 @@ export default async function handler(
     const session = event.data.object as Stripe.Checkout.Session;
 
     // Retrieve auctionId from session metadata
-    const auctionId =
-      session.metadata?.auctionId ?? "18fefa2c-5ff4-4625-96df-ebe7a452856a";
+    const auctionId = session.metadata?.auctionId;
 
     if (!auctionId) {
       console.warn("Webhook received without auctionId in metadata");

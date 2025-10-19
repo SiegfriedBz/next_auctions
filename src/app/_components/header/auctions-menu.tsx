@@ -1,7 +1,7 @@
 "use client";
 
 import { useLingui } from "@lingui/react/macro";
-import { Grid3x3Icon } from "lucide-react";
+import { GavelIcon, Grid3x3Icon } from "lucide-react";
 import type { FC } from "react";
 import {
   NavigationMenuContent,
@@ -24,7 +24,7 @@ export const AuctionsMenu: FC = () => {
       <NavigationMenuTrigger
         className={cn("h-8 sm:h-10 cursor-pointer", navMenuItemClasses)}
       >
-        <Grid3x3Icon
+        <GavelIcon
           size={20}
           className="size-8 sm:size-10 bg-transparent opacity-80 hover:opacity-100 transition-all duration-200"
         />

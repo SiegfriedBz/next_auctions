@@ -6,14 +6,20 @@ import {
   GemIcon,
 } from "lucide-react";
 import type { FC } from "react";
+import { Countdown } from "@/app/_components/auctions/count-down";
 import { FormatCurrency } from "@/app/_components/format-currency";
 import { FormatDate } from "@/app/_components/format-date";
-import type { AuctionDetails } from "@/core/domains/auction";
+import {
+  type AuctionDetails,
+  AuctionStatusSchema,
+} from "@/core/domains/auction";
 
 type Props = { auction: AuctionDetails };
 
 export const AuctionDetailsList: FC<Props> = (props) => {
   const { auction } = props;
+
+  const isClosed = auction.status === AuctionStatusSchema.enum.CLOSED;
 
   return (
     <div className="space-y-4">
@@ -43,17 +49,23 @@ export const AuctionDetailsList: FC<Props> = (props) => {
         <FormatDate value={(auction.startedAt || auction.createdAt) ?? null} />
       </div>
 
-      <div className="flex items-center gap-2">
-        <CalendarClockIcon className="size-4 text-muted-foreground" />
-        <span className="font-medium">
-          {auction.endAt && auction.endAt.getTime() < Date.now() ? (
-            <Trans>Ended</Trans>
-          ) : (
-            <Trans>Ends</Trans>
-          )}
-        </span>
-        <FormatDate value={auction.endAt ?? null} />
-      </div>
+      {!isClosed && (
+        <div className="flex items-center gap-2">
+          <CalendarClockIcon className="size-4 text-muted-foreground" />
+          <span className="font-medium">
+            {auction.endAt && auction.endAt.getTime() < Date.now() ? (
+              <>
+                <Trans>Ended</Trans>:{" "}
+                <FormatDate value={auction.endAt ?? null} />
+              </>
+            ) : (
+              <>
+                <Trans>Ends in</Trans>: <Countdown endDate={auction.endAt} />
+              </>
+            )}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

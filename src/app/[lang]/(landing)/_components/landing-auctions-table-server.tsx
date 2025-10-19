@@ -6,6 +6,7 @@ import {
 } from "@/app/_components/auctions/table";
 import { Table } from "@/components/ui/table";
 import { auctions } from "@/core/instances/auctions";
+import { users } from "@/core/instances/users";
 import { searchParamsCache } from "../../search.params";
 
 export const LandingAuctionsTableServer = async () => {
@@ -25,16 +26,19 @@ export const LandingAuctionsTableServer = async () => {
     size: 4,
   };
 
-  const { list, total } = await auctions().listing({
-    filterBy,
-    orderBy,
-    pagination,
-  });
+  const [me, { list, total }] = await Promise.all([
+    users().me(),
+    auctions().listing({
+      filterBy,
+      orderBy,
+      pagination,
+    }),
+  ]);
 
   return (
     <>
       <AuctionsTableToolbar filteredCount={total} />
-      <AuctionsTableProvider data={list} count={total}>
+      <AuctionsTableProvider meId={me?.id} data={list} count={total}>
         <Table className="rounded-md border">
           <AuctionsTableHeader />
           <AuctionsTableBody />

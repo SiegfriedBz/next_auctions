@@ -3,7 +3,7 @@
 import { Trans, useLingui } from "@lingui/react/macro";
 import { CoinsIcon, EyeIcon, MoreVerticalIcon } from "lucide-react";
 import Link from "next/link";
-import { type FC, useCallback, useState } from "react";
+import { type FC, useCallback, useMemo, useState } from "react";
 import { BidDialog } from "@/app/_components/bids/bid-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,14 +15,20 @@ import {
 import { type Auction, AuctionStatusSchema } from "@/core/domains/auction";
 
 type Props = {
+  meId?: string;
   auction: Auction;
 };
 export const RowAction: FC<Props> = (props) => {
-  const { auction } = props;
+  const { meId, auction } = props;
+
   const [open, setIsOpen] = useState<boolean>(false);
 
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
+
+  const isMyAuction = useMemo(() => {
+    return meId === auction.ownerId;
+  }, [meId, auction]);
 
   const onClose = useCallback(() => {
     setIsOpen(false);
@@ -57,7 +63,7 @@ export const RowAction: FC<Props> = (props) => {
           </Button>
         </DropdownMenuItem>
 
-        {isOpenedAuction && (
+        {!isMyAuction && isOpenedAuction && (
           <DropdownMenuItem asChild>
             <BidDialog
               auction={auction}

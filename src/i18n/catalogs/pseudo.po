@@ -60,8 +60,8 @@ msgstr ""
 msgid "Auctions"
 msgstr ""
 
-msgid "Auctions won"
-msgstr ""
+#~ msgid "Auctions won"
+#~ msgstr ""
 
 msgid "Automotive"
 msgstr ""
@@ -228,6 +228,9 @@ msgstr ""
 msgid "Ends"
 msgstr ""
 
+msgid "Ends in"
+msgstr ""
+
 msgid "English"
 msgstr ""
 
@@ -327,6 +330,9 @@ msgstr ""
 #~ msgid "Loading uploader..."
 #~ msgstr ""
 
+msgid "Log in to access more features."
+msgstr ""
+
 msgid "Log out"
 msgstr ""
 
@@ -366,11 +372,11 @@ msgstr ""
 #~ msgid "Next"
 #~ msgstr ""
 
-msgid "No auction won"
-msgstr ""
+#~ msgid "No auction won"
+#~ msgstr ""
 
-msgid "No bid"
-msgstr ""
+#~ msgid "No bid"
+#~ msgstr ""
 
 msgid "No description provided."
 msgstr ""
@@ -378,17 +384,20 @@ msgstr ""
 #~ msgid "No new auction won"
 #~ msgstr ""
 
-#~ msgid "No new bid"
-#~ msgstr ""
+msgid "No new bid"
+msgstr ""
 
-#~ msgid "No new payment"
-#~ msgstr ""
+msgid "No new payment"
+msgstr ""
+
+msgid "No new won auction"
+msgstr ""
 
 #~ msgid "No notification"
 #~ msgstr ""
 
-msgid "No payment"
-msgstr ""
+#~ msgid "No payment"
+#~ msgstr ""
 
 msgid "No results."
 msgstr ""
@@ -516,6 +525,15 @@ msgstr ""
 msgid "System"
 msgstr ""
 
+msgid "This auction has been won and paid for."
+msgstr ""
+
+msgid "This auction has ended."
+msgstr ""
+
+msgid "This auction is ongoing."
+msgstr ""
+
 msgid "This is your auction"
 msgstr ""
 
@@ -609,8 +627,11 @@ msgstr ""
 msgid "Welcome back!"
 msgstr ""
 
-msgid "You are the Highest Bidder"
+msgid "Won auctions"
 msgstr ""
+
+#~ msgid "You are the Highest Bidder"
+#~ msgstr ""
 
 msgid "You did not pay this auction yet. Contact us for more information."
 msgstr ""
@@ -636,7 +657,13 @@ msgstr ""
 msgid "You successfully updated your profile!"
 msgstr ""
 
+msgid "You won and paid for this auction."
+msgstr ""
+
 msgid "You won this auction"
+msgstr ""
+
+msgid "You're currently the highest bidder!"
 msgstr ""
 
 msgid "Your image will be uploaded now, but it won't update your profile until you click “Update your profile”."
