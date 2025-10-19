@@ -1,14 +1,19 @@
-import { useLingui } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import Link from "next/link";
 import type { FC } from "react";
+import { Separator } from "@/components/ui/separator";
+import { TypographyLead } from "../typography/lead";
 import { NavLinks } from "./nav-links";
 
 export const Header: FC = () => {
   return (
-    <header className="flex justify-between items-center h-28 sm:h-32 md:h-38 px-4 sm:px-16">
-      <Logo />
-      <NavLinks />
-    </header>
+    <>
+      <header className="flex justify-between items-center h-28 sm:h-32 md:h-32 px-4 sm:px-16">
+        <Logo />
+        <NavLinks />
+      </header>
+      <Separator />
+    </>
   );
 };
 
@@ -21,9 +26,9 @@ const Logo: FC = () => {
       <span className="font-extrabold text-2xl sm:text-3xl tracking-widest">
         GavL
       </span>
-      <span className="max-[374px]:max-w-24 text-xs md:text-base text-muted-foreground mt-1 font-medium tracking-wide">
-        Track Auctions Effortlessly
-      </span>
+      <TypographyLead className="max-[374px]:max-w-24 text-xs md:text-base mt-1">
+        <Trans>Track Auctions Effortlessly</Trans>
+      </TypographyLead>
     </Link>
   );
 };

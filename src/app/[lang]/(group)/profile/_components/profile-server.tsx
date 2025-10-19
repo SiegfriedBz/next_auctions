@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { type FC, Suspense } from "react";
 import { AuctionsStatsServer } from "@/app/_components/auctions/auctions-stats-server";
 import { SkeletonAuctionsStats } from "@/app/_components/skeletons/skeleton-auctions-stats";
+import { TypographyH2 } from "@/app/_components/typography/h2";
 import { UserAvatar } from "@/app/_components/user-avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,7 +28,9 @@ export const ProfileServer: FC<Props> = async (props) => {
       <Card>
         <CardHeader className="sr-only">
           <CardTitle>
-            <Trans>User profile card</Trans>
+            <TypographyH2>
+              <Trans>User profile card</Trans>
+            </TypographyH2>
           </CardTitle>
         </CardHeader>
 

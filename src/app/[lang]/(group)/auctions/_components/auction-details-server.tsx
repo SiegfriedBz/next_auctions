@@ -1,5 +1,10 @@
 import { Trans } from "@lingui/react/macro";
-import { CoinsIcon, TrophyIcon } from "lucide-react";
+import {
+  CalendarClockIcon,
+  CoinsIcon,
+  HourglassIcon,
+  TrophyIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { FC } from "react";
@@ -8,6 +13,9 @@ import { AuctionCategoryBadge } from "@/app/_components/auctions/auction-categor
 import { AuctionStatusBadge } from "@/app/_components/auctions/auction-status-badge";
 import { BidDialog } from "@/app/_components/bids/bid-dialog";
 import { FormatCurrency } from "@/app/_components/format-currency";
+import { TypographyH2 } from "@/app/_components/typography/h2";
+import { TypographyH4 } from "@/app/_components/typography/h4";
+import { TypographyH5 } from "@/app/_components/typography/h5";
 import { UserAvatar } from "@/app/_components/user-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,6 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   type Auction,
   type AuctionDetails,
+  type AuctionStatus,
   AuctionStatusSchema,
 } from "@/core/domains/auction";
 import type { User } from "@/core/domains/user";
@@ -71,12 +80,12 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
       highestBid,
       status,
       paidAt,
+      endAt,
     },
     meIsHighestBidder = false,
     lang,
   } = props;
 
-  const isClosed = status === AuctionStatusSchema.enum.CLOSED;
   const isPaid = paidAt != null;
 
   return (
@@ -85,8 +94,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
         {isPaid}
         <CardTitle className="flex justify-between items-start h-full">
           <div className="flex flex-col gap-2 max-sm:gap-4">
-            <h2 className="text-2xl font-semibold">{title}</h2>
-
+            <TypographyH2 className="border-0 capitalize">{title}</TypographyH2>
             <div className="flex gap-x-4 items-center">
               <AuctionCategoryBadge category={category} />
               <div className="sm:hidden">
@@ -99,22 +107,13 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
             </div>
 
             <div className="sm:hidden flex flex-col gap-4 text-lg font-medium">
-              <div className="flex flex-wrap items-center gap-2">
-                <CoinsIcon className="size-4 text-amber-500" />
-                <span className="whitespace-nowrap">
-                  <Trans>Highest Bid</Trans>
-                </span>
-
-                <span className="font-bold text-primary">
-                  <FormatCurrency value={highestBid ?? null} />
-                </span>
-              </div>
-
-              <UserAuctionStatus
-                meIsHighestBidder={meIsHighestBidder}
-                isPaid={isPaid}
-                isClosed={isClosed}
+              <HighestBidAndStatus
                 auctionId={auctionId}
+                status={status}
+                isPaid={isPaid}
+                highestBid={highestBid}
+                meIsHighestBidder={meIsHighestBidder}
+                endAt={endAt}
                 lang={lang}
               />
             </div>
@@ -122,22 +121,13 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
 
           <div className="max-sm:hidden flex flex-col justify-between items-end h-full">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <CoinsIcon className="size-5 text-amber-500" />
-                <span className="whitespace-nowrap">
-                  <Trans>Highest Bid</Trans>:
-                </span>
-
-                <span className="font-bold text-primary">
-                  <FormatCurrency value={highestBid ?? null} />
-                </span>
-              </div>
-
-              <UserAuctionStatus
-                meIsHighestBidder={meIsHighestBidder}
-                isPaid={isPaid}
-                isClosed={isClosed}
+              <HighestBidAndStatus
                 auctionId={auctionId}
+                status={status}
+                isPaid={isPaid}
+                highestBid={highestBid}
+                meIsHighestBidder={meIsHighestBidder}
+                endAt={endAt}
                 lang={lang}
               />
             </div>
@@ -146,6 +136,53 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
         </CardTitle>
       </CardHeader>
     </Card>
+  );
+};
+
+// ---------- HighestBidAndStatus ----------
+type HighestBidAndStatusProps = {
+  auctionId: string;
+  status: AuctionStatus;
+  isPaid: boolean;
+  highestBid: number | undefined;
+  meIsHighestBidder: boolean;
+  endAt: Date | undefined;
+} & LangParam;
+
+const HighestBidAndStatus: FC<HighestBidAndStatusProps> = (props) => {
+  const {
+    auctionId,
+    status,
+    isPaid,
+    highestBid,
+    meIsHighestBidder,
+    endAt,
+    lang,
+  } = props;
+
+  const isClosed = status === AuctionStatusSchema.enum.CLOSED;
+
+  return (
+    <>
+      <div className="flex flex-wrap items-center gap-2">
+        <CoinsIcon className="size-4 text-amber-500" />
+        <TypographyH4 className="whitespace-nowrap">
+          <Trans>Highest Bid</Trans>:
+        </TypographyH4>
+        <TypographyH5>
+          <FormatCurrency value={highestBid ?? null} />
+        </TypographyH5>
+      </div>
+
+      <UserAuctionStatus
+        meIsHighestBidder={meIsHighestBidder}
+        isPaid={isPaid}
+        isClosed={isClosed}
+        endAt={endAt}
+        auctionId={auctionId}
+        lang={lang}
+      />
+    </>
   );
 };
 
@@ -173,7 +210,10 @@ const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
             <AuctionActions auction={auction} me={me} lang={lang} />
           ) : (
             <div className="flex max-sm:justify-center items-center w-full sm:w-fit sm:ml-auto mt-auto gap-x-2">
-              <Badge variant="secondary" className="px-3 py-1 text-sm">
+              <Badge
+                variant="secondary"
+                className="px-2 py-0.5 sm:px-3 sm:py-1 font-bold text-foreground text-sm sm:text-base"
+              >
                 <Trans>Log in to access more features.</Trans>
               </Badge>
             </div>
@@ -186,40 +226,68 @@ const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
 
 // ---------- UserAuctionStatus ----------
 type UserAuctionStatusProps = {
-  meIsHighestBidder: boolean;
+  auctionId: string;
   isPaid: boolean;
   isClosed: boolean;
-  auctionId: string;
+  meIsHighestBidder: boolean;
+  endAt: Date | undefined;
   lang: string;
 };
 
 const UserAuctionStatus: FC<UserAuctionStatusProps> = (props) => {
-  const { meIsHighestBidder, isPaid, isClosed, auctionId, lang } = props;
+  const { auctionId, isPaid, isClosed, meIsHighestBidder, endAt, lang } = props;
+
+  const hasEnded = endAt && endAt < new Date();
 
   if (meIsHighestBidder) {
     return (
       <div className="flex items-center gap-2">
         <TrophyIcon className="size-4 text-amber-500" />
         {isPaid ? (
-          <Trans>You won and paid for this auction.</Trans>
+          <TypographyH5>
+            <Trans>You won and paid for this auction.</Trans>
+          </TypographyH5>
         ) : isClosed ? (
           <InitiatePaymentButton auctionId={auctionId} lang={lang} />
         ) : (
-          <Trans>You're currently the highest bidder!</Trans>
+          <TypographyH5>
+            <Trans>You're currently the highest bidder!</Trans>
+          </TypographyH5>
         )}
       </div>
     );
   }
 
   if (isPaid) {
-    return <Trans>This auction has been won and paid for.</Trans>;
+    return (
+      <div className="flex items-center gap-2">
+        <CalendarClockIcon className="size-4" />
+        <TypographyH5>
+          <Trans>This auction has been won and paid for.</Trans>
+        </TypographyH5>
+      </div>
+    );
   }
 
-  if (isClosed) {
-    return <Trans>This auction has ended.</Trans>;
+  if (isClosed || hasEnded) {
+    return (
+      <div className="flex items-center gap-2">
+        <CalendarClockIcon className="size-4" />
+        <TypographyH5>
+          <Trans>This auction has ended.</Trans>
+        </TypographyH5>
+      </div>
+    );
   }
 
-  return <Trans>This auction is ongoing.</Trans>;
+  return (
+    <div className="flex items-center gap-2">
+      <HourglassIcon className="size-4" />
+      <TypographyH5>
+        <Trans>This auction is ongoing.</Trans>
+      </TypographyH5>
+    </div>
+  );
 };
 
 // ---------- AuctionActions ----------
@@ -240,7 +308,10 @@ const AuctionActions: FC<AuctionActionsProps> = (props) => {
     <div className="flex w-fit ml-auto mt-auto">
       {isMyAuction ? (
         <div className="flex items-center gap-x-2">
-          <Badge variant="secondary" className="px-3 py-1 text-sm">
+          <Badge
+            variant="secondary"
+            className="px-2 py-0.5 sm:px-3 sm:py-1 font-bold text-foreground text-sm sm:text-base"
+          >
             <Trans>This is your auction</Trans>
           </Badge>
           {!isAuctionWithBid && (
