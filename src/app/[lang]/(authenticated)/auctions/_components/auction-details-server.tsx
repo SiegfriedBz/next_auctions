@@ -67,16 +67,26 @@ type AuctionHeaderCardProps = {
 } & LangParam;
 const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
   const {
-    auction: { id: auctionId, title, category, owner, highestBid, status },
+    auction: {
+      id: auctionId,
+      title,
+      category,
+      owner,
+      highestBid,
+      status,
+      paidAt,
+    },
     meIsHighestBidder = false,
     lang,
   } = props;
 
   const isClosed = status === AuctionStatusSchema.enum.CLOSED;
+  const isPaid = paidAt != null;
 
   return (
     <Card>
       <CardHeader>
+        {isPaid}
         <CardTitle className="flex justify-between items-start h-full">
           <div className="flex flex-col gap-2 max-sm:gap-4">
             <h2 className="text-2xl font-semibold">{title}</h2>
@@ -104,16 +114,13 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
                 </span>
               </div>
 
-              {meIsHighestBidder && (
-                <div className="flex items-center gap-2">
-                  <TrophyIcon className="size-4 text-amber-500" />
-                  {isClosed ? (
-                    <InitiatePaymentButton auctionId={auctionId} lang={lang} />
-                  ) : (
-                    <Trans>You are the Highest Bidder</Trans>
-                  )}
-                </div>
-              )}
+              <UserAuctionStatus
+                meIsHighestBidder={meIsHighestBidder}
+                isPaid={isPaid}
+                isClosed={isClosed}
+                auctionId={auctionId}
+                lang={lang}
+              />
             </div>
           </div>
 
@@ -129,16 +136,14 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
                   <FormatCurrency value={highestBid ?? null} />
                 </span>
               </div>
-              {meIsHighestBidder && (
-                <div className="flex items-center gap-2">
-                  <TrophyIcon className="size-4 text-amber-500" />
-                  {isClosed ? (
-                    <InitiatePaymentButton auctionId={auctionId} lang={lang} />
-                  ) : (
-                    <Trans>You are the Highest Bidder</Trans>
-                  )}
-                </div>
-              )}
+
+              <UserAuctionStatus
+                meIsHighestBidder={meIsHighestBidder}
+                isPaid={isPaid}
+                isClosed={isClosed}
+                auctionId={auctionId}
+                lang={lang}
+              />
             </div>
             <AuctionStatusBadge status={status} />
           </div>
@@ -172,6 +177,44 @@ const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
       </CardContent>
     </Card>
   );
+};
+
+// ---------- UserAuctionStatus ----------
+type UserAuctionStatusProps = {
+  meIsHighestBidder: boolean;
+  isPaid: boolean;
+  isClosed: boolean;
+  auctionId: string;
+  lang: string;
+};
+
+const UserAuctionStatus: FC<UserAuctionStatusProps> = (props) => {
+  const { meIsHighestBidder, isPaid, isClosed, auctionId, lang } = props;
+
+  if (meIsHighestBidder) {
+    return (
+      <div className="flex items-center gap-2">
+        <TrophyIcon className="size-4 text-amber-500" />
+        {isPaid ? (
+          <Trans>You won and paid for this auction.</Trans>
+        ) : isClosed ? (
+          <InitiatePaymentButton auctionId={auctionId} lang={lang} />
+        ) : (
+          <Trans>You're currently the highest bidder!</Trans>
+        )}
+      </div>
+    );
+  }
+
+  if (isPaid) {
+    return <Trans>This auction has been won and paid for.</Trans>;
+  }
+
+  if (isClosed) {
+    return <Trans>This auction has ended.</Trans>;
+  }
+
+  return <Trans>This auction is ongoing.</Trans>;
 };
 
 // ---------- AuctionActions ----------
