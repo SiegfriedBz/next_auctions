@@ -255,8 +255,11 @@ msgstr "Fill in your details to create a new account."
 msgid "Fill the form below to create a new auction"
 msgstr "Fill the form below to create a new auction"
 
-msgid "Fill the form below to update your draft auction"
-msgstr "Fill the form below to update your draft auction"
+msgid "Fill the form below to update your auction"
+msgstr "Fill the form below to update your auction"
+
+#~ msgid "Fill the form below to update your draft auction"
+#~ msgstr "Fill the form below to update your draft auction"
 
 msgid "Fill the form below to update your profile"
 msgstr "Fill the form below to update your profile"
@@ -315,8 +318,8 @@ msgstr "Language"
 msgid "Last name"
 msgstr "Last name"
 
-msgid "Last name *"
-msgstr "Last name *"
+#~ msgid "Last name *"
+#~ msgstr "Last name *"
 
 msgid "Last Name *"
 msgstr "Last Name *"
@@ -438,8 +441,11 @@ msgstr "Product image"
 #~ msgid "Profile"
 #~ msgstr "Profile"
 
-msgid "Retry the payment here"
-msgstr "Retry the payment here"
+#~ msgid "Retry the payment here"
+#~ msgstr "Retry the payment here"
+
+msgid "Retry the payment here."
+msgstr "Retry the payment here."
 
 msgid "Select a category"
 msgstr "Select a category"
@@ -573,14 +579,17 @@ msgstr "Toggle theme"
 msgid "Toys"
 msgstr "Toys"
 
+msgid "Track Auctions Effortlessly"
+msgstr "Track Auctions Effortlessly"
+
 msgid "Update auction"
 msgstr "Update auction"
 
 #~ msgid "Update Auction"
 #~ msgstr "Update Auction"
 
-msgid "Update my profile"
-msgstr "Update my profile"
+#~ msgid "Update my profile"
+#~ msgstr "Update my profile"
 
 msgid "Update your auction"
 msgstr "Update your auction"
