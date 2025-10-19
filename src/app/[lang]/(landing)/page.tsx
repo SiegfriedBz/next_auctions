@@ -39,7 +39,7 @@ const Page: FC<Props> = async (props) => {
           <LandingAuctionsTableServer />
         </Suspense>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-8 px-4">
           <Button asChild size="lg" className="max-sm:w-full">
             <Link href={`/${lang}/auctions`}>
               <Trans>Browse Auctions</Trans>
