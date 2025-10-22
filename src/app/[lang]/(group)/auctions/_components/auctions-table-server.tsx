@@ -12,25 +12,22 @@ import { auctions } from "@/core/instances/auctions";
 import { users } from "@/core/instances/users";
 
 type Props = {
-  isMyAuctionsPage?: boolean;
+  isCurrentUserStats?: boolean;
 };
 
 export const AuctionsTableServer: FC<Props> = async (props) => {
-  const { isMyAuctionsPage = false } = props;
+  const { isCurrentUserStats = true } = props;
 
   const { pageIndex, pageSize, ...rest } = searchParamsCache.all();
 
   const me = await users().me();
 
-  // display current user' auctions if isMyAuctionsPage
-  const filterBy = isMyAuctionsPage
-    ? {
-        ownerId: me?.id ?? undefined,
-        title: rest.title ?? undefined,
-        category: rest.category ?? undefined,
-        status: rest.status ?? undefined,
-      }
-    : {};
+  const filterBy = {
+    ...(isCurrentUserStats ? { ownerId: me?.id } : {}), // filterBy ownerId if isCurrentUserStats
+    title: rest.title ?? undefined,
+    category: rest.category ?? undefined,
+    status: rest.status ?? undefined,
+  };
 
   const orderBy =
     rest.key && rest.order ? { key: rest.key, order: rest.order } : undefined;
@@ -52,7 +49,6 @@ export const AuctionsTableServer: FC<Props> = async (props) => {
       <AuctionsTableProvider
         data={list}
         count={total}
-        withRowActions={!isMyAuctionsPage} // row actions not displayed if not MyAuctionsPage
         meId={me?.id}
         className="space-y-4"
       >
