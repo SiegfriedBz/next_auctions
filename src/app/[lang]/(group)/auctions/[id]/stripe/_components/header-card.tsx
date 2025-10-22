@@ -3,7 +3,6 @@ import type { FC } from "react";
 import { AuctionCategoryBadge } from "@/app/_components/auctions/auction-category-badge";
 import { AuctionStatusBadge } from "@/app/_components/auctions/auction-status-badge";
 import { TypographyH2 } from "@/app/_components/typography/h2";
-import { TypographyH4 } from "@/app/_components/typography/h4";
 import { TypographyLead } from "@/app/_components/typography/lead";
 import { UserAvatar } from "@/app/_components/user-avatar";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";

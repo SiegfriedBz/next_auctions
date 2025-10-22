@@ -46,7 +46,6 @@ export const LoginForm: FC<Props> = (props) => {
   const onSubmit = useCallback(
     async (values: FormSchema) => {
       try {
-        await new Promise((res) => setTimeout(res, 5_000));
         const result = await login(values);
 
         startTransition(() => {

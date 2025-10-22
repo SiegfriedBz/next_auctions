@@ -29,8 +29,10 @@ const Page: FC<Props> = async (props) => {
       </section>
 
       <section className="w-full mt-8 mb-4 scroll-mt-8" id="stats">
-        <Suspense fallback={<SkeletonAuctionsStats />}>
-          <AuctionsStatsServer />
+        <Suspense
+          fallback={<SkeletonAuctionsStats isCurrentUserStats={false} />}
+        >
+          <AuctionsStatsServer isCurrentUserStats={false} />
         </Suspense>
       </section>
 

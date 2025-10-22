@@ -20,14 +20,14 @@ const Page: FC<Props> = async (props) => {
   return (
     <div className="w-full container mx-auto space-y-12 py-4">
       <section className="w-full">
-        <Suspense fallback={<SkeletonAuctionsStats isMyAuctionsPage />}>
-          <AuctionsStatsServer isMyAuctionsPage />
+        <Suspense fallback={<SkeletonAuctionsStats />}>
+          <AuctionsStatsServer />
         </Suspense>
       </section>
 
       <section className="w-full">
         <Suspense fallback={<SkeletonTable />}>
-          <AuctionsTableServer isMyAuctionsPage />
+          <AuctionsTableServer />
         </Suspense>
       </section>
     </div>

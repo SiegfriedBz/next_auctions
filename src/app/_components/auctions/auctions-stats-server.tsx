@@ -9,17 +9,17 @@ import { users } from "@/core/instances/users";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  isMyAuctionsPage?: boolean;
+  isCurrentUserStats?: boolean;
   className?: string;
 };
 
 export const AuctionsStatsServer: FC<Props> = async (props) => {
-  const { isMyAuctionsPage = false, className } = props;
+  const { isCurrentUserStats = true, className } = props;
 
   let me: User | null = null;
   let totalUsers: number = 0;
 
-  if (isMyAuctionsPage) {
+  if (isCurrentUserStats) {
     me = await users().me();
   } else {
     totalUsers = await users().count();
@@ -43,7 +43,7 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
       className={cn(
         "grid grid-cols-1 sm:grid-cols-2 gap-4",
         {
-          "lg:grid-cols-3": !isMyAuctionsPage,
+          "lg:grid-cols-3": !isCurrentUserStats,
         },
         className,
       )}
@@ -75,7 +75,7 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
         </CardContent>
       </Card>
 
-      {!isMyAuctionsPage && (
+      {!isCurrentUserStats && (
         <Card>
           <CardContent className="flex-1 flex items-center justify-between gap-4">
             <div>

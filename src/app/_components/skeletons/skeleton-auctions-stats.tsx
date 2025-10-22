@@ -4,12 +4,12 @@ import type { FC, PropsWithChildren } from "react";
 import { SkeletonStats } from "@/app/_components/skeletons/skeleton-stats";
 
 type Props = {
-  isMyAuctionsPage?: boolean;
+  isCurrentUserStats?: boolean;
   className?: string;
 };
 
 export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
-  const { isMyAuctionsPage = false, className } = props;
+  const { isCurrentUserStats = true, className } = props;
 
   const items = [
     {
@@ -22,7 +22,7 @@ export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
     },
   ];
 
-  if (!isMyAuctionsPage) {
+  if (!isCurrentUserStats) {
     items.push({
       title: msg`user`,
       icon: UsersIcon,
@@ -32,7 +32,7 @@ export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
   return (
     <SkeletonStats
       items={items}
-      isMyAuctionsPage={isMyAuctionsPage}
+      isCurrentUserStats={isCurrentUserStats}
       className={className}
     />
   );
