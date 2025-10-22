@@ -27,7 +27,7 @@ export const RowAction: FC<Props> = (props) => {
   const { locale: lang } = i18n;
 
   const isMyAuction = useMemo(() => {
-    return meId === auction.ownerId;
+    return meId && meId === auction.ownerId;
   }, [meId, auction]);
 
   const onClose = useCallback(() => {

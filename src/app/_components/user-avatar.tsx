@@ -3,9 +3,7 @@ import type { FC } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
-import { TypographyH3 } from "./typography/h3";
 import { TypographyH4 } from "./typography/h4";
-import { TypographyLead } from "./typography/lead";
 import { TypographySmall } from "./typography/small";
 
 const userAvatarVariants = cva(
