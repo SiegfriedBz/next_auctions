@@ -30,7 +30,9 @@ const BreadCrumbSlot: FC<Props> = async (props) => {
           </Link>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>{auctionName ?? id}</BreadcrumbItem>
+        <BreadcrumbItem className="capitalize">
+          {auctionName ?? id}
+        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   );
