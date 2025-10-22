@@ -13,12 +13,12 @@ type Item = {
 
 type Props = {
   items: Item[];
-  isMyAuctionsPage?: boolean;
+  isCurrentUserStats?: boolean;
   className?: string;
 };
 
 export const SkeletonStats: FC<Props> = (props) => {
-  const { items, isMyAuctionsPage = false, className } = props;
+  const { items, isCurrentUserStats = true, className } = props;
 
   const { i18n } = useLingui();
 
@@ -27,7 +27,7 @@ export const SkeletonStats: FC<Props> = (props) => {
       className={cn(
         "grid grid-cols-1 sm:grid-cols-2 gap-4",
         {
-          "lg:grid-cols-3": !isMyAuctionsPage,
+          "lg:grid-cols-3": !isCurrentUserStats,
         },
         className,
       )}

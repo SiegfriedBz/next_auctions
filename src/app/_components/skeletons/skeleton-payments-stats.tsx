@@ -1,5 +1,5 @@
 import { msg } from "@lingui/core/macro";
-import { CoinsIcon, GavelIcon, HandCoinsIcon, UsersIcon } from "lucide-react";
+import { CoinsIcon, HandCoinsIcon } from "lucide-react";
 import type { FC, PropsWithChildren } from "react";
 import { SkeletonStats } from "@/app/_components/skeletons/skeleton-stats";
 
