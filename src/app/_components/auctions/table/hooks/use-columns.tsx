@@ -27,6 +27,13 @@ export const useColumns = (params: Params): ColumnDef<Auction>[] => {
             <Trans>Title</Trans>
           </div>
         ),
+        cell: ({ row }) => {
+          return (
+            <span className="inline-block capitalize truncate max-w-32">
+              {row.original.title}
+            </span>
+          );
+        },
       },
       {
         accessorKey: "images",
