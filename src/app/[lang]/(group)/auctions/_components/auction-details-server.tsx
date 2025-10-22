@@ -93,8 +93,10 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
       <CardHeader>
         {isPaid}
         <CardTitle className="flex justify-between items-start h-full">
-          <div className="flex flex-col gap-2 max-sm:gap-4">
-            <TypographyH2 className="border-0 capitalize">{title}</TypographyH2>
+          <div className="flex flex-col gap-2 max-sm:gap-4 flex-1 min-w-0">
+            <TypographyH2 className="border-0 capitalize truncate max-w-64 lg:max-w-[564px]">
+              {title}
+            </TypographyH2>
             <div className="flex gap-x-4 items-center">
               <AuctionCategoryBadge category={category} />
               <div className="sm:hidden">
@@ -102,7 +104,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               </div>
             </div>
 
-            <div className="-ml-4 mt-2">
+            <div className="-ms-3 mt-2">
               {owner && <UserAvatar user={owner} />}
             </div>
 
