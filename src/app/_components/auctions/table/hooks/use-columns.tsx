@@ -13,11 +13,10 @@ import { AuctionTableImage } from "../table-image";
 
 type Params = {
   meId?: string;
-  withRowActions?: boolean;
 };
 
 export const useColumns = (params: Params): ColumnDef<Auction>[] => {
-  const { withRowActions = true, meId } = params;
+  const { meId } = params;
 
   return useMemo(() => {
     const columns: ColumnDef<Auction>[] = [
@@ -95,15 +94,12 @@ export const useColumns = (params: Params): ColumnDef<Auction>[] => {
           return <FormatDate value={row.original.endAt ?? null} />;
         },
       },
-    ];
-
-    if (withRowActions) {
-      columns.push({
+      {
         id: "actions",
         cell: ({ row }) => <RowAction meId={meId} auction={row.original} />,
-      });
-    }
+      },
+    ];
 
     return columns;
-  }, [withRowActions, meId]);
+  }, [meId]);
 };

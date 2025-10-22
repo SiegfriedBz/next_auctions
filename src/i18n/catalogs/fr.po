@@ -177,6 +177,9 @@ msgstr ""
 msgid "Dark"
 msgstr ""
 
+msgid "Date"
+msgstr ""
+
 msgid "Descending"
 msgstr ""
 
@@ -315,6 +318,9 @@ msgstr ""
 msgid "Language"
 msgstr "Langue"
 
+msgid "Last month"
+msgstr ""
+
 msgid "Last name"
 msgstr ""
 
@@ -322,6 +328,12 @@ msgstr ""
 #~ msgstr ""
 
 msgid "Last Name *"
+msgstr ""
+
+msgid "Last week"
+msgstr ""
+
+msgid "Last year"
 msgstr ""
 
 msgid "Light"
@@ -358,6 +370,9 @@ msgid "My auctions"
 msgstr ""
 
 msgid "My Auctions"
+msgstr ""
+
+msgid "My payments"
 msgstr ""
 
 msgid "My profile"
@@ -423,11 +438,47 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
+msgid "Payment"
+msgstr ""
+
 msgid "Payment Cancelled."
 msgstr ""
 
 msgid "Payments"
 msgstr ""
+
+#~ msgid "Payments done"
+#~ msgstr ""
+
+#~ msgid "Payments done aggregated by period"
+#~ msgstr ""
+
+msgid "Payments made"
+msgstr ""
+
+msgid "Payments received"
+msgstr ""
+
+#~ msgid "Payments received aggregated by period"
+#~ msgstr ""
+
+msgid "Payments you have made over time"
+msgstr ""
+
+msgid "Payments you have received over time"
+msgstr ""
+
+msgid "Payments you made"
+msgstr ""
+
+#~ msgid "Payments you made aggregated by period"
+#~ msgstr ""
+
+msgid "Payments you received"
+msgstr ""
+
+#~ msgid "Payments you received aggregated by period"
+#~ msgstr ""
 
 msgid "Place your bid"
 msgstr ""
@@ -451,6 +502,9 @@ msgid "Select a category"
 msgstr ""
 
 msgid "Select a category for your auction"
+msgstr ""
+
+msgid "Select a range"
 msgstr ""
 
 msgid "Select a status"
@@ -487,6 +541,9 @@ msgstr ""
 #~ msgstr ""
 
 msgid "Signing up..."
+msgstr ""
+
+msgid "Since signup"
 msgstr ""
 
 msgid "Something went wrong, please try again later."
@@ -574,6 +631,12 @@ msgstr ""
 #~ msgstr ""
 
 msgid "Toggle theme"
+msgstr ""
+
+msgid "Total paid"
+msgstr ""
+
+msgid "Total received"
 msgstr ""
 
 msgid "Toys"

@@ -11,10 +11,10 @@ export const SkeletonAvatar: FC<Props> = (props) => {
 
   return (
     <div className="flex items-center space-x-2">
-      <Skeleton className={cn("size-10 rounded-md", className)} />
-      <div className="space-y-4">
-        <Skeleton className="h-5 sm:h-6 w-[184px]" />
-        <Skeleton className="h-4 sm:h-5 w-[232px]" />
+      <Skeleton className={cn("size-12 rounded-md", className)} />
+      <div className="space-y-2">
+        <Skeleton className="h-3 sm:h-4 w-32 sm:w-[184px]" />
+        <Skeleton className="max-sm:hidden h-4 w-[224px]" />
       </div>
     </div>
   );

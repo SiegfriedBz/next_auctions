@@ -7,9 +7,14 @@ import type {
   UpdateAuctionPaidAtParams,
   UpdateAuctionParams as UpdateParams,
 } from "../domains/auction";
+import type { Payment } from "../domains/payment";
 
 export type RepoCreateAuctionParams = { ownerId: string } & CreateParams;
 export type RepoUpdateAuctionParams = UpdateParams;
+
+export type RepoPaymentsParams = {
+  userId: string;
+};
 
 export interface AuctionRepository {
   list(params: AuctionsListingParams): Promise<Auction[]>;
@@ -22,4 +27,7 @@ export interface AuctionRepository {
     - Uses supabase SERVICE ROLE KEY
   */
   updatePaidAt(params: UpdateAuctionPaidAtParams): Promise<Auction>;
+
+  userPaymentsReceived(params: RepoPaymentsParams): Promise<Payment[]>;
+  userPaymentsMade(params: RepoPaymentsParams): Promise<Payment[]>;
 }

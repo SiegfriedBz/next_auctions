@@ -177,6 +177,9 @@ msgstr "Current Bid"
 msgid "Dark"
 msgstr "Dark"
 
+msgid "Date"
+msgstr "Date"
+
 msgid "Descending"
 msgstr "Descending"
 
@@ -315,6 +318,9 @@ msgstr "Join our community-driven platform to find exclusive deals and one-of-a-
 msgid "Language"
 msgstr "Language"
 
+msgid "Last month"
+msgstr "Last month"
+
 msgid "Last name"
 msgstr "Last name"
 
@@ -323,6 +329,12 @@ msgstr "Last name"
 
 msgid "Last Name *"
 msgstr "Last Name *"
+
+msgid "Last week"
+msgstr "Last week"
+
+msgid "Last year"
+msgstr "Last year"
 
 msgid "Light"
 msgstr "Light"
@@ -359,6 +371,9 @@ msgstr "My auctions"
 
 msgid "My Auctions"
 msgstr "My Auctions"
+
+msgid "My payments"
+msgstr "My payments"
 
 msgid "My profile"
 msgstr "My profile"
@@ -423,11 +438,47 @@ msgstr "Open menu"
 msgid "Password"
 msgstr "Password"
 
+msgid "Payment"
+msgstr "Payment"
+
 msgid "Payment Cancelled."
 msgstr "Payment Cancelled."
 
 msgid "Payments"
 msgstr "Payments"
+
+#~ msgid "Payments done"
+#~ msgstr "Payments done"
+
+#~ msgid "Payments done aggregated by period"
+#~ msgstr "Payments done aggregated by period"
+
+msgid "Payments made"
+msgstr "Payments made"
+
+msgid "Payments received"
+msgstr "Payments received"
+
+#~ msgid "Payments received aggregated by period"
+#~ msgstr "Payments received aggregated by period"
+
+msgid "Payments you have made over time"
+msgstr "Payments you have made over time"
+
+msgid "Payments you have received over time"
+msgstr "Payments you have received over time"
+
+msgid "Payments you made"
+msgstr "Payments you made"
+
+#~ msgid "Payments you made aggregated by period"
+#~ msgstr "Payments you made aggregated by period"
+
+msgid "Payments you received"
+msgstr "Payments you received"
+
+#~ msgid "Payments you received aggregated by period"
+#~ msgstr "Payments you received aggregated by period"
 
 msgid "Place your bid"
 msgstr "Place your bid"
@@ -452,6 +503,9 @@ msgstr "Select a category"
 
 msgid "Select a category for your auction"
 msgstr "Select a category for your auction"
+
+msgid "Select a range"
+msgstr "Select a range"
 
 msgid "Select a status"
 msgstr "Select a status"
@@ -488,6 +542,9 @@ msgstr "Sign up"
 
 msgid "Signing up..."
 msgstr "Signing up..."
+
+msgid "Since signup"
+msgstr "Since signup"
 
 msgid "Something went wrong, please try again later."
 msgstr "Something went wrong, please try again later."
@@ -575,6 +632,12 @@ msgstr "Title *"
 
 msgid "Toggle theme"
 msgstr "Toggle theme"
+
+msgid "Total paid"
+msgstr "Total paid"
+
+msgid "Total received"
+msgstr "Total received"
 
 msgid "Toys"
 msgstr "Toys"
