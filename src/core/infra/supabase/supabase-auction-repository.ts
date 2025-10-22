@@ -6,15 +6,18 @@ import {
   ORDER_COLUMN_MAP,
   type UpdateAuctionPaidAtParams,
 } from "@/core/domains/auction";
+import type { Payment } from "@/core/domains/payment";
 import type {
   AuctionRepository,
   RepoCreateAuctionParams,
+  RepoPaymentsParams,
   RepoUpdateAuctionParams,
 } from "@/core/ports/auction-repository";
 import { createClient } from "@/utils/supabase/server";
 import { createWithServiceRoleSupabaseClient } from "@/utils/supabase/with-service-role-client";
 import { auctionDetailsMapper } from "./auction-details-mapper";
 import { auctionMapper } from "./auction-mapper";
+import { paymentMapper, type SupabasePaymentRow } from "./payment-mapper";
 
 export class SupabaseAuctionRepository implements AuctionRepository {
   async list(params: AuctionsListingParams): Promise<Auction[]> {
@@ -221,6 +224,40 @@ export class SupabaseAuctionRepository implements AuctionRepository {
     if (!mapped) throw new Error("Updated auction is invalid");
 
     return mapped;
+  }
+
+  async userPaymentsReceived(params: RepoPaymentsParams): Promise<Payment[]> {
+    const client = await createClient();
+
+    const { data, error } = await client
+      .from("auctions")
+      .select("id, paid_at, owner_id, highest_bidder_id, highest_bid")
+      .eq("owner_id", params.userId)
+      .not("paid_at", "is", null)
+      .order("paid_at", { ascending: true });
+
+    if (error || !data) return [];
+
+    return (data as SupabasePaymentRow[])
+      .map(paymentMapper)
+      .filter((p): p is Payment => p !== null);
+  }
+
+  async userPaymentsMade(params: RepoPaymentsParams): Promise<Payment[]> {
+    const client = await createClient();
+
+    const { data, error } = await client
+      .from("auctions")
+      .select("id, paid_at, owner_id, highest_bidder_id, highest_bid")
+      .eq("highest_bidder_id", params.userId)
+      .not("paid_at", "is", null)
+      .order("paid_at", { ascending: true });
+
+    if (error || !data) return [];
+
+    return (data as SupabasePaymentRow[])
+      .map(paymentMapper)
+      .filter((p): p is Payment => p !== null);
   }
 
   /** 
