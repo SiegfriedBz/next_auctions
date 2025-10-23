@@ -30,7 +30,7 @@ export const AuctionsTableToolbar: FC<Props> = (props) => {
     >
       <AuctionsTableFilter />
       <AuctionsTableSort />
-      {canCreate && <CreateAuctionButton />}
+      {canCreate && <AuctionsTableToolbarCreateAuctionButton />}
       <Badge
         className="absolute -right-5.5 -top-4.5 sm:-right-6 sm:-top-5 sm:text-sm"
         variant={"secondary"}
@@ -41,7 +41,7 @@ export const AuctionsTableToolbar: FC<Props> = (props) => {
   );
 };
 
-const CreateAuctionButton: FC = () => {
+const AuctionsTableToolbarCreateAuctionButton: FC = () => {
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 

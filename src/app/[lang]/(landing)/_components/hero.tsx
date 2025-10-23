@@ -1,6 +1,8 @@
 import { Trans, useLingui } from "@lingui/react/macro";
 import Link from "next/link";
-import type { FC } from "react";
+import { type FC, Suspense } from "react";
+import { AuctionsCreateButton } from "@/app/_components/auctions/auctions-create-button";
+import { AuctionsCreateButtonWithMe } from "@/app/_components/auctions/auctions-create-button-with-me";
 import { TypographyH1 } from "@/app/_components/typography/h1";
 import { TypographyLead } from "@/app/_components/typography/lead";
 import { Button } from "@/components/ui/button";
@@ -28,11 +30,10 @@ export const Hero: FC = () => {
               <Trans>Browse Auctions</Trans>
             </Link>
           </Button>
-          <Button variant="outline">
-            <Link href={`/${lang}/auctions/new`}>
-              <Trans>Create Auction</Trans>
-            </Link>
-          </Button>
+
+          <Suspense fallback={<AuctionsCreateButton disabled />}>
+            <AuctionsCreateButtonWithMe />
+          </Suspense>
         </div>
       </div>
 

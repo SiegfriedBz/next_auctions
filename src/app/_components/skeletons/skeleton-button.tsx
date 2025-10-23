@@ -10,9 +10,21 @@ export const SkeletonButton: FC<PropsWithChildren<Props>> = (props) => {
   const { children, className } = props;
   return (
     <Skeleton
-      className={cn("w-18 h-8 rounded-lg whitespace-nowrap", className)}
+      className={cn(
+        "flex justify-center items-center w-32 h-8 rounded-lg whitespace-nowrap",
+        className,
+      )}
     >
       {children}
     </Skeleton>
+  );
+};
+
+export const SkeletonButtonGhost: FC<PropsWithChildren<Props>> = (props) => {
+  const { children, className } = props;
+  return (
+    <SkeletonButton className={cn("border", className)}>
+      {children}
+    </SkeletonButton>
   );
 };

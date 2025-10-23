@@ -483,6 +483,9 @@ msgstr "Payments you received"
 msgid "Place your bid"
 msgstr "Place your bid"
 
+msgid "Please log in to create auctions."
+msgstr "Please log in to create auctions."
+
 #~ msgid "Previous"
 #~ msgstr "Previous"
 

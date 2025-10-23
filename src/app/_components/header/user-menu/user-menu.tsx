@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import type { User } from "@/core/domains/user";
 import { cn } from "@/lib/utils";
-import { LogOutButton } from "../auth/log-out-button";
-import { UserAvatar } from "../user-avatar";
-import { getUserNavLinks } from "./get-nav-links";
-import { NavListItem } from "./nav-list-item";
-import { navMenuItemClasses } from "./navigation-menu-classes";
+import { LogOutButton } from "../../auth/log-out-button";
+import { UserAvatar } from "../../user-avatar";
+import { NavListItem } from "../nav-list-item";
+import { navMenuItemClasses } from "../navigation-menu-classes";
+import { getUserNavLinks } from "./get-user-nav-links";
 
 type Props = {
   me: User;
@@ -26,9 +26,9 @@ export const UserMenu: FC<Props> = (props) => {
   const { i18n } = useLingui();
   const { locale: lang } = i18n;
 
-  const userNavLinks = getUserNavLinks(lang);
-
   if (!me) return null;
+
+  const userNavLinks = getUserNavLinks(lang);
 
   return (
     <NavigationMenuItem>

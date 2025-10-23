@@ -483,6 +483,9 @@ msgstr ""
 msgid "Place your bid"
 msgstr ""
 
+msgid "Please log in to create auctions."
+msgstr ""
+
 #~ msgid "Previous"
 #~ msgstr ""
 

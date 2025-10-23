@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import { I18nSwitcher } from "@/i18n/i18n-switcher";
 import { cn } from "@/lib/utils";
-import { navMenuItemClasses } from "./navigation-menu-classes";
-import { ThemeToggleButton } from "./theme-toggle-button";
+import { navMenuItemClasses } from "../navigation-menu-classes";
+import { ThemeToggleButton } from "../theme-toggle-button";
 
 export const SettingsMenu: FC = () => {
   return (
