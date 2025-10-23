@@ -3,7 +3,7 @@
 import { type FC, useCallback, useState } from "react";
 import { findNotificationById } from "@/actions/notifications/find-notification-by-id";
 import type { Notification } from "@/core/domains/notifications";
-import { RealTimeNotificationsMenu } from "../header/notifications/real-time-notifications-menu";
+import { RealTimeNotificationsMenu } from "../header/notifications-menu/real-time-notifications-menu";
 import { useNotificationsChannel } from "./hooks/use-notifications-channel";
 
 type Props = {

@@ -43,7 +43,7 @@ export const AuctionCarousel: FC<Props> = (props) => {
                 idx
               }`}
             >
-              <Card>
+              <Card className="border-0">
                 <CardContent className="relative aspect-square rounded-lg overflow-hidden flex items-center justify-center">
                   <Image
                     src={`${url}?t=${Date.now()}`}

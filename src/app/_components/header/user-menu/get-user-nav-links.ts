@@ -2,8 +2,6 @@ import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import {
   CircleDollarSignIcon,
-  CirclePlusIcon,
-  GavelIcon,
   type LucideIcon,
   ShieldHalfIcon,
   UserRoundCheckIcon,
@@ -14,19 +12,6 @@ type NavLink = {
   title: MessageDescriptor;
   icon: LucideIcon;
 };
-
-export const getAuctionsNavLinks: (lang: string) => NavLink[] = (lang) => [
-  {
-    href: `/${lang}/auctions`,
-    title: msg`Auctions`,
-    icon: GavelIcon,
-  },
-  {
-    href: `/${lang}/auctions/new`,
-    title: msg`Create auction`,
-    icon: CirclePlusIcon,
-  },
-];
 
 export const getUserNavLinks: (lang: string) => NavLink[] = (lang) => [
   {
