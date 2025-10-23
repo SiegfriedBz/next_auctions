@@ -63,6 +63,7 @@ export const DisabledNavListItem: FC<DisabledNavListItemProps> = (props) => {
                 linkClassName,
                 "inline-flex p-2 text-muted-foreground cursor-not-allowed",
               )}
+              aria-disabled={true}
             >
               {Icon && (
                 <Icon
