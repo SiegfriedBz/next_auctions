@@ -45,7 +45,7 @@ export const AuctionsTableServer: FC<Props> = async (props) => {
 
   return (
     <>
-      <AuctionsTableToolbar filteredCount={total} canCreate />
+      <AuctionsTableToolbar filteredCount={total} canCreate={!!me} />
       <AuctionsTableProvider
         data={list}
         count={total}

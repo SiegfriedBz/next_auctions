@@ -1,0 +1,47 @@
+"use client";
+
+import { Trans, useLingui } from "@lingui/react/macro";
+import Link from "next/link";
+import type { ComponentProps, FC } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+type Props = ComponentProps<typeof Button>;
+
+export const AuctionsCreateButton: FC<Props> = (props) => {
+  const { disabled, ...rest } = props;
+  const { i18n } = useLingui();
+  const { locale: lang } = i18n;
+
+  if (disabled) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            {...rest}
+            type="button"
+            variant="outline"
+            className="text-muted-foreground cursor-not-allowed"
+          >
+            <Trans>Create Auction</Trans>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <Trans>Please log in to create auctions.</Trans>
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+
+  return (
+    <Button {...rest} type="button" variant="outline">
+      <Link href={`/${lang}/auctions/new`}>
+        <Trans>Create Auction</Trans>
+      </Link>
+    </Button>
+  );
+};
