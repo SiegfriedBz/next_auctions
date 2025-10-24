@@ -56,7 +56,7 @@ const DEFAULT_VALUES: CreateAuctionParams = {
   description: "",
   startingPrice: 100,
   category: AuctionCategorySchema.enum.MUSIC,
-  endAt: TOMORROW,
+  endAt: undefined,
   status: AuctionStatusSchema.enum.DRAFT,
   storageId: "",
   images: [],

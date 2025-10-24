@@ -2,6 +2,7 @@ import { Trans } from "@lingui/react/macro";
 import {
   CalendarCheck2Icon,
   CalendarClockIcon,
+  CircleOffIcon,
   CoinsIcon,
   GemIcon,
 } from "lucide-react";
@@ -51,14 +52,12 @@ export const AuctionDetailsList: FC<Props> = (props) => {
           <Trans>Started</Trans>:
         </TypographyH4>
         <TypographyH5>
-          <FormatDate
-            value={(auction.startedAt || auction.createdAt) ?? null}
-          />
+          <FormatDate value={auction.startedAt ?? null} />
         </TypographyH5>
       </div>
 
       {!isClosed && (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <CalendarClockIcon className="size-4 text-muted-foreground" />
           {auction.endAt && auction.endAt.getTime() < Date.now() ? (
             <>
@@ -71,11 +70,15 @@ export const AuctionDetailsList: FC<Props> = (props) => {
             </>
           ) : (
             <>
-              <TypographyH4>
+              <TypographyH4 className="whitespace-nowrap">
                 <Trans>Ends in</Trans>:{" "}
               </TypographyH4>
               <TypographyH5>
-                <Countdown endDate={auction.endAt} />
+                {auction.endAt ? (
+                  <Countdown endDate={auction.endAt} />
+                ) : (
+                  <CircleOffIcon size={16} className="text-muted-foreground" />
+                )}
               </TypographyH5>
             </>
           )}
