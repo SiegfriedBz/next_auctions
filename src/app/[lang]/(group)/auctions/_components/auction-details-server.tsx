@@ -304,6 +304,7 @@ const AuctionActions: FC<AuctionActionsProps> = (props) => {
 
   const isMyAuction = auction.ownerId === me.id;
   const isOpenedAuction = auction.status === AuctionStatusSchema.enum.OPEN;
+  const isClosedAuction = auction.status === AuctionStatusSchema.enum.CLOSED;
   const isAuctionWithBid = auction.highestBid && auction.highestBid > 0;
 
   return (
@@ -316,7 +317,7 @@ const AuctionActions: FC<AuctionActionsProps> = (props) => {
           >
             <Trans>This is your auction</Trans>
           </Badge>
-          {!isAuctionWithBid && (
+          {!isAuctionWithBid && !isClosedAuction && (
             <Button asChild>
               <Link href={`/${lang}/auctions/${auction.id}/edit`}>
                 <Trans>Edit</Trans>
