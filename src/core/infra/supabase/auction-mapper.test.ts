@@ -29,6 +29,7 @@ describe("auctionMapper", () => {
       end_at: "2025-08-20T12:00:00.000Z",
       created_at: "2025-08-01T12:00:00.000Z",
       updated_at: "2025-08-05T12:00:00.000Z",
+      paid_at: "2025-08-20T12:00:00.000Z",
     };
 
     const expected: Auction = {
@@ -47,6 +48,7 @@ describe("auctionMapper", () => {
       endAt: new Date("2025-08-20T12:00:00.000Z"),
       createdAt: new Date("2025-08-01T12:00:00.000Z"),
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+      paidAt: new Date("2025-08-20T12:00:00.000Z"),
     };
 
     expect(auctionMapper(supabaseAuction)).toEqual(expected);
@@ -67,8 +69,9 @@ describe("auctionMapper", () => {
       images: [],
       created_at: "2025-08-01T12:00:00.000Z",
       updated_at: "2025-08-05T12:00:00.000Z",
-      started_at: "2025-08-01T12:00:00.000Z",
+      started_at: null,
       end_at: null,
+      paid_at: null,
     };
 
     const expected: Auction = {
@@ -85,8 +88,9 @@ describe("auctionMapper", () => {
       images: [],
       createdAt: new Date("2025-08-01T12:00:00.000Z"),
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
-      startedAt: new Date("2025-08-01T12:00:00.000Z"),
+      startedAt: undefined,
       endAt: undefined,
+      paidAt: undefined,
     };
 
     expect(auctionMapper(supabaseAuction)).toEqual(expected);

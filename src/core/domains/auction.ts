@@ -24,15 +24,18 @@ export const AuctionSchema = z.object({
   ownerId: z.uuid(),
   highestBidderId: z.uuid().optional(),
   highestBid: z.number().optional(),
-  title: z.string(),
-  description: z.string(),
+  title: z
+    .string()
+    .min(5, { message: "Title must contain at least 5 characters" }),
+  description: z
+    .string()
+    .min(8, { message: "Description must contain at least 8 characters" }),
   storageId: z.uuid().optional(),
   images: z.array(z.string()).optional(),
   category: AuctionCategorySchema,
   startingPrice: z
     .number()
     .min(1, { message: "Starting price must be greater than 1" }),
-
   status: AuctionStatusSchema,
   startedAt: z.date().optional(),
   endAt: z.date().optional(),

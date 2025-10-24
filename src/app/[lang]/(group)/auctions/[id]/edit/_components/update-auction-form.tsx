@@ -57,7 +57,7 @@ const DEFAULT_VALUES: UpdateAuctionParams = {
   description: "",
   startingPrice: 10,
   category: AuctionCategorySchema.enum.MUSIC,
-  endAt: TOMORROW,
+  endAt: undefined,
   status: AuctionStatusSchema.enum.OPEN,
   storageId: undefined,
   images: [],

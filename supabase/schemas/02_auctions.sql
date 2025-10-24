@@ -25,6 +25,7 @@ CREATE TABLE auctions (
   paid_at TIMESTAMPTZ
 );
 
+----
 CREATE FUNCTION before_update_auction()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -52,3 +53,22 @@ CREATE TRIGGER trigger_before_update_auction
 BEFORE UPDATE ON auctions
 FOR EACH ROW
 EXECUTE FUNCTION before_update_auction();
+
+------
+------
+CREATE FUNCTION before_insert_auction()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- If created directly with OPEN status, set started_at to now
+  IF NEW.status = 'OPEN' THEN
+    NEW.started_at := NOW();
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- TRIGGER BEFORE INSERT
+CREATE TRIGGER trigger_before_insert_auction
+BEFORE INSERT ON auctions
+FOR EACH ROW
+EXECUTE FUNCTION before_insert_auction();

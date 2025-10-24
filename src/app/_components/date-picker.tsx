@@ -2,8 +2,9 @@
 
 import { msg } from "@lingui/core/macro";
 import { ChevronDownIcon } from "lucide-react";
-import { type FC, useMemo, useState } from "react";
+import { type FC, useEffect, useMemo, useState } from "react";
 import type { Matcher } from "react-day-picker";
+import { useFormContext } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -11,7 +12,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { AuctionStatusSchema } from "@/core/domains/auction";
 import { cn } from "@/lib/utils";
+import { TOMORROW } from "../constants";
 import { FormatDate } from "./format-date";
 
 type Props = {
@@ -32,6 +35,17 @@ export const DayPicker: FC<Props> = (props) => {
       ...(disabledAfter ? { after: disabledAfter } : {}),
     };
   }, [disabledBefore, disabledAfter]);
+
+  const form = useFormContext();
+  const status = form.watch("status");
+
+  useEffect(() => {
+    if (status === AuctionStatusSchema.enum.DRAFT) {
+      onChange(undefined);
+    } else if (status === AuctionStatusSchema.enum.OPEN && !value) {
+      onChange(TOMORROW);
+    }
+  }, [status, value, onChange]);
 
   return (
     <div className={cn("flex flex-col gap-3", className)}>

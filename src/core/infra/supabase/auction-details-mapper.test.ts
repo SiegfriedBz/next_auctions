@@ -29,6 +29,7 @@ describe("auctionDetailsMapper", () => {
       end_at: "2025-08-20T12:00:00.000Z",
       created_at: "2025-08-01T12:00:00.000Z",
       updated_at: "2025-08-05T12:00:00.000Z",
+      paid_at: "2025-08-20T12:00:00.000Z",
       owner: {
         id: VALID_UUID,
         first_name: "John",
@@ -61,6 +62,7 @@ describe("auctionDetailsMapper", () => {
       endAt: new Date("2025-08-20T12:00:00.000Z"),
       createdAt: new Date("2025-08-01T12:00:00.000Z"),
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
+      paidAt: new Date("2025-08-20T12:00:00.000Z"),
       owner: {
         id: VALID_UUID,
         firstName: "John",
@@ -97,6 +99,7 @@ describe("auctionDetailsMapper", () => {
       updated_at: "2025-08-05T12:00:00.000Z",
       started_at: "2025-08-01T12:00:00.000Z",
       end_at: null,
+      paid_at: null,
       owner: {
         id: VALID_UUID,
         first_name: "John",
@@ -123,6 +126,7 @@ describe("auctionDetailsMapper", () => {
       updatedAt: new Date("2025-08-05T12:00:00.000Z"),
       startedAt: new Date("2025-08-01T12:00:00.000Z"),
       endAt: undefined,
+      paidAt: undefined,
       owner: {
         id: VALID_UUID,
         firstName: "John",
