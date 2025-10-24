@@ -15,12 +15,11 @@ Deno.serve(async (_req) => {
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-    // Find all open auctions with a highest bid and ended
+    // Find all non-closed auctions that have ended
     const { data: auctions, error } = await supabase
       .from("auctions")
       .select("id")
-      .eq("status", "OPEN")
-      .not("highest_bid", "is", null)
+      .neq("status", "CLOSED")
       .lt("end_at", new Date().toISOString())
       .not("end_at", "is", null);
 
@@ -38,6 +37,8 @@ Deno.serve(async (_req) => {
       .in("id", ids);
 
     if (updateError) throw updateError;
+
+    console.log(`Closed auctions with IDs: ${ids.join(" - ")}`);
 
     return new Response(`Closed ${ids.length} auctions.`, { status: 200 });
   } catch (err) {
