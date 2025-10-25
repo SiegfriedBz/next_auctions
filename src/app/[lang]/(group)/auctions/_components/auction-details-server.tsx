@@ -42,8 +42,6 @@ type Props = {
 export const AuctionDetailsServer: FC<Props> = async (props) => {
   const { id, lang } = await props.params;
 
-  await new Promise((res) => setTimeout(res, 5_000));
-
   const [me, auction] = await Promise.all([
     users().me(),
     auctions().detailsById(id),
