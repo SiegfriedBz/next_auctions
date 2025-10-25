@@ -266,17 +266,19 @@ export const CreateAuctionForm: FC = () => {
           infoMessage={t`Click on Create Auction`}
         />
 
-        <Button
-          className="max-sm:w-full sm:flex sm:justify-self-end cursor-pointer"
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <Trans>Creating auction...</Trans>
-          ) : (
-            <Trans>Create auction</Trans>
-          )}
-        </Button>
+        <div className="flex w-full sm:justify-end">
+          <Button
+            className="cursor-pointer w-full sm:w-fit"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <Trans>Creating auction...</Trans>
+            ) : (
+              <Trans>Create auction</Trans>
+            )}
+          </Button>
+        </div>
       </form>
     </Form>
   );
