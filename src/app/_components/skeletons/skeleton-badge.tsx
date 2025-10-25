@@ -6,5 +6,12 @@ type Props = { className?: string };
 
 export const SkeletonBadge: FC<Props> = (props) => {
   const { className } = props;
-  return <Skeleton className={cn("w-16 h-6 rounded-lg", className)} />;
+  return (
+    <Skeleton
+      className={cn(
+        "w-16 h-6 rounded-lg px-2 py-0.5 sm:px-3 sm:py-1",
+        className,
+      )}
+    />
+  );
 };

@@ -5,12 +5,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const SkeletonCarousel: FC = () => {
   return (
     <>
-      <Skeleton className="size-8 rounded-full mr-2 sm:-mr-2 flex justify-center items-center">
-        <MoveLeftIcon className="opacity-70" size={12} />
+      <Skeleton className="max-[375px]:hidden size-8 rounded-full mr-2 sm:-mr-2 flex justify-center items-center">
+        <MoveLeftIcon className="size-3 opacity-70" />
       </Skeleton>
-      <Skeleton className="size-[21rem] sm:size-[16rem] mx-auto sm:mx-4 rounded-lg" />
-      <Skeleton className="size-8 rounded-full ml-2 sm:-ml-2 flex justify-center items-center">
-        <MoveRightIcon className="opacity-70" size={12} />
+      <Skeleton className="min-h-46 min-w-46 sm:size-[16rem] mx-4 rounded-lg" />
+      <Skeleton className="max-[375px]:hidden size-8 rounded-full ml-2 sm:-ml-2 flex justify-center items-center">
+        <MoveRightIcon className="size-3 opacity-70" />
       </Skeleton>
     </>
   );

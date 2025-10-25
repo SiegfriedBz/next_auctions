@@ -1,8 +1,9 @@
-import { useLingui } from "@lingui/react/macro";
+import { Trans, useLingui } from "@lingui/react/macro";
 import { HeartIcon } from "lucide-react";
 import Link from "next/link";
 import type { FC } from "react";
 import { LinkPreview } from "@/components/ui/link-preview";
+import { TypographyH6 } from "./typography/h6";
 
 const ADMIN_LINK = process.env.ADMIN_LINK ?? "https://github.com/SiegfriedBz";
 
@@ -11,18 +12,20 @@ export const Footer: FC = () => {
   const { locale: lang } = i18n;
 
   return (
-    <footer className="flex py-8 gap-4 flex-wrap items-center justify-center text-sm">
-      <span>© {new Date().getFullYear()}</span>
+    <footer className="flex py-4 sm:py-8 gap-2 sm:gap-4 flex-wrap items-center justify-center">
+      <TypographyH6>© {new Date().getFullYear()}</TypographyH6>
 
       <Link href={`/${lang}/`} scroll>
-        <span className="tracking-wide">
-          GavL | Track Auctions Effortlessly
-        </span>
+        <TypographyH6>
+          GavL | <Trans>Track Auctions. Effortlessly</Trans>
+        </TypographyH6>
       </Link>
 
       <LinkPreview url={ADMIN_LINK}>
-        <span className="inline-flex gap-x-2 items-center text-sm whitespace-nowrap">
-          Made with <HeartIcon className="text-red-400 size-4" /> by Siegfried
+        <span className="inline-flex items-center gap-1">
+          <TypographyH6>Made with</TypographyH6>
+          <HeartIcon className="text-red-400 size-4" />
+          <TypographyH6>by Siegfried</TypographyH6>
         </span>
       </LinkPreview>
     </footer>

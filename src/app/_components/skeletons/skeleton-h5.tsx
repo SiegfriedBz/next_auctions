@@ -5,11 +5,9 @@ import { cn } from "@/lib/utils";
 type Props = {
   className?: string;
 };
-export const SkeletonTitle: FC<Props> = (props) => {
+
+export const SkeletonH5: FC<Props> = (props) => {
   const { className } = props;
-  return (
-    <Skeleton
-      className={cn("border-b pb-2 h-5 sm:h-6 md:h-8 rounded-lg", className)}
-    />
-  );
+
+  return <Skeleton className={cn("w-18 h-4 rounded-lg", className)} />;
 };

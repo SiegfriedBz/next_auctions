@@ -171,8 +171,8 @@ msgstr "Creating auction..."
 msgid "Creating bid..."
 msgstr "Creating bid..."
 
-msgid "Current Bid"
-msgstr "Current Bid"
+#~ msgid "Current Bid"
+#~ msgstr "Current Bid"
 
 msgid "Dark"
 msgstr "Dark"
@@ -645,8 +645,11 @@ msgstr "Total received"
 msgid "Toys"
 msgstr "Toys"
 
-msgid "Track Auctions Effortlessly"
-msgstr "Track Auctions Effortlessly"
+#~ msgid "Track Auctions Effortlessly"
+#~ msgstr "Track Auctions Effortlessly"
+
+msgid "Track Auctions. Effortlessly"
+msgstr "Track Auctions. Effortlessly"
 
 msgid "Update auction"
 msgstr "Update auction"

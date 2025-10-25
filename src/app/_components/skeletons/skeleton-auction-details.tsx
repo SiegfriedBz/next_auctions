@@ -9,12 +9,12 @@ import {
 import type { FC } from "react";
 import { SkeletonAvatar } from "@/app/_components/skeletons/skeleton-avatar";
 import { SkeletonBadge } from "@/app/_components/skeletons/skeleton-badge";
-import { SkeletonButton } from "@/app/_components/skeletons/skeleton-button";
 import { SkeletonCarousel } from "@/app/_components/skeletons/skeleton-carousel";
-import { SkeletonDescription } from "@/app/_components/skeletons/skeleton-description";
-import { SkeletonH4 } from "@/app/_components/skeletons/skeleton-h4";
 import { SkeletonTitle } from "@/app/_components/skeletons/skeleton-title";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { TypographyH4 } from "../typography/h4";
+import { SkeletonH5 } from "./skeleton-h5";
 
 export const SkeletonAuctionDetails: FC = () => {
   return (
@@ -23,12 +23,13 @@ export const SkeletonAuctionDetails: FC = () => {
 
       <Card className="text-muted-foreground">
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="flex items-center max-sm:my-1">
+          <div className="flex justify-center items-center">
             <SkeletonCarousel />
           </div>
 
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col gap-6 sm:py-2">
             <AuctionDescriptionSkeleton />
+            <Separator className="mb-6" />
             <AuctionDetailsListSkeleton />
             <AuctionActionsSkeleton />
           </div>
@@ -43,8 +44,8 @@ const AuctionHeaderCardSkeleton: FC = () => {
     <Card className="text-muted-foreground">
       <CardHeader>
         <CardTitle className="flex justify-between items-start h-full">
-          <div className="flex flex-col gap-2 max-sm:gap-4">
-            <SkeletonTitle />
+          <div className="flex flex-col gap-2 max-sm:gap-4 w-full">
+            <SkeletonTitle className="w-44" />
 
             <div className="flex gap-x-4 items-center">
               <SkeletonBadge className="bg-amber-400 my-1" />
@@ -57,22 +58,27 @@ const AuctionHeaderCardSkeleton: FC = () => {
               <SkeletonAvatar />
             </div>
 
+            <Separator className="sm:hidden mb-2 w-full" />
             <div className="sm:hidden flex items-center gap-2 text-lg font-medium">
               <CoinsIcon className="size-4 text-amber-500" />
-              <Trans>Current Bid</Trans>:
-              <span className="font-bold text-primary">
-                <SkeletonH4 />
-              </span>
+              <TypographyH4 className="whitespace-nowrap">
+                <Trans>Highest Bid</Trans>:
+              </TypographyH4>
+              <SkeletonH5 className="w-24" />
             </div>
+            <SkeletonH5 className="sm:hidden w-54" />
           </div>
 
           <div className="max-sm:hidden flex flex-col justify-between items-end h-full">
-            <div className="flex items-center gap-2 text-lg font-medium">
-              <CoinsIcon className="size-5 text-amber-500" />
-              <Trans>Current Bid</Trans>:
-              <span className="font-bold text-primary">
-                <SkeletonH4 />
-              </span>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 text-lg font-medium">
+                <CoinsIcon className="size-5 text-amber-500" />
+                <TypographyH4 className="whitespace-nowrap">
+                  <Trans>Highest Bid</Trans>:
+                </TypographyH4>
+                <SkeletonH5 className="w-24" />
+              </div>
+              <SkeletonH5 className="w-full" />
             </div>
             <SkeletonBadge className="bg-blue-400" />
           </div>
@@ -86,12 +92,13 @@ const AuctionDescriptionSkeleton: FC = () => (
   <div className="flex flex-col gap-2">
     <div className="flex items-center gap-x-2">
       <NotebookTextIcon className="size-5" />
-      <Trans>Description</Trans>
+      <TypographyH4>
+        <Trans>Description</Trans>
+      </TypographyH4>
     </div>
-    <div className="space-y-2 h-16 sm:h-22">
-      <SkeletonDescription className="w-full h-4" />
-      <SkeletonDescription className="w-3/4 h-4" />
-      <SkeletonDescription className="w-1/2 h-4" />
+    <div className="space-y-3 h-16 sm:h-22">
+      <SkeletonH5 className="w-[92%]" />
+      <SkeletonH5 className="w-[64%]" />
     </div>
   </div>
 );
@@ -100,44 +107,42 @@ const AuctionDetailsListSkeleton: FC = () => (
   <div className="space-y-3">
     <div className="flex items-center gap-2">
       <GemIcon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
+      <TypographyH4 className="whitespace-nowrap">
         <Trans>Starting Price</Trans>:
-      </span>
-      <SkeletonH4 />
+      </TypographyH4>
+      <SkeletonH5 className="sm:w-22 md:w-26" />
     </div>
 
     <div className="flex items-center gap-2">
       <CoinsIcon className="size-4 text-amber-500" />
-      <span className="text-lg font-medium">
-        <Trans>Current Bid</Trans>:
-      </span>
-      <span className="text-xl font-bold text-primary">
-        <SkeletonH4 />
-      </span>
+      <TypographyH4 className="whitespace-nowrap">
+        <Trans>Highest Bid</Trans>:
+      </TypographyH4>
+      <SkeletonH5 className="w-22 sm:w-26 md:w-30" />
     </div>
 
     <div className="flex items-center gap-2">
       <CalendarCheck2Icon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
+      <TypographyH4 className="whitespace-nowrap">
         <Trans>Started</Trans>:
-      </span>
-      <SkeletonH4 />
+      </TypographyH4>
+      <SkeletonH5 className="w-29 sm:w-34 md:w-38" />
     </div>
 
     <div className="flex items-center gap-2">
       <CalendarClockIcon className="size-4 text-muted-foreground" />
-      <span className="font-medium">
+      <TypographyH4 className="whitespace-nowrap">
         <Trans>Ends</Trans>:
-      </span>
-      <SkeletonH4 />
+      </TypographyH4>
+      <SkeletonH5 className="w-34 sm:w-39 md:w-43" />
     </div>
   </div>
 );
 
 const AuctionActionsSkeleton: FC = () => {
   return (
-    <div className="flex w-fit ml-auto mt-auto">
-      <SkeletonButton />
+    <div className="w-full mt-auto">
+      <SkeletonBadge className="w-54 max-sm:mx-auto sm:ml-auto" />
     </div>
   );
 };

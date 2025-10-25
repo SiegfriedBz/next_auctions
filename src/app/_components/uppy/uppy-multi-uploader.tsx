@@ -5,6 +5,7 @@ import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
 import { Trans, useLingui } from "@lingui/react/macro";
+import { CloudUploadIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import {
@@ -81,7 +82,8 @@ export const UppyMultiUploader = ({
         }}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle>
+          <AlertDialogTitle className="flex items-center gap-2">
+            <CloudUploadIcon className="size-5" />
             <Trans>Upload images?</Trans>
           </AlertDialogTitle>
           <AlertDialogDescription>
@@ -100,12 +102,13 @@ export const UppyMultiUploader = ({
           <Card>
             <CardHeader>
               <Label className="flex items-center gap-x-2">
-                {<Trans>Upload up to 3 images</Trans>}
+                <CloudUploadIcon className="size-5" />
+                <Trans>Upload up to 3 images</Trans>
               </Label>
             </CardHeader>
 
             {uppyIsReady ? (
-              <CardContent className="flex flex-col items-center justify-center px-4">
+              <CardContent className="flex flex-col items-center justify-center">
                 <Dashboard
                   uppy={uppy}
                   theme="dark"
@@ -115,7 +118,7 @@ export const UppyMultiUploader = ({
                   proudlyDisplayPoweredByUppy={false}
                 />
                 {field.value?.length ? (
-                  <div className="mt-4">
+                  <div className="mt-4 sm:mt-8 w-full">
                     {field.value && <AuctionCarousel urls={field.value} />}
                   </div>
                 ) : null}

@@ -25,7 +25,7 @@ export const AuctionDetailsList: FC<Props> = (props) => {
   const isClosed = auction.status === AuctionStatusSchema.enum.CLOSED;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mb-8">
       <div className="flex items-center gap-2">
         <GemIcon className="size-4 text-muted-foreground" />
         <TypographyH4 className="whitespace-nowrap">
