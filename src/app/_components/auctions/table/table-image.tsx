@@ -33,7 +33,7 @@ export const AuctionTableImage: FC<Props> = (props) => {
         src={url}
         alt={t`Product image`}
         fill
-        className="object-contain rounded-lg"
+        className="object-cover rounded-lg"
       />
     </div>
   );
