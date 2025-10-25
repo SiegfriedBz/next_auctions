@@ -27,40 +27,33 @@ export const AuctionCarousel: FC<Props> = (props) => {
 
   return (
     <div className="flex justify-center">
-      <Carousel
-        className="w-54 md:w-72 flex h-full justify-center items-center"
-        // orientation="vertical"
-        opts={{
-          loop: true,
-        }}
-      >
-        <CarouselContent className="w-50 md:w-68 flex h-full justify-center items-center">
-          {urls.map((url, idx) => {
-            return (
-              <CarouselItem
-                className="pt-1"
-                key={`${url}-${
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <transient fix>
-                  idx
-                }`}
-              >
-                <Card className="border-0 w-full">
-                  <CardContent className="relative flex-1 aspect-square rounded-lg overflow-hidden cursor-pointer">
-                    <Image
-                      src={`${url}?t=${Date.now()}`}
-                      alt="auction-image"
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                    <span className="absolute text-xl sm:text-2xl font-semibold text-white/90 left-4 bottom-4">
-                      {idx + 1}
-                    </span>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            );
-          })}
+      <Carousel className="w-54 md:w-72" opts={{ loop: true }}>
+        <CarouselContent className="flex">
+          {urls.map((url, idx) => (
+            <CarouselItem
+              key={`${url}-${
+                // biome-ignore lint/suspicious/noArrayIndexKey: <needed in case user upload same file multiple times>
+                idx
+              }`}
+              className="w-full pt-1"
+            >
+              <Card className="border-0 w-full">
+                <CardContent className="relative aspect-square rounded-lg overflow-hidden cursor-pointer">
+                  <Image
+                    src={`${url}?t=${Date.now()}`}
+                    alt={`auction-image-${idx}`}
+                    fill
+                    className="object-cover rounded-lg"
+                  />
+                  <span className="absolute text-xl sm:text-2xl font-semibold text-white/90 left-4 bottom-4">
+                    {idx + 1}
+                  </span>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
         </CarouselContent>
+
         <CarouselPrevious className="max-[375px]:hidden" />
         <CarouselNext className="max-[375px]:hidden" />
       </Carousel>

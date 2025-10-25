@@ -276,17 +276,19 @@ export const UpdateAuctionForm: FC<Props> = (props) => {
           infoMessage={t`Click on Update Auction`}
         />
 
-        <Button
-          className="max-sm:w-full sm:flex sm:justify-self-end cursor-pointer"
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? (
-            <Trans>Updating auction...</Trans>
-          ) : (
-            <Trans>Update auction</Trans>
-          )}
-        </Button>
+        <div className="flex w-full sm:justify-end">
+          <Button
+            className="cursor-pointer w-full sm:w-fit"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <Trans>Updating auction...</Trans>
+            ) : (
+              <Trans>Update auction</Trans>
+            )}
+          </Button>
+        </div>
       </form>
     </Form>
   );
