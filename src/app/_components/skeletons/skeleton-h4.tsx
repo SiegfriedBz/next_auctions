@@ -1,6 +1,13 @@
 import type { FC } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
-export const SkeletonH4: FC = () => {
-  return <Skeleton className="w-14 h-7 rounded-lg" />;
+type Props = {
+  className?: string;
+};
+
+export const SkeletonH4: FC<Props> = (props) => {
+  const { className } = props;
+
+  return <Skeleton className={cn("w-14 h-7 rounded-lg", className)} />;
 };

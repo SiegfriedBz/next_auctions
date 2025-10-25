@@ -20,6 +20,7 @@ import { UserAvatar } from "@/app/_components/user-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   type Auction,
   type AuctionDetails,
@@ -40,6 +41,8 @@ type Props = {
 
 export const AuctionDetailsServer: FC<Props> = async (props) => {
   const { id, lang } = await props.params;
+
+  await new Promise((res) => setTimeout(res, 5_000));
 
   const [me, auction] = await Promise.all([
     users().me(),
@@ -108,6 +111,7 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
               {owner && <UserAvatar user={owner} />}
             </div>
 
+            <Separator className="sm:hidden mb-2" />
             <div className="sm:hidden flex flex-col gap-4 text-lg font-medium">
               <HighestBidAndStatus
                 auctionId={auctionId}
@@ -199,13 +203,14 @@ const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
 
   return (
     <Card>
-      <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
+      <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:py-2">
+        <div className="flex justify-center items-center">
           <AuctionCarousel urls={auction.images} />
         </div>
 
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-4">
           <AuctionDescription description={auction.description} />
+          <Separator className="mb-6" />
           <AuctionDetailsList auction={auction} />
 
           {me ? (

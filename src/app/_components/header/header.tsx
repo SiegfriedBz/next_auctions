@@ -27,7 +27,7 @@ const Logo: FC = () => {
         GavL
       </span>
       <TypographyLead className="max-[374px]:max-w-24 text-xs md:text-base mt-1">
-        <Trans>Track Auctions Effortlessly</Trans>
+        <Trans>Track Auctions. Effortlessly</Trans>
       </TypographyLead>
     </Link>
   );

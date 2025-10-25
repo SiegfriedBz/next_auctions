@@ -5,7 +5,7 @@ import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
 import { Trans, useLingui } from "@lingui/react/macro";
-import { SquareUserRoundIcon } from "lucide-react";
+import { CloudUploadIcon, SquareUserRoundIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
@@ -68,7 +68,8 @@ export const UppyAvatarUploader = ({
         onRemoveFile={onRemoveFile}
       >
         <AlertDialogHeader>
-          <AlertDialogTitle>
+          <AlertDialogTitle className="flex gap-2 items-center">
+            <CloudUploadIcon className="size-5" />
             <Trans>Upload your new avatar?</Trans>
           </AlertDialogTitle>
           <AlertDialogDescription>
