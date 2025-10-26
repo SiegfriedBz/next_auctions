@@ -21,14 +21,27 @@ msgstr "/+Z5u4"
 msgid "{0}"
 msgstr "{0}"
 
-msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
-msgstr "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
+#~ msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
+#~ msgstr "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
 
-msgid "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
-msgstr "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+#. placeholder {0}: isCurrentUserStats? "auction" : "total auction"
+#. placeholder {1}: isCurrentUserStats? "auctions" : "total auctions"
+msgid "{totalAuctions, plural, =0 {No auction yet} one {{0}} other {{1}}}"
+msgstr "{totalAuctions, plural, =0 {No auction yet} one {{0}} other {{1}}}"
 
-msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
-msgstr "{totalUsers, plural, =0 {user} one {user} other {users}}"
+#~ msgid "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+#~ msgstr "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+
+#. placeholder {0}: isCurrentUserStats? "bid" : "total bid"
+#. placeholder {1}: isCurrentUserStats? "bids" : "total bids"
+msgid "{totalBids, plural, =0 {No bid yet} one {{0}} other {{1}}}"
+msgstr "{totalBids, plural, =0 {No bid yet} one {{0}} other {{1}}}"
+
+msgid "{totalUsers, plural, =0 {No user yet} one {total user} other {total users}}"
+msgstr "{totalUsers, plural, =0 {No user yet} one {total user} other {total users}}"
+
+#~ msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
+#~ msgstr "{totalUsers, plural, =0 {user} one {user} other {users}}"
 
 #~ msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
 #~ msgstr "A set of layered sections of content—known as tab panels—that are displayed one at a time."
@@ -57,6 +70,9 @@ msgstr "Ascending"
 msgid "auction"
 msgstr "auction"
 
+msgid "auctions"
+msgstr "auctions"
+
 msgid "Auctions"
 msgstr "Auctions"
 
@@ -83,6 +99,9 @@ msgstr "Bid on auction"
 
 msgid "Bid placed successfully!"
 msgstr "Bid placed successfully!"
+
+msgid "bids"
+msgstr "bids"
 
 msgid "Bids"
 msgstr "Bids"
@@ -642,11 +661,20 @@ msgstr "Title *"
 msgid "Toggle theme"
 msgstr "Toggle theme"
 
+msgid "total auctions"
+msgstr "total auctions"
+
+msgid "total bids"
+msgstr "total bids"
+
 msgid "Total paid"
 msgstr "Total paid"
 
 msgid "Total received"
 msgstr "Total received"
+
+msgid "total users"
+msgstr "total users"
 
 msgid "Toys"
 msgstr "Toys"

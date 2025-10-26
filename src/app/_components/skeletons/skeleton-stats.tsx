@@ -5,6 +5,7 @@ import type { FC } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { TypographyH5 } from "../typography/h5";
 
 type Item = {
   title: MessageDescriptor;
@@ -41,9 +42,9 @@ export const SkeletonStats: FC<Props> = (props) => {
             <CardContent className="flex-1 flex items-center justify-between gap-4">
               <div>
                 <CardTitle>
-                  <Skeleton className="h-6 sm:h-8 w-12 mb-1 rounded-lg" />
+                  <Skeleton className="h-6 sm:h-8 w-12 mb-2 rounded-lg" />
                 </CardTitle>
-                {i18n._(title)}
+                <TypographyH5>{i18n._(title)}</TypographyH5>
               </div>
               <Icon size={32} />
             </CardContent>

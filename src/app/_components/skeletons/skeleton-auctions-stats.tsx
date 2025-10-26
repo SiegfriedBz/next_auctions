@@ -13,18 +13,18 @@ export const SkeletonAuctionsStats: FC<PropsWithChildren<Props>> = (props) => {
 
   const items = [
     {
-      title: msg`auction`,
+      title: isCurrentUserStats ? msg`auctions` : msg`total auctions`,
       icon: GavelIcon,
     },
     {
-      title: msg`bid`,
+      title: isCurrentUserStats ? msg`bids` : msg`total bids`,
       icon: CoinsIcon,
     },
   ];
 
   if (!isCurrentUserStats) {
     items.push({
-      title: msg`user`,
+      title: msg`total users`,
       icon: UsersIcon,
     });
   }
