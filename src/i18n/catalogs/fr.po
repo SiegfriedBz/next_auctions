@@ -21,14 +21,27 @@ msgstr ""
 msgid "{0}"
 msgstr ""
 
-msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
+#~ msgid "{totalAuctions, plural, =0 {auction} one {auction} other {auctions}}"
+#~ msgstr ""
+
+#. placeholder {0}: isCurrentUserStats? "auction" : "total auction"
+#. placeholder {1}: isCurrentUserStats? "auctions" : "total auctions"
+msgid "{totalAuctions, plural, =0 {No auction yet} one {{0}} other {{1}}}"
 msgstr ""
 
-msgid "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+#~ msgid "{totalBids, plural, =0 {bid} one {bid} other {bids}}"
+#~ msgstr ""
+
+#. placeholder {0}: isCurrentUserStats? "bid" : "total bid"
+#. placeholder {1}: isCurrentUserStats? "bids" : "total bids"
+msgid "{totalBids, plural, =0 {No bid yet} one {{0}} other {{1}}}"
 msgstr ""
 
-msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
+msgid "{totalUsers, plural, =0 {No user yet} one {total user} other {total users}}"
 msgstr ""
+
+#~ msgid "{totalUsers, plural, =0 {user} one {user} other {users}}"
+#~ msgstr ""
 
 #~ msgid "A set of layered sections of content—known as tab panels—that are displayed one at a time."
 #~ msgstr ""
@@ -57,6 +70,9 @@ msgstr ""
 msgid "auction"
 msgstr ""
 
+msgid "auctions"
+msgstr ""
+
 msgid "Auctions"
 msgstr ""
 
@@ -82,6 +98,9 @@ msgid "Bid on auction"
 msgstr ""
 
 msgid "Bid placed successfully!"
+msgstr ""
+
+msgid "bids"
 msgstr ""
 
 msgid "Bids"
@@ -594,7 +613,13 @@ msgstr ""
 msgid "This auction has been won and paid for."
 msgstr ""
 
-msgid "This auction has ended."
+msgid "This auction has ended with no bids."
+msgstr ""
+
+#~ msgid "This auction has ended."
+#~ msgstr ""
+
+msgid "This auction has ended. Winner is pending payment."
 msgstr ""
 
 msgid "This auction is ongoing."
@@ -636,10 +661,19 @@ msgstr ""
 msgid "Toggle theme"
 msgstr ""
 
+msgid "total auctions"
+msgstr ""
+
+msgid "total bids"
+msgstr ""
+
 msgid "Total paid"
 msgstr ""
 
 msgid "Total received"
+msgstr ""
+
+msgid "total users"
 msgstr ""
 
 msgid "Toys"
@@ -738,7 +772,10 @@ msgstr ""
 msgid "You won and paid for this auction."
 msgstr ""
 
-msgid "You won this auction"
+#~ msgid "You won this auction"
+#~ msgstr ""
+
+msgid "You won! Proceed to payment."
 msgstr ""
 
 msgid "You're currently the highest bidder!"

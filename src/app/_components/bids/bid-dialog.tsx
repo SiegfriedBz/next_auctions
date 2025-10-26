@@ -19,7 +19,7 @@ import { BidForm } from "./bid-form";
 
 type AuctionForBidding = Pick<
   Auction,
-  "id" | "title" | "category" | "highestBid"
+  "id" | "title" | "category" | "startingPrice" | "highestBid"
 >;
 
 type Props = {

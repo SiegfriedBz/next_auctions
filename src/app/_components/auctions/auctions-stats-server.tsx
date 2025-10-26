@@ -7,6 +7,7 @@ import { auctions } from "@/core/instances/auctions";
 import { bids } from "@/core/instances/bids";
 import { users } from "@/core/instances/users";
 import { cn } from "@/lib/utils";
+import { TypographyH5 } from "../typography/h5";
 
 type Props = {
   isCurrentUserStats?: boolean;
@@ -54,12 +55,14 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
             <CardTitle className="text-2xl sm:text-3xl">
               {totalAuctions}
             </CardTitle>
-            <Plural
-              _0="auction"
-              one="auction"
-              other="auctions"
-              value={totalAuctions}
-            />
+            <TypographyH5>
+              <Plural
+                _0={"No auction yet"}
+                one={isCurrentUserStats ? "auction" : "total auction"}
+                other={isCurrentUserStats ? "auctions" : "total auctions"}
+                value={totalAuctions}
+              />
+            </TypographyH5>
           </div>
           <GavelIcon size={32} />
         </CardContent>
@@ -69,7 +72,14 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
         <CardContent className="flex-1 flex items-center justify-between gap-4">
           <div>
             <CardTitle className="text-2xl sm:text-3xl">{totalBids}</CardTitle>
-            <Plural _0="bid" one="bid" other="bids" value={totalBids} />
+            <TypographyH5>
+              <Plural
+                _0="No bid yet"
+                one={isCurrentUserStats ? "bid" : "total bid"}
+                other={isCurrentUserStats ? "bids" : "total bids"}
+                value={totalBids}
+              />
+            </TypographyH5>
           </div>
           <CoinsIcon size={32} />
         </CardContent>
@@ -82,7 +92,14 @@ export const AuctionsStatsServer: FC<Props> = async (props) => {
               <CardTitle className="text-2xl sm:text-3xl">
                 {totalUsers}
               </CardTitle>
-              <Plural _0="user" one="user" other="users" value={totalUsers} />
+              <TypographyH5>
+                <Plural
+                  _0="No user yet"
+                  one="total user"
+                  other="total users"
+                  value={totalUsers}
+                />
+              </TypographyH5>
             </div>
             <UsersIcon size={32} />
           </CardContent>

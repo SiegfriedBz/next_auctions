@@ -31,7 +31,7 @@ const formSchema = CreateBidParamsSchema;
 type FormSchema = z.infer<typeof formSchema>;
 
 type Props = {
-  auction: Pick<Auction, "id" | "highestBid">;
+  auction: Pick<Auction, "id" | "startingPrice" | "highestBid">;
   handleCloseCaller?: () => void;
 };
 
@@ -44,7 +44,7 @@ export const BidForm: FC<Props> = (props) => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      amount: (auction.highestBid ?? 0) + 1,
+      amount: (auction.highestBid ?? auction.startingPrice ?? 0) + 1,
       auctionId: auction.id,
     },
   });
