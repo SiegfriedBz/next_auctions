@@ -24,7 +24,7 @@ export const InitiatePaymentButton: FC<Props> = (props) => {
       size="lg"
       className="cursor-pointer"
     >
-      <Trans>You won this auction</Trans>
+      <Trans>You won! Proceed to payment.</Trans>
     </Button>
   );
 };
