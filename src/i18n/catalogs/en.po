@@ -594,8 +594,14 @@ msgstr "System"
 msgid "This auction has been won and paid for."
 msgstr "This auction has been won and paid for."
 
-msgid "This auction has ended."
-msgstr "This auction has ended."
+msgid "This auction has ended with no bids."
+msgstr "This auction has ended with no bids."
+
+#~ msgid "This auction has ended."
+#~ msgstr "This auction has ended."
+
+msgid "This auction has ended. Winner is pending payment."
+msgstr "This auction has ended. Winner is pending payment."
 
 msgid "This auction is ongoing."
 msgstr "This auction is ongoing."
@@ -738,8 +744,11 @@ msgstr "You successfully updated your profile!"
 msgid "You won and paid for this auction."
 msgstr "You won and paid for this auction."
 
-msgid "You won this auction"
-msgstr "You won this auction"
+#~ msgid "You won this auction"
+#~ msgstr "You won this auction"
+
+msgid "You won! Proceed to payment."
+msgstr "You won! Proceed to payment."
 
 msgid "You're currently the highest bidder!"
 msgstr "You're currently the highest bidder!"

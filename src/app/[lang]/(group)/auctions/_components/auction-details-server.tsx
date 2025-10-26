@@ -24,7 +24,6 @@ import { Separator } from "@/components/ui/separator";
 import {
   type Auction,
   type AuctionDetails,
-  type AuctionStatus,
   AuctionStatusSchema,
 } from "@/core/domains/auction";
 import type { User } from "@/core/domains/user";
@@ -42,8 +41,6 @@ type Props = {
 export const AuctionDetailsServer: FC<Props> = async (props) => {
   const { id, lang } = await props.params;
 
-  await new Promise((res) => setTimeout(res, 5_000));
-
   const [me, auction] = await Promise.all([
     users().me(),
     auctions().detailsById(id),
@@ -53,91 +50,52 @@ export const AuctionDetailsServer: FC<Props> = async (props) => {
     return notFound();
   }
 
-  const meIsHighestBidder = me?.id === auction.highestBidderId;
-
   return (
     <>
-      <AuctionHeaderCard
-        auction={auction}
-        meIsHighestBidder={meIsHighestBidder}
-        lang={lang}
-      />
-
+      <AuctionHeaderCard me={me} auction={auction} lang={lang} />
       <AuctionDetailsCard me={me} auction={auction} lang={lang} />
     </>
   );
 };
 
 // ---------- AuctionHeaderCard ----------
-type AuctionHeaderCardProps = {
+type CardProps = {
+  me: User | null;
   auction: AuctionDetails;
-  meIsHighestBidder: boolean;
 } & LangParam;
-const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
-  const {
-    auction: {
-      id: auctionId,
-      title,
-      category,
-      owner,
-      highestBid,
-      status,
-      paidAt,
-      endAt,
-    },
-    meIsHighestBidder = false,
-    lang,
-  } = props;
-
-  const isPaid = paidAt != null;
+const AuctionHeaderCard: FC<CardProps> = (props) => {
+  const { me, auction, lang } = props;
 
   return (
     <Card>
       <CardHeader>
-        {isPaid}
         <CardTitle className="flex justify-between items-start h-full">
           <div className="flex flex-col gap-2 max-sm:gap-4 flex-1 min-w-0">
             <TypographyH2 className="border-0 capitalize truncate max-w-64 lg:max-w-[564px]">
-              {title}
+              {auction.title}
             </TypographyH2>
             <div className="flex gap-x-4 items-center">
-              <AuctionCategoryBadge category={category} />
+              <AuctionCategoryBadge category={auction.category} />
               <div className="sm:hidden">
-                <AuctionStatusBadge status={status} />
+                <AuctionStatusBadge status={auction.status} />
               </div>
             </div>
 
             <div className="-ms-3 mt-2">
-              {owner && <UserAvatar user={owner} />}
+              {auction.owner && <UserAvatar user={auction.owner} />}
             </div>
 
             <Separator className="sm:hidden mb-2" />
             <div className="sm:hidden flex flex-col gap-4 text-lg font-medium">
-              <HighestBidAndStatus
-                auctionId={auctionId}
-                status={status}
-                isPaid={isPaid}
-                highestBid={highestBid}
-                meIsHighestBidder={meIsHighestBidder}
-                endAt={endAt}
-                lang={lang}
-              />
+              <HighestBidAndStatus me={me} auction={auction} lang={lang} />
             </div>
           </div>
 
           <div className="max-sm:hidden flex flex-col justify-between items-end h-full">
             <div className="flex flex-col gap-4">
-              <HighestBidAndStatus
-                auctionId={auctionId}
-                status={status}
-                isPaid={isPaid}
-                highestBid={highestBid}
-                meIsHighestBidder={meIsHighestBidder}
-                endAt={endAt}
-                lang={lang}
-              />
+              <HighestBidAndStatus me={me} auction={auction} lang={lang} />
             </div>
-            <AuctionStatusBadge status={status} />
+            <AuctionStatusBadge status={auction.status} />
           </div>
         </CardTitle>
       </CardHeader>
@@ -146,27 +104,8 @@ const AuctionHeaderCard: FC<AuctionHeaderCardProps> = (props) => {
 };
 
 // ---------- HighestBidAndStatus ----------
-type HighestBidAndStatusProps = {
-  auctionId: string;
-  status: AuctionStatus;
-  isPaid: boolean;
-  highestBid: number | undefined;
-  meIsHighestBidder: boolean;
-  endAt: Date | undefined;
-} & LangParam;
-
-const HighestBidAndStatus: FC<HighestBidAndStatusProps> = (props) => {
-  const {
-    auctionId,
-    status,
-    isPaid,
-    highestBid,
-    meIsHighestBidder,
-    endAt,
-    lang,
-  } = props;
-
-  const isClosed = status === AuctionStatusSchema.enum.CLOSED;
+const HighestBidAndStatus: FC<CardProps> = (props) => {
+  const { me, auction, lang } = props;
 
   return (
     <>
@@ -176,29 +115,17 @@ const HighestBidAndStatus: FC<HighestBidAndStatusProps> = (props) => {
           <Trans>Highest Bid</Trans>:
         </TypographyH4>
         <TypographyH5>
-          <FormatCurrency value={highestBid ?? null} />
+          <FormatCurrency value={auction?.highestBid ?? null} />
         </TypographyH5>
       </div>
 
-      <UserAuctionStatus
-        meIsHighestBidder={meIsHighestBidder}
-        isPaid={isPaid}
-        isClosed={isClosed}
-        endAt={endAt}
-        auctionId={auctionId}
-        lang={lang}
-      />
+      <UserAuctionStatus me={me} auction={auction} lang={lang} />
     </>
   );
 };
 
 // ---------- AuctionDetailsCard ----------
-type AuctionDetailsCardProps = {
-  me: User | null;
-  auction: AuctionDetails;
-} & LangParam;
-
-const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
+const AuctionDetailsCard: FC<CardProps> = (props) => {
   const { me, auction, lang } = props;
 
   return (
@@ -232,39 +159,47 @@ const AuctionDetailsCard: FC<AuctionDetailsCardProps> = (props) => {
 };
 
 // ---------- UserAuctionStatus ----------
-type UserAuctionStatusProps = {
-  auctionId: string;
-  isPaid: boolean;
-  isClosed: boolean;
-  meIsHighestBidder: boolean;
-  endAt: Date | undefined;
-  lang: string;
-};
+const UserAuctionStatus: FC<CardProps> = (props) => {
+  const { me, auction, lang } = props;
 
-const UserAuctionStatus: FC<UserAuctionStatusProps> = (props) => {
-  const { auctionId, isPaid, isClosed, meIsHighestBidder, endAt, lang } = props;
+  const meIsHighestBidder = !!me?.id && me.id === auction.highestBidderId;
+  const isClosed = auction.status === AuctionStatusSchema.enum.CLOSED;
+  const isPaid = !!auction.paidAt;
+  const hasBid = !!auction.highestBidderId;
 
-  const hasEnded = endAt && endAt < new Date();
-
+  // --- Cases where current user is highest bidder ---
   if (meIsHighestBidder) {
-    return (
-      <div className="flex items-center gap-2">
-        <TrophyIcon className="size-4 text-amber-500" />
-        {isPaid ? (
+    if (isPaid) {
+      return (
+        <div className="flex items-center gap-2">
+          <TrophyIcon className="size-4 text-amber-500" />
           <TypographyH5>
             <Trans>You won and paid for this auction.</Trans>
           </TypographyH5>
-        ) : isClosed ? (
-          <InitiatePaymentButton auctionId={auctionId} lang={lang} />
-        ) : (
-          <TypographyH5>
-            <Trans>You're currently the highest bidder!</Trans>
-          </TypographyH5>
-        )}
+        </div>
+      );
+    }
+
+    if (isClosed) {
+      return (
+        <div className="flex items-center gap-2">
+          <TrophyIcon className="size-4 text-amber-500" />
+          <InitiatePaymentButton auctionId={auction.id} lang={lang} />
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex items-center gap-2">
+        <TrophyIcon className="size-4 text-amber-500" />
+        <TypographyH5>
+          <Trans>You're currently the highest bidder!</Trans>
+        </TypographyH5>
       </div>
     );
   }
 
+  // --- Paid auction for other users ---
   if (isPaid) {
     return (
       <div className="flex items-center gap-2">
@@ -276,17 +211,25 @@ const UserAuctionStatus: FC<UserAuctionStatusProps> = (props) => {
     );
   }
 
-  if (isClosed || hasEnded) {
+  // --- Closed auction with or without bids (not paid by current user) ---
+  if (isClosed) {
     return (
       <div className="flex items-center gap-2">
         <CalendarClockIcon className="size-4" />
-        <TypographyH5>
-          <Trans>This auction has ended.</Trans>
-        </TypographyH5>
+        {hasBid ? (
+          <TypographyH5>
+            <Trans>This auction has ended. Winner is pending payment.</Trans>
+          </TypographyH5>
+        ) : (
+          <TypographyH5>
+            <Trans>This auction has ended with no bids.</Trans>
+          </TypographyH5>
+        )}
       </div>
     );
   }
 
+  // --- Ongoing auction ---
   return (
     <div className="flex items-center gap-2">
       <HourglassIcon className="size-4" />
@@ -298,23 +241,17 @@ const UserAuctionStatus: FC<UserAuctionStatusProps> = (props) => {
 };
 
 // ---------- AuctionActions ----------
-type AuctionActionsProps = {
-  auction: AuctionDetails;
-  me: { id: string };
-  lang: string;
-};
-
-const AuctionActions: FC<AuctionActionsProps> = (props) => {
+const AuctionActions: FC<CardProps> = (props) => {
   const { auction, me, lang } = props;
 
-  const isMyAuction = auction.ownerId === me.id;
-  const isOpenedAuction = auction.status === AuctionStatusSchema.enum.OPEN;
-  const isClosedAuction = auction.status === AuctionStatusSchema.enum.CLOSED;
-  const isAuctionWithBid = auction.highestBid && auction.highestBid > 0;
+  const isOwner = !!me?.id && me.id === auction.ownerId;
+  const hasBid = !!auction.highestBidderId;
+  const isOpen = auction.status === AuctionStatusSchema.enum.OPEN;
+  const isClosed = auction.status === AuctionStatusSchema.enum.CLOSED;
 
   return (
     <div className="flex w-fit ml-auto mt-auto">
-      {isMyAuction ? (
+      {isOwner ? (
         <div className="flex items-center gap-x-2">
           <Badge
             variant="secondary"
@@ -322,7 +259,7 @@ const AuctionActions: FC<AuctionActionsProps> = (props) => {
           >
             <Trans>This is your auction</Trans>
           </Badge>
-          {!isAuctionWithBid && !isClosedAuction && (
+          {!hasBid && !isClosed && (
             <Button asChild>
               <Link href={`/${lang}/auctions/${auction.id}/edit`}>
                 <Trans>Edit</Trans>
@@ -330,7 +267,7 @@ const AuctionActions: FC<AuctionActionsProps> = (props) => {
             </Button>
           )}
         </div>
-      ) : isOpenedAuction ? (
+      ) : isOpen ? (
         <BidDialog auction={auction} />
       ) : (
         <AuctionStatusBadge status={auction.status} />
