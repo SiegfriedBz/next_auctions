@@ -2,8 +2,6 @@
 
 A real-time auction platform built with Next.js, React, TypeScript, Supabase, and Stripe. Features live bidding, payments, notifications, and responsive design for mobile and desktop.
 
-GavL showcases an end-to-end, domain-driven architecture combining React Suspense UX patterns with Supabase Realtime and Stripe automation to deliver a fully functional real-time auction experience.
-
 ## 🎥 Demo / Video Walkthrough
 
 Full walkthrough playlist: [YouTube Playlist](https://www.youtube.com/watch?v=hLpAKQV34Ok&list=PLrUSgs1cNYobkqnvP3VKCgiZ8tjg8Zhbj&index=3)
@@ -23,7 +21,7 @@ Videos cover:
 - **Payments:** Stripe (Checkout & Webhooks)  
 - **UI & Validation:** Shadcn/UI, React-Hook-Form, Zod  
 - **Data Display:** TanStack Table
-- **Nuqs:** server-side filters/sorting/pagination
+- **Nuqs:** server-side filters / sorting / pagination
 - **File Uploads:** Uppy  
 - **Testing:** Jest  
 - **UX Enhancements:** React Suspense & skeleton loaders for smooth transitions  
@@ -73,18 +71,61 @@ Owners cannot edit auctions that already have bids or are closed.
 
 ### 4. Real-time Bidding
 
-Multiple users can place bids simultaneously.  
-Auction owners and previous bidders receive live notifications (`NEW_BID`) in real time through **Supabase Realtime** triggers and broadcasts.
+Multiple users can place bids simultaneously.
+When a new bid is submitted, the auction’s highest bid and highest bidder are updated, and relevant users (owner and previous bidders) are notified (`NEW_BID` notification) in real time via **Supabase Realtime**.
+
+```mermaid
+sequenceDiagram
+    participant User as Logged-in User
+    participant Bids as Bids Table
+    participant Auctions as Auctions Table
+    participant Notifications as Notifications Table
+    participant Clients as Connected Clients
+
+    User ->> Bids: Insert new bid
+    Bids ->> Auctions: Update highest bid info (Trigger: New Bid)
+    Bids ->> Notifications: Insert NEW_BID for owner & previous bidders (Trigger: New Bid)
+    Notifications ->> Clients: Broadcast changes via Supabase Realtime
+```
 
 ### 5. Auction End (CRON + Edge Function)
-  
-Auctions automatically close at `endAt` via **Supabase CRON** + the **close-auctions Edge Function**.  
-Participants receive notifications for auction wins (`NEW_AUCTION_WON`, sent to owner and winner) and payments (`NEW_PAYMENT`, sent to owner).
+
+Auctions close automatically at their scheduled end time via a Supabase CRON job that periodically triggers the `close-auctions` Edge Function.
+If the auction had any bids, both the auction owner and the winner are notified (`NEW_AUCTION_WON`) in real time.
+
+```mermaid
+sequenceDiagram
+    participant CRON as Supabase CRON
+    participant Edge as close-auctions Edge Function
+    participant Auctions as Auctions Table
+    participant Notifications as Notifications Table
+    participant Clients as Connected Clients
+
+    CRON ->> Edge: Trigger close-auctions function
+    Edge ->> Auctions: Update auction status to CLOSED
+    Auctions ->> Notifications: Insert NEW_AUCTION_WON for owner & highest bidder (Trigger: Auction Closed with Bid)
+```
 
 ### 6. Stripe Checkout & Webhook
 
-Winners pay directly via **Stripe Checkout**.  
-Successful payments trigger the `/api/stripe/webhook`, which verifies the event, updates the auction `paidAt` field (via a Service Role Supabase client to bypass RLS), and sends a `NEW_PAYMENT` notification to the auction owner.
+Winning bidders complete payment via Stripe Checkout.
+Once a payment succeeds, the `/api/stripe/webhook` updates the auction’s `paidAt` field (via a Service Role Supabase client to bypass RLS), and sends a `NEW_PAYMENT` notification to the auction owner in real time.
+
+```mermaid
+sequenceDiagram
+    participant Winner as Auction Winner
+    participant Stripe as Stripe Checkout
+    participant Webhook as /api/stripe/webhook
+    participant Auctions as Auctions Table
+    participant Notifications as Notifications Table
+    participant Clients as Connected Clients
+
+    Winner ->> Stripe: Complete payment
+    Stripe ->> Webhook: Send payment event
+    Webhook ->> Auctions: Update paidAt (using Service Role)
+    Auctions ->> Notifications: Insert NEW_PAYMENT for auction owner (Trigger: Auction Paid)
+    Notifications ->> Clients: Broadcast changes via Supabase Realtime
+```
 
 ### 7. Stats & Charts
 
@@ -155,3 +196,5 @@ pnpm dev
 ```
 
 GavL – Next Auctions was designed as a portfolio project to explore scalable, real-time web app patterns with Supabase, Stripe, and Next.js.
+
+Developed with ❤️ by Siegfried Bozza — MIT License
