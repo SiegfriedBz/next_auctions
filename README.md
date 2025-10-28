@@ -4,12 +4,10 @@ A real-time auction platform built with Next.js, React, TypeScript, Supabase, an
 
 ## 🎥 Demo / Video Walkthrough
 
-Full walkthrough playlist: [YouTube Playlist](https://www.youtube.com/watch?v=hLpAKQV34Ok&list=PLrUSgs1cNYobkqnvP3VKCgiZ8tjg8Zhbj&index=3)
+Walkthrough playlist: [YouTube Playlist](https://www.youtube.com/watch?v=hLpAKQV34Ok&list=PLrUSgs1cNYobkqnvP3VKCgiZ8tjg8Zhbj&index=3)
 
 Videos cover:
 
-- Landing page, login, table filters and sort  
-- Auction creation, editing, and details  
 - Real-time bidding with multiple users and notifications  
 - Auction end workflow with Stripe Checkout payment  
 - Responsiveness: mobile and desktop views  
@@ -28,11 +26,11 @@ Videos cover:
 
 ## ⚙️ Architecture Overview
 
-GavL – Next Auctions follows a lightweight **domain-driven design** structure for clarity and maintainability.
+GavL – Next Auctions follows a lightweight domain-driven design structure for clarity and maintainability.
 
 - **Domains:** Core types and Zod schemas for all entities (Auction, Bid, Notification, Payment, User)  
 - **Ports:** Repository interfaces defining all data access methods  
-- **Services:** Business logic and workflows (auction lifecycle, bidding, notifications)  
+- **Services:** Business logic and workflows  
 - **Instances:** Service instances wired with Supabase repository implementations  
 - **Infra (Supabase):** Implements data repositories that map DB rows to domain models and safely handle RLS-protected operations  
 - **Supabase Realtime:** Broadcasts live notifications for `NEW_BID`, `NEW_AUCTION_WON`, and `NEW_PAYMENT` events.  
